@@ -1,0 +1,13 @@
+ios-keypad-outline
+calendar-full
+exit
+ios-gear-outline
+clock
+database
+printer
+ios-bookmarks-outline
+pencil
+android-search
+arrow-down-b
+android-list
+ios-download-outline
