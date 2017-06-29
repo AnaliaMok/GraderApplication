@@ -5,8 +5,10 @@
          * view - Function that directs to pages that contain content for
          *      reading only. By default, directs to the dashboard page
          *
-         * @param  string $page [description]
-         * @return [type]       [description]
+         *      Generates: index, dashboard, calendar, backup, settings
+         *
+         * @param  string $page name of page to load
+         * @return null
          */
         public function view($page='index'){
             // Check if a view exists
@@ -25,13 +27,17 @@
                 // login (index.php) screen
                 $this->load->view("templates/nav");
             }
-            
+
             $this->load->view("simplepages/".$page, $data);
             $this->load->view("templates/footer");
 
 
         } // End of view
-    }
 
 
+        public function calendar(){
+            // TODO: Generate Full Calendar Page
+        }
+
+    } // End of SimplePages class
 ?>
