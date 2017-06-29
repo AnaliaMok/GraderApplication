@@ -1,3 +1,3 @@
 <main>
-    <p>This is the dashboard</p>
+    <?php echo $table; ?>
 </main>

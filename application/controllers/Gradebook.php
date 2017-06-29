@@ -13,5 +13,10 @@
 
         } // End of __construct
 
+
+        public function view(){
+            # code...
+        }
+
     } // End of Gradebook Class
 ?>

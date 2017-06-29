@@ -8,8 +8,30 @@
         }
 
 
+        /**
+         * get_timestamps - Queries for all timestamps within a given range
+         * TODO: Add start & end parameters
+         * @return Array of time stamps
+         */
         public function get_timestamps(){
-            // TODO
+
+            // Grabbing all columns in timestamps except for id
+            // Order by decreasing date then by decreasing end time
+            // Inner join by assignment_id
+
+            $sql = "SELECT timestamps.date, timestamps.start, timestamps.end,
+                assignments.name FROM timestamps
+                INNER JOIN assignments
+                ON timestamps.assignment_id=assignments.assignment_id
+                ORDER BY timestamps.date DESC
+                ORDER BY timestamps.end DESC";
+
+            $this->db->select('date, start, end, assignments.name, section_id');
+            $this->db->join('assignments', 'assignments.assignment_id=timestamps.assignment_id');
+            $this->db->order_by('timestamps.date', 'DESC');
+            $this->db->order_by('timestamps.end', 'DESC');
+            $query = $this->db->get("timestamps");
+            return $query->result_array();
         }
 
 
