@@ -112,6 +112,35 @@ main{
     width: 100%;
 }
 
+/* Standard Table Formatting */
+table.std_table{
+    font-family: "Open Sans", sans-serif;
+    border-collapse: collapse;
+}
+
+table.std_table thead tr{
+    background-color: #53DF83;
+    border: 1px solid #53DF83;
+}
+
+table.std_table tbody tr{
+    background-color: #fff;
+    border: 1px solid #95989A;
+}
+
+table.std_table th, table.std_table td{
+    padding: 0.5em 2em;
+    text-align: left;
+    vertical-align: middle;
+    color: #2B2B2B;
+}
+
+table.std_table th{
+    /* th cells should have white text & heavier font */
+    color: #fff;
+    font-weight: 600;
+}
+
 
 @media screen and (min-width: 768px){
     /* Desktop Styling */

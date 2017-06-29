@@ -36,15 +36,26 @@
             $times = $this->Timestamp->get_timestamps();
             $this->table->set_heading('Date', 'Start Time', 'End Time', 'Assignment', 'Section');
 
+            // Total Time Logged
+            $data['total_time'] = time();
+
+            // Creating table rows & formatting date and times
             foreach ($times as $time){
                 $formattedDate = nice_date($time['date'], 'm.d.y');
                 $formattedStart = date("g:i A", strtotime($time['start']));
                 $formattedEnd = date("g:i A", strtotime($time['end']));
 
-                $this->table->add_row($formattedDate, $formattedStart, $formattedEnd, $time['name'], $time['section_id']);
+                // TODO: Calculate timespan between start to end & add to total_time var
+
+                $this->table->add_row($formattedDate, $formattedStart,
+                    $formattedEnd, $time['name'], $time['section_id']);
             }
 
-            $data['table'] = $this->table->generate();
+            // Changing the opening table tag for this table
+            $template = array('table_open' => '<table class="std_table">');
+            $this->table->set_template($template);
+
+            $data['time_table'] = $this->table->generate();
 
             // Loading Remaining View & Passing data to dashboard
             $this->load->view('dashboard', $data);
