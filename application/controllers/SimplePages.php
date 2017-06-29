@@ -5,11 +5,10 @@
             // CodeIgniter Parent Constructor
             parent::__construct();
 
-            // Loading HTML Tables Library to be used in most views
-            $this->load->library('table');
+            // All SimplePages use a database connection
+            $this->load->database();
 
-        }
-
+        } // End of __construct
 
 
         /**
@@ -22,6 +21,10 @@
          * @return null
          */
         public function view($page='dashboard'){
+
+            // Loading HTML Tables Library
+            $this->load->library('table');
+
             // Check if a view exists
             if(!file_exists(APPPATH.'views/simplepages/'.$page.'.php')){
                 show_404();
@@ -40,6 +43,7 @@
                     $this->calendar();
                     break;
                 default:
+                    // Dashboard is defaulted screen
                     $this->dashboard();
                     break;
             }

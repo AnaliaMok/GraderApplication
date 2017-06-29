@@ -78,14 +78,14 @@ abstract class CI_DB_driver {
 	 *
 	 * @var	string
 	 */
-	public $hostname;
+	public $hostname		= "localhost/phpMyAdmin";
 
 	/**
 	 * Database name
 	 *
 	 * @var	string
 	 */
-	public $database;
+	public $database		= "grader_app";
 
 	/**
 	 * Database driver
@@ -142,7 +142,7 @@ abstract class CI_DB_driver {
 	 *
 	 * @var	int
 	 */
-	public $port			= '';
+	public $port			= '3300';
 
 	/**
 	 * Persistent connection flag

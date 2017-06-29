@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Clean URL to dashboard view
-$route['dashboard'] = 'simplepages/view/dashboard';
+$route['dashboard'] = 'dashboard/view';
 
 // User System URLS
 $route['default_controller'] = 'users/login';

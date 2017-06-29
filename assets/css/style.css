@@ -8,6 +8,7 @@
 html, body{
     margin: 0;
     padding: 0;
+    height: 100%;
     width: 100%;
 }
 
@@ -22,7 +23,7 @@ a{
 
 /* Navigation Styling */
 nav{
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     left: 0;
@@ -32,17 +33,31 @@ nav{
     text-align: center;
 }
 
+nav div#inner-container{
+    /* Container inside nav to allow absolute positioning */
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
 /* Top Box Of Navigation */
 nav div#profile-img{
-    margin-bottom: 2rem;
-    padding: 1em;
+    width: 100%;
+    padding: 25% 0;
     background-color: #232323;
+}
+
+/* User Initials Container */
+nav div#profile-img span{
+    display: inline-block;
+    vertical-align: middle;
     color: #47D2E9;
     font-family: Montserrat, sans-serif;
     font-size: 1.5em;
 }
 
 nav ul{
+    display: block;
     list-style: none;
     margin: 0 1.5rem;
     padding: 0;
@@ -54,7 +69,7 @@ nav ul li{
 
 nav ul li a{
     display: block;
-    font-size: 40px;
+    font-size: 2.5em;
 }
 
 nav ul li a#active,
@@ -63,12 +78,14 @@ nav ul li a:hover{
 }
 
 nav ul li a span.ion-ios-gear-outline{
-    font-size: 50px;
+    /*font-size: 2.6em;*/
 }
 
 /* Logout Button */
 nav a#logout-btn{
     display: block;
+    margin: 0 0.75rem;
+
     font-size: 40px;
     margin-top: 3rem;
     padding: 0.3em;
@@ -76,7 +93,7 @@ nav a#logout-btn{
     background-color: #47D2E9;
     box-shadow: 0 0 9px rgba(0, 0, 0, 0.16);
 
-    transition: all 0.5s;
+    transition: background-color 0.5s, color 0.5s;
 }
 
 nav a#logout-btn:hover{
@@ -89,7 +106,21 @@ Position main off to the right to avoid nav bar
  */
 
 main{
-    position: absolute;
-    left: 3em;
+    position: fixed;
+    left: 5.5em;
     background-color: #EEEEEE;
+    width: 100%;
+}
+
+
+@media screen and (min-width: 768px){
+    /* Desktop Styling */
+    nav a#logout-btn{
+        /* Position towards the bottom of the inner-container */
+        margin: 0;
+        position: absolute;
+        left: 0.75rem;
+        bottom: 0.75rem;
+        z-index: 1;
+    }
 }
