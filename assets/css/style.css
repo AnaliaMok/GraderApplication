@@ -112,6 +112,12 @@ main{
     width: 100%;
 }
 
+/* Container for table heading and table itself */
+div.table-group{
+    display: inline-block;
+    margin: 2rem 0 2rem 3.125rem;
+}
+
 /* Standard Table Formatting */
 table.std_table{
     font-family: "Open Sans", sans-serif;
@@ -141,7 +147,37 @@ table.std_table th{
     font-weight: 600;
 }
 
-/* TODO: Format the header above the table */
+/* Header above the table */
+div.table-heading{
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+div.table-heading h2{
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.5em;
+    color: #2B2B2B;
+}
+
+div.table-heading span{
+    /* Outerspan styling */
+    font-family: "Open Sans", sans-serif;
+    font-weight: lighter;
+    color: #2B2B2B;
+}
+
+div.table-heading span.outer-span{
+    /* Place toward right border of table */
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+div.table-heading span span{
+    /* Slightly heavier weight for time record */
+    font-weight: 600;
+}
 
 
 @media screen and (min-width: 768px){
