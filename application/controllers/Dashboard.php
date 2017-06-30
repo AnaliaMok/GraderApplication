@@ -37,7 +37,7 @@
             $this->table->set_heading('Date', 'Start Time', 'End Time', 'Assignment', 'Section');
 
             // Total Time Logged
-            $data['total_time'] = time();
+            $data['total_time'] = DateTime::createFromFormat('H:i:s', "00:00:00");
 
             // Creating table rows & formatting date and times
             foreach ($times as $time){
@@ -46,10 +46,25 @@
                 $formattedEnd = date("g:i A", strtotime($time['end']));
 
                 // TODO: Calculate timespan between start to end & add to total_time var
+                $startTime = DateTime::createFromFormat('H:i:s', $time['start']);
+                $endTime = DateTime::createFromFormat('H:i:s', $time['end']);
+
+                $interval = new DateInterval('PT'.$startTime->format('h').'H'.$startTime->format('i').'M');
+                $endTime->sub($interval);
+                // End time as an interval
+                $interval = new DateInterval('PT'.$endTime->format('h').'H'.$endTime->format('i').'M');
+                $data['total_time']->add($interval);
+
+                //$data['total_time'] = timespan(mysql_to_unix($time['end']), mysql_to_unix($time['start']), 2);
 
                 $this->table->add_row($formattedDate, $formattedStart,
                     $formattedEnd, $time['name'], $time['section_id']);
             }
+
+            // = 9hr 49min
+
+            // Formatting Total Time
+            $data['total_time'] = $data['total_time']->format('h'). "hrs ". $data['total_time']->format('i'). "min";
 
             // Changing the opening table tag for this table
             $template = array('table_open' => '<table class="std_table">');

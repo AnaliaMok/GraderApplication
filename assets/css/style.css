@@ -141,6 +141,8 @@ table.std_table th{
     font-weight: 600;
 }
 
+/* TODO: Format the header above the table */
+
 
 @media screen and (min-width: 768px){
     /* Desktop Styling */
