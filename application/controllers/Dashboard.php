@@ -79,6 +79,11 @@
         } // End of view
 
 
+        public function create_time_table(){
+            // TODO
+        }
+
+
         public function test(){
             $this->load->view("templates/header");
             $this->load->view("templates/nav");

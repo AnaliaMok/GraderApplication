@@ -108,66 +108,37 @@ Position main off to the right to avoid nav bar
  */
 
 main{
-    /*position: fixed;
-    left: 5.5em;*/
     background-color: #EEEEEE;
     width: 100%;
-    /*overflow-y: auto;*/
-    /*float: left;*/
+}
+
+/* Content Wrapper */
+div.content{
+    padding-left: 5.5em;
 }
 
 /* Container for table heading and table itself */
 div.table-group{
     display: inline-block;
-    margin: 2rem 0 2rem 3.125rem;
+    margin: 2rem;
+    width: 90%;
 }
-
-/* Experimental Styling */
-div.content{
-    padding-left: 5.5em;
-}
-
-
-/* Standard Table Formatting */
-table.std_table{
-    font-family: "Open Sans", sans-serif;
-    border-collapse: collapse;
-}
-
-table.std_table thead tr{
-    background-color: #53DF83;
-    border: 1px solid #53DF83;
-}
-
-table.std_table tbody tr{
-    background-color: #fff;
-    border: 1px solid #95989A;
-}
-
-table.std_table th, table.std_table td{
-    padding: 0.5em 2em;
-    text-align: left;
-    vertical-align: middle;
-    color: #2B2B2B;
-}
-
-table.std_table th{
-    /* th cells should have white text & heavier font */
-    color: #fff;
-    font-weight: 600;
-}
-
 /* Header above the table */
 div.table-heading{
+    width: 100%;
     position: relative;
-    margin-bottom: 1rem;
 }
 
 div.table-heading h2{
-    display: inline;
+    /*display: inline;*/
+    display: block;
+    margin: 0;
+    padding: 0.5em 1em;
     font-family: Montserrat, sans-serif;
     font-size: 1.5em;
-    color: #2B2B2B;
+    color: #FFF;
+    background-color: #53DF83;
+    border: 1px solid #53DF83;
 }
 
 div.table-heading span{
@@ -179,9 +150,15 @@ div.table-heading span{
 
 div.table-heading span.outer-span{
     /* Place toward right border of table */
-    position: absolute;
+    /*position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: 0;*/
+    display: block;
+    text-align: center;
+    background-color: #FFF;
+    padding: 0.5em 0;
+    border: 1px solid #95989A;
+    border-top: 0;
 }
 
 div.table-heading span span{
@@ -189,9 +166,78 @@ div.table-heading span span{
     font-weight: 600;
 }
 
+/* Standard Table Formatting */
+div.std_table{
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+}
 
+div.std_table div.table-head{
+    /* Table Head Should not be visible on small screens */
+    display: none;
+}
+
+/*
+    ul == tr
+    li == td
+ */
+div.std_table ul{
+    list-style: none;
+    margin: 0;
+    padding: 1em 0 1em 1em;
+    background-color: #FFF;
+    border: 1px solid #95989A;
+    border-top: 0;
+}
+
+div.std_table ul li > ul{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+div.std_table ul li > ul li{
+    display: inline;
+}
+
+div.std_table ul li::before{
+    content: attr(data-title) "\00a0";
+    font-weight: 600;
+}
+
+div.std_table ul li.unbold-title-item::before{
+    /* "for" should not be bolded */
+    font-weight: 500;
+}
+
+div.std_table ul li.inline-group::before{
+    /* Container li should not have content */
+    content: "";
+}
+
+
+
+div.std_table tbody tr{
+    background-color: #fff;
+    border: 1px solid #95989A;
+}
+
+div.std_table th, div.std_table td{
+    padding: 0.5em 2em;
+    text-align: left;
+    vertical-align: middle;
+    color: #2B2B2B;
+}
+
+div.std_table th{
+    /* th cells should have white text & heavier font */
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Desktop Styling */
 @media screen and (min-width: 768px){
-    /* Desktop Styling */
+
     nav a#logout-btn{
         /* Position towards the bottom of the inner-container */
         margin: 0;
@@ -202,10 +248,6 @@ div.table-heading span span{
     }
 
     /* Reset Table styling to default positioning */
-    table.std_table tr,
-    table.std_table th,
-    table.std_table td{
-        display: static;
-    }
+
 
 }

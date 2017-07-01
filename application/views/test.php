@@ -21,13 +21,20 @@
             </div>
             <div class="table-body">
                 <ul>
-                    <li data-label="Date:">03.16.17</li>
+                    <li data-title="Date:">03.16.17</li>
 
-                    <li>8:43 AM</li>
-                    <li>10:44 AM</li>
-
-                    <li>Project1-1</li>
-                    <li>CSCI-142-08</li>
+                    <li class="inline-group">
+                        <ul>
+                            <li data-title="Time:">8:43 AM</li>
+                            <li data-title="-">10:44 AM</li>
+                        </ul>
+                    </li>
+                    <li class="inline-group">
+                        <ul>
+                            <li data-title="Assignment:">Project1-1</li>
+                            <li data-title="for" class="unbold-title-item">CSCI-142-08</li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul>
                     <li>03.15.17</li>
