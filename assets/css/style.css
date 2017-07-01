@@ -155,7 +155,7 @@ div.table-heading span.outer-span{
     bottom: 0;*/
     display: block;
     text-align: center;
-    background-color: #FFF;
+    background-color: #FCFCFC;
     padding: 0.5em 0;
     border: 1px solid #95989A;
     border-top: 0;
@@ -167,21 +167,23 @@ div.table-heading span span{
 }
 
 /* Standard Table Formatting */
-div.std_table{
+div.std-table{
     font-family: "Open Sans", sans-serif;
     width: 100%;
 }
 
-div.std_table div.table-head{
+div.std-table div.table-head{
     /* Table Head Should not be visible on small screens */
     display: none;
 }
 
 /*
-    ul == tr
-    li == td
+    ==== KEY ====
+      ul == tr
+      li == td
+    =============
  */
-div.std_table ul{
+div.std-table ul{
     list-style: none;
     margin: 0;
     padding: 1em 0 1em 1em;
@@ -190,50 +192,30 @@ div.std_table ul{
     border-top: 0;
 }
 
-div.std_table ul li > ul{
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
-div.std_table ul li > ul li{
+div.std-table ul li{
     display: inline;
 }
 
-div.std_table ul li::before{
+div.std-table ul li::before{
     content: attr(data-title) "\00a0";
     font-weight: 600;
 }
 
-div.std_table ul li.unbold-title-item::before{
+div.std-table ul li.unbold-title-item::before{
     /* "for" should not be bolded */
     font-weight: 500;
 }
 
-div.std_table ul li.inline-group::before{
-    /* Container li should not have content */
+div.std-table ul li.empty-cell{
+    /* Need to state explicitly to have separate lines */
+    display: list-item;
+}
+
+div.std-table ul li.empty-cell::before{
+    /* Empty Cells should not have content */
     content: "";
 }
 
-
-
-div.std_table tbody tr{
-    background-color: #fff;
-    border: 1px solid #95989A;
-}
-
-div.std_table th, div.std_table td{
-    padding: 0.5em 2em;
-    text-align: left;
-    vertical-align: middle;
-    color: #2B2B2B;
-}
-
-div.std_table th{
-    /* th cells should have white text & heavier font */
-    color: #fff;
-    font-weight: 600;
-}
 
 /* Desktop Styling */
 @media screen and (min-width: 768px){
@@ -247,7 +229,94 @@ div.std_table th{
         z-index: 1;
     }
 
-    /* Reset Table styling to default positioning */
+    /* Make table group smaller */
+    div.table-group{ width: 60%; }
+
+    /* Adjust table heading */
+    div.table-heading{
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1em;
+    }
+
+    div.table-heading h2,
+    div.table-heading span.outer-span{
+        /* Remove backgrounds and place one same line */
+        display: inline;
+        background-color: #EEE;
+        border: 0;
+        color: #2B2B2B;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Change font-weight back to Regular */
+    div.table-heading h2{ font-weight: 500; }
+
+    /* "Total Time" container */
+    div.table-heading span.outer-span{
+        text-align: left;
+        display: block;
+    }
+
+    /* Adjust std-table to use CSS Tables */
+    div.table-group{ position: relative; }
+
+    div.std-table{
+        display: table;
+        position: relative;
+        border-collapse: collapse;
+    }
+
+    div.std-table div.table-head{
+        /* Table Head Should not be visible on small screens */
+        display: table-header-group;
+    }
+
+    div.std-table div.table-body{
+        display: table-row-group;
+    }
+
+    div.std-table ul{
+        display: table-row;
+    }
+
+    div.std-table div.table-head ul{
+        border: 1px solid #53DF83;
+        background-color: #53DF83;
+        color: #FFF;
+        font-weight: 600;
+    }
+
+    div.std-table div.table-body ul{
+        border: 1px solid #95989A;
+    }
+
+    div.std-table ul li{
+        display: table-cell;
+        padding: 0.5em 1em;
+    }
+
+    div.std-table ul li::before{
+        content: "";
+    }
+
+    div.std-table ul li.empty-cell{
+        display: none;
+    }
+
+} /* End of desktop styling */
 
 
+/*
+    Temp Rule to Align Total Time Tag
+    without it overlapping "Timestamps" heading
+ */
+@media screen and (min-width: 1128px){
+    div.table-heading span.outer-span{
+        /* Place toward right border of table */
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
 }

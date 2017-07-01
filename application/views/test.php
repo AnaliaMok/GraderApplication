@@ -9,7 +9,7 @@
             ul := tr
             li := th or td
         -->
-        <div class="std_table">
+        <div class="std-table">
             <div class="table-head">
                 <ul>
                     <li>Date</li>
@@ -22,57 +22,24 @@
             <div class="table-body">
                 <ul>
                     <li data-title="Date:">03.16.17</li>
+                    <li class="empty-cell"></li>
+                    <!-- <li class="inline-group">
+                        <ul> -->
+                    <li data-title="Time:" class="inline-item">8:43 AM</li>
+                    <li data-title="-" class="inline-item">10:44 AM</li>
+                        <!-- </ul>
+                    </li> -->
+                    <li class="empty-cell"></li>
+                    <!-- <li class="inline-group">
+                        <ul> -->
+                    <li data-title="Assignment:" class="inline-item">Project1-1</li>
+                    <li data-title="for" class="unbold-title-item inline-item">CSCI-142-08</li>
+                        <!-- </ul>
+                    </li> -->
 
-                    <li class="inline-group">
-                        <ul>
-                            <li data-title="Time:">8:43 AM</li>
-                            <li data-title="-">10:44 AM</li>
-                        </ul>
-                    </li>
-                    <li class="inline-group">
-                        <ul>
-                            <li data-title="Assignment:">Project1-1</li>
-                            <li data-title="for" class="unbold-title-item">CSCI-142-08</li>
-                        </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li>03.15.17</li>
-                    <li>9:02 AM</li>
-                    <li>10:29 AM</li>
-                    <li>Project1-1</li>
-                    <li>CSCI-142-08</li>
-                </ul>
-                <ul>
-                    <li>03.14.17</li>
-                    <li>8:55 PM</li>
-                    <li>10:55 PM</li>
-                    <li>Project1-1</li>
-                    <li>CSCI-142-02</li>
-                </ul>
-                <ul>
-                    <li>03.14.17</li>
-                    <li>6:45 PM</li>
-                    <li>8:15 PM</li>
-                    <li>Project1-1</li>
-                    <li>CSCI-142-02</li>
-                </ul>
-                <ul>
-                    <li>03.13.17</li>
-                    <li>9:51 PM</li>
-                    <li>10:54 PM</li>
-                    <li>Project1-1</li>
-                    <li>CSCI-142-02</li>
-                </ul>
-                <ul>
-                    <li>03.13.17</li>
-                    <li>7:14 PM</li>
-                    <li>9:02 PM</li>
-                    <li>Project1-1</li>
-                    <li>CSCI-142-02</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+                </ul><!-- End of last row -->
+            </div><!-- End of table-body -->
+        </div><!-- End of std_table -->
+    </div><!-- End of table-group -->
     </div>
 </main>
