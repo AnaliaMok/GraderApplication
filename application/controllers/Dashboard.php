@@ -61,8 +61,6 @@
                     $formattedEnd, $time['name'], $time['section_id']);
             }
 
-            // = 9hr 49min
-
             // Formatting Total Time
             $data['total_time'] = $data['total_time']->format('h'). "hrs ". $data['total_time']->format('i'). "min";
 
@@ -72,10 +70,21 @@
 
             $data['time_table'] = $this->table->generate();
 
+            // TODO: Create unfinished grading table
+            // TODO: Create Finished Grading Table
+
             // Loading Remaining View & Passing data to dashboard
             $this->load->view('dashboard', $data);
             $this->load->view('templates/footer');
         } // End of view
+
+
+        public function test(){
+            $this->load->view("templates/header");
+            $this->load->view("templates/nav");
+            $this->load->view('test');
+            $this->load->view("templates/footer");
+        }
 
     } // End of Dashboard
 ?>

@@ -1,4 +1,5 @@
 <main>
+    <div class="content">
     <div class="table-group">
         <div class="table-heading">
             <h2>Timestamps this Week</h2>
@@ -6,5 +7,5 @@
         </div>
         <?php echo $time_table; ?>
     </div>
-
+    </div>
 </main>

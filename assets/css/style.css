@@ -24,10 +24,12 @@ a{
 /* Navigation Styling */
 nav{
     height: 100%;
-    position: fixed;
+    /*position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
+    bottom: 0;*/
+    position: fixed;
+    /*float: left;*/
 
     background-color: #3F3F3F;
     text-align: center;
@@ -106,10 +108,12 @@ Position main off to the right to avoid nav bar
  */
 
 main{
-    position: fixed;
-    left: 5.5em;
+    /*position: fixed;
+    left: 5.5em;*/
     background-color: #EEEEEE;
     width: 100%;
+    /*overflow-y: auto;*/
+    /*float: left;*/
 }
 
 /* Container for table heading and table itself */
@@ -117,6 +121,12 @@ div.table-group{
     display: inline-block;
     margin: 2rem 0 2rem 3.125rem;
 }
+
+/* Experimental Styling */
+div.content{
+    padding-left: 5.5em;
+}
+
 
 /* Standard Table Formatting */
 table.std_table{
@@ -190,4 +200,12 @@ div.table-heading span span{
         bottom: 0.75rem;
         z-index: 1;
     }
+
+    /* Reset Table styling to default positioning */
+    table.std_table tr,
+    table.std_table th,
+    table.std_table td{
+        display: static;
+    }
+
 }
