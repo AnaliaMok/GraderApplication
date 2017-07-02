@@ -79,6 +79,42 @@
         } // End of create_table_template
 
 
+        /**
+         * generate_heading - Accepts an array of strings and formats the table-head
+         *      header to be used.
+         *
+         * @param  headers - Array of Strings
+         * @return String
+         */
+        private function generate_heading($headers){
+            // Formatted table-head String
+            $out = "";
+
+            // Tabs for nice page source view
+            $startTabs = "\t\t\t\t";
+
+            // Creating table-head
+            $out .= $startTabs.'<div class="table-head">'."\n";
+            $out .= $startTabs."\t<ul>\n";
+
+            // Adding list items
+            foreach($headers as $head){
+                $out .= "<li>".$head."</li>";
+            }
+
+            // Closing tags
+            $out .= $startTabs."\t</ul>\n";
+            $out .= $startTabs."</div>\n";
+
+            return $out;
+        } // End of generate_heading
+
+        /**
+         * create_time_table - Finds and formats the time table
+         *
+         * @param  data - Associative array
+         * @return data
+         */
         private function create_time_table($data){
 
             // Starting with an empty string
@@ -89,23 +125,12 @@
 
             $startTabs = "\t\t\t\t";
 
-            // Creating table opening
-            $data['time_table'] .= '<div class="std-table">'."\n";
-            $data['time_table'] .= $startTabs.'<div class="table-head">'."\n";
-
-            // Opening ul tag
-            $data['time_table'] .= $startTabs."\t".'<ul>'."\n";
-
-            // Adding Header Items
+            // Header Items
             $heading = array("Date", "Start Time", "End Time", "Assignment", "Section");
 
-            foreach ($heading as $head) {
-                $data['time_table'] .= $startTabs."\t\t<li>".$head."</li>\n";
-            }
-
-            // Closing ul & table-head div tag
-            $data['time_table'] .= $startTabs."\t</ul>\n";
-            $data['time_table'] .= $startTabs."</div>\n";
+            // Creating table opening
+            $data['time_table'] .= '<div class="std-table">'."\n";
+            $data['time_table'] .= $this->generate_heading($heading);
 
             // Starting table-body div
             $data['time_table'] .= $startTabs.'<div class="table-body">'."\n";
@@ -154,14 +179,6 @@
 
             return $data;
         } // End of create_time_table
-
-
-        public function test(){
-            $this->load->view("templates/header");
-            $this->load->view("templates/nav");
-            $this->load->view('test');
-            $this->load->view("templates/footer");
-        }
 
     } // End of Dashboard
 ?>

@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Clean URL to dashboard view
 $route['dashboard'] = 'dashboard/view';
-$route['test'] = 'dashboard/test';
 
 // SimplePages Handled views
 $route['calendar'] = 'simplepages/view/calendar';

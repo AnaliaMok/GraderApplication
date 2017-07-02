@@ -25,6 +25,5 @@
 
         </div><!-- End of table group -->
 
-
     </div><!-- End of content -->
 </main>
