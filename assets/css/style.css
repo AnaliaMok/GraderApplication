@@ -216,6 +216,15 @@ div.std-table ul li.empty-cell::before{
     content: "";
 }
 
+/* Button Holder */
+div.table-button-holder{
+    text-align: center;
+}
+
+.table-button-holder button{
+    font-family: "Open Sans", sans-serif !important;
+}
+
 
 /* Desktop Styling */
 @media screen and (min-width: 768px){
