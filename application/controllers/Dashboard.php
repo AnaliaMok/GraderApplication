@@ -109,6 +109,7 @@
             return $out;
         } // End of generate_heading
 
+
         /**
          * create_time_table - Finds and formats the time table
          *
@@ -175,10 +176,34 @@
             $data['time_table'] .= "\t\t\t</div><!-- End of std-table -->\n";
 
             // Formatting Total Time
-            $data['total_time'] = $data['total_time']->format('h'). "hrs ". $data['total_time']->format('i'). "min";
+            if(count($times) > 0){
+                $data['total_time'] = $data['total_time']->format('h'). "hrs ". $data['total_time']->format('i'). "min";
+            }else{
+                $data['total_time'] = 0;
+            }
 
             return $data;
         } // End of create_time_table
+
+
+        /**
+         * [create_unfinished_table description]
+         * @param  [type] $data [description]
+         * @return [type]       [description]
+         */
+        private function create_unfinished_table($data){
+            // TODO
+        }
+
+
+        /**
+         * [create_finished_table description]
+         * @param  [type] $data [description]
+         * @return [type]       [description]
+         */
+        private function create_finished_table($data){
+            // TODO
+        }
 
     } // End of Dashboard
 ?>
