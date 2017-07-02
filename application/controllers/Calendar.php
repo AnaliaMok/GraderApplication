@@ -16,9 +16,13 @@
                 {table_open}<table class="calendar">{/table_open}
                 {heading_row_start}<thead>{/heading_row_start}
                 {heading_row_end}</thead>{/heading_row_end}
+
                 {week_row_start}<tr class="weekdays">{/week_row_start}
                 {week_row_end}</tr>{/week_row_end}
+
                 {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
+                {cal_cell_start_today}<td id="today">{/cal_cell_start_today}
+
             ';
             // TODO: Turn templates back on after styling
             $this->load->library('calendar', $prefs);

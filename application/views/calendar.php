@@ -6,6 +6,6 @@
             <h2>Upcoming</h2>
             <?php // TODO: Echo Out Upcoming Items ?>
         </div>
-
     </div>
+    
 </main>

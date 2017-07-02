@@ -265,6 +265,12 @@ table.calendar tr.weekdays td{
     color: #53DF83;
 }
 
+table.calendar td#today{
+    /* Today's Cell */
+    font-weight: 600;
+    color: #53DF83;
+}
+
 /* Upcoming Events Container */
 div.upcoming-container h2{
     text-align: center;
@@ -362,12 +368,69 @@ div.upcoming-container h2{
         display: none;
     }
 
+
+    /* Calendar Styling */
+    table.calendar{
+        /* Removing auto margin */
+        width: 70%;
+        margin: 2rem 0 0 0.5rem;
+    }
+
+    table.calendar thead tr th{
+        /* Making Calendar Styling larger */
+        text-align: left;
+        padding: 1rem 0 1rem 2rem;
+        font-size: 1.5rem;
+        border: 1px solid #53DF83;
+    }
+
+    table.calendar td{
+        border: 1px solid #95989A;
+        width: 5vw;
+        height: 10vh;
+        padding: 0.5rem 0 0 0.5rem;
+        text-align: left;
+        vertical-align:top;
+    }
+
+    table.calendar tr.weekdays td{
+        width: auto;
+        height: auto;
+        padding: 0.75rem 0;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 600;
+    }
+
+    /*table.calendar td#today{
+        background-color: #53DF83;
+        color: #fff;
+    }*/
+
+    div.upcoming-container{
+        /* Position towards right hand side */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+
+        background-color: #3F3F3F;
+        width: 25%;
+        margin: 0 0 0 1rem;
+    }
+
+    div.upcoming-container h2{
+        text-align: left;
+        background-color: #3F3F3F;
+        margin-left: 2rem;
+    }
+
 } /* End of desktop styling */
 
 
 /*
-    Temp Rule to Align Total Time Tag
-    without it overlapping "Timestamps" heading
+    Full desktop screens
  */
 @media screen and (min-width: 1128px){
     div.table-heading span.outer-span{
@@ -376,4 +439,10 @@ div.upcoming-container h2{
         right: 0;
         bottom: 0;
     }
+
+    /* Large Calendar Styling */
+    table.calendar{
+        margin-left: 2rem;
+    }
+
 }

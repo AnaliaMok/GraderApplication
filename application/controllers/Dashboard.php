@@ -170,7 +170,7 @@
                 $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Time:" class="inline-item">'.$formattedStart."</li>\n";
                 $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="-" class="inline-item">'.$formattedEnd."</li>\n";
                 $data['time_table'] .= self::START_TABS."\t\t".$empty_cell."\n";
-                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Assignment" class="inline-item">'.$time['name']."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Assignment:" class="inline-item">'.$time['name']."</li>\n";
                 $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="for" class="unbold-title-item inline-item">'.$time['section_id']."</li>\n";
                 $data['time_table'] .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
             }
