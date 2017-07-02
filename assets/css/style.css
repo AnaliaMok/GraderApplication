@@ -272,12 +272,46 @@ table.calendar td#today{
 }
 
 /* Upcoming Events Container */
+div.upcoming-container{ background-color: #EEE; }
+
 div.upcoming-container h2{
     text-align: center;
     background-color: #53DF83;
     color: #FFF;
     font-weight: normal;
     padding: 0.25em 0;
+}
+
+/* List Item Styling */
+div.upcoming-container div.upcoming-list-item{
+    margin: 0.5rem 0;
+    background-color: #FFF;
+    font-family: "Open Sans", sans-serif;
+    position: relative;
+
+    /* Indicator TODO: Separate into own class */
+    border-left: 10px solid #E74C3C;
+}
+
+div.upcoming-list-item div.info-holder{
+    display: inline-block;
+    margin: 0.5em;
+    /*padding: 0.5em 0;*/
+}
+
+div.upcoming-list-item span{
+    display: block;
+}
+
+div.upcoming-list-item span.date{
+    font-weight: bold;
+    font-size: 0.75em;
+}
+
+div.upcoming-list-item input[type=checkbox]{
+    position: absolute;
+    right: 1em;
+    top: 32.7%;
 }
 
 /* Desktop Styling */
@@ -402,11 +436,6 @@ div.upcoming-container h2{
         font-weight: 600;
     }
 
-    /*table.calendar td#today{
-        background-color: #53DF83;
-        color: #fff;
-    }*/
-
     div.upcoming-container{
         /* Position towards right hand side */
         position: fixed;
@@ -423,7 +452,18 @@ div.upcoming-container h2{
     div.upcoming-container h2{
         text-align: left;
         background-color: #3F3F3F;
+        font-weight: 600;
         margin-left: 2rem;
+    }
+
+    /* List Item Styling */
+    div.upcoming-container div.upcoming-list-item{
+        margin: 0 1rem 1rem 1rem;
+    }
+
+    div.upcoming-list-item div.info-holder{
+        display: inline-block;
+        margin: 0.5em;
     }
 
 } /* End of desktop styling */
@@ -443,6 +483,11 @@ div.upcoming-container h2{
     /* Large Calendar Styling */
     table.calendar{
         margin-left: 2rem;
+    }
+
+    /* List Item Styling */
+    div.upcoming-container div.upcoming-list-item{
+        margin: 0 2rem 1rem 2rem;
     }
 
 }

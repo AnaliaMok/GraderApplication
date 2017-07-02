@@ -26,6 +26,9 @@
             ';
             // TODO: Turn templates back on after styling
             $this->load->library('calendar', $prefs);
+
+            // Loading Models
+            $this->load->model('Assignment_model', 'Assignment');
         }
 
 
@@ -34,14 +37,16 @@
          * @return [type] [description]
          */
         public function view(){
-            // TODO
-
-            // $events = array(
-            //     3 => "Hello World"
-            // );
-
+            // Current year & month variables
             $this_year = date("Y", strtotime("this year"));
             $this_month = date("m", strtotime("this month"));
+
+            // Getting Upcoming Assignments for this Month
+            $fields = array('assignment_id', 'name', 'due_date');
+            $assignments = $this->Assignment->get_assignments($this_month, $this_year, $fields);
+            $data['upcoming'] = $assignments;
+
+
             $data['calendar'] = $this->calendar->generate($this_year, $this_month);
             $data['active'] = "calendar";
 
