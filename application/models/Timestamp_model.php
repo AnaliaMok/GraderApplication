@@ -10,12 +10,16 @@
 
         /**
          * get_timestamps - Queries for all timestamps within a given range
-         * TODO: Add start & end parameters
+         *      If no parameters given, timestamps are filtered within the current
+         *      week.
+         * @param start - Date
+         * @param end - Date
          * @return Array of time stamps
          */
         public function get_timestamps($start = NULL, $end = NULL){
 
             // Grabbing all columns in timestamps except for id
+            // Filter within date range
             // Order by decreasing date then by decreasing end time
             // Inner join by assignment_id
 
@@ -39,7 +43,7 @@
             $this->db->order_by('timestamps.date', 'DESC');
             $this->db->order_by('timestamps.end', 'DESC');
             $query = $this->db->get("timestamps");
-            
+
             return $query->result_array();
         }
 

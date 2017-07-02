@@ -6,7 +6,7 @@
 
         <ul>
             <!-- TODO: Add Appropriate Icons -->
-            <li><a href="<?php echo base_url(); ?>"><span class="ion ion-ios-keypad-outline"></span></a></li>
+            <li><a href="<?php echo base_url(); ?>/dashboard"><span class="ion ion-ios-keypad-outline"></span></a></li>
             <li><a href="<?php echo base_url(); ?>"><span class="ion ion-ios-bookmarks-outline"></span></a></li>
             <li><a href="<?php echo base_url(); ?>"><span class="lnr lnr-calendar-full"></span></a></li>
             <li><a href="<?php echo base_url(); ?>"><span class="lnr lnr-printer"></span></a></li>

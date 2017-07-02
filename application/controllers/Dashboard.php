@@ -5,6 +5,10 @@
      */
     class Dashboard extends CI_Controller{
 
+        // Constant Offset Used for Better Code Formatting in Page Source
+        const START_TABS = "\t\t\t\t";
+
+
         public function __construct(){
             // CodeIgniter Parent Constructor
             parent::__construct();
@@ -33,9 +37,8 @@
 
             $data = array();
             $data = $this->create_time_table($data);
-
-            // TODO: Create unfinished grading table
-            // TODO: Create Finished Grading Table
+            $this->create_unfinished_table($data);
+            $this->create_finished_table($data);
 
             // Loading Remaining View & Passing data to dashboard
             $this->load->view('dashboard', $data);
@@ -90,12 +93,9 @@
             // Formatted table-head String
             $out = "";
 
-            // Tabs for nice page source view
-            $startTabs = "\t\t\t\t";
-
             // Creating table-head
-            $out .= $startTabs.'<div class="table-head">'."\n";
-            $out .= $startTabs."\t<ul>\n";
+            $out .= self::START_TABS.'<div class="table-head">'."\n";
+            $out .= self::START_TABS."\t<ul>\n";
 
             // Adding list items
             foreach($headers as $head){
@@ -103,8 +103,8 @@
             }
 
             // Closing tags
-            $out .= $startTabs."\t</ul>\n";
-            $out .= $startTabs."</div>\n";
+            $out .= self::START_TABS."\t</ul>\n";
+            $out .= self::START_TABS."</div>\n";
 
             return $out;
         } // End of generate_heading
@@ -113,18 +113,16 @@
         /**
          * create_time_table - Finds and formats the time table
          *
-         * @param  data - Associative array
+         * @param  data - Reference to an associative array
          * @return data
          */
-        private function create_time_table($data){
+        private function create_time_table(&$data){
 
             // Starting with an empty string
             $data['time_table'] = "";
 
             // Total Time Logged
             $data['total_time'] = DateTime::createFromFormat('H:i:s', "00:00:00");
-
-            $startTabs = "\t\t\t\t";
 
             // Header Items
             $heading = array("Date", "Start Time", "End Time", "Assignment", "Section");
@@ -134,7 +132,7 @@
             $data['time_table'] .= $this->generate_heading($heading);
 
             // Starting table-body div
-            $data['time_table'] .= $startTabs.'<div class="table-body">'."\n";
+            $data['time_table'] .= self::START_TABS.'<div class="table-body">'."\n";
 
             // Timestamp Data
             $times = $this->Timestamp->get_timestamps();
@@ -160,19 +158,19 @@
                 $data['total_time']->add($interval);
 
                 // Adding New Row
-                $data['time_table'] .= $startTabs."\t<ul>\n";
-                $data['time_table'] .= $startTabs."\t\t".'<li data-title="Date:">'.$formattedDate."</li>\n";
-                $data['time_table'] .= $startTabs."\t\t".$empty_cell."\n";
-                $data['time_table'] .= $startTabs."\t\t".'<li data-title="Time:" class="inline-item">'.$formattedStart."</li>\n";
-                $data['time_table'] .= $startTabs."\t\t".'<li data-title="-" class="inline-item">'.$formattedEnd."</li>\n";
-                $data['time_table'] .= $startTabs."\t\t".$empty_cell."\n";
-                $data['time_table'] .= $startTabs."\t\t".'<li data-title="Assignment" class="inline-item">'.$time['name']."</li>\n";
-                $data['time_table'] .= $startTabs."\t\t".'<li data-title="for" class="unbold-title-item inline-item">'.$time['section_id']."</li>\n";
-                $data['time_table'] .= $startTabs."\t</ul>"."<!-- End of row -->\n";
+                $data['time_table'] .= self::START_TABS."\t<ul>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Date:">'.$formattedDate."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".$empty_cell."\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Time:" class="inline-item">'.$formattedStart."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="-" class="inline-item">'.$formattedEnd."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".$empty_cell."\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="Assignment" class="inline-item">'.$time['name']."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t\t".'<li data-title="for" class="unbold-title-item inline-item">'.$time['section_id']."</li>\n";
+                $data['time_table'] .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
             }
 
             // Closing Tags
-            $data['time_table'] .= $startTabs."</div><!-- End of table-body -->\n";
+            $data['time_table'] .= self::START_TABS."</div><!-- End of table-body -->\n";
             $data['time_table'] .= "\t\t\t</div><!-- End of std-table -->\n";
 
             // Formatting Total Time
@@ -188,22 +186,49 @@
 
         /**
          * [create_unfinished_table description]
-         * @param  [type] $data [description]
+         * @param  Reference to an associative array
          * @return [type]       [description]
          */
-        private function create_unfinished_table($data){
-            // TODO
-        }
+        private function create_unfinished_table(&$data){
+            $data['unfinished_table'] = '<div class="std-table">'."\n";
+
+            $heading = array("Assignment", "Section", "Started", "");
+            $data['unfinished_table'] .= $this->generate_heading($heading);
+
+            // Opening table-body
+            $data['unfinished_table'] .= self::START_TABS.'<div class="table-body">'."\n";
+
+            // TODO: Ask for data & format;
+            // NOTE: Might be able to organize finished & unfinished at same time
+
+            // Closing Tags
+            $data['unfinished_table'] .= self::START_TABS."</div><!-- End of table-body -->\n";
+            $data['unfinished_table'] .= "\t\t\t</div><!-- End of std-table -->\n";
+
+            return $data;
+        } // End of create_unfinished_table
 
 
         /**
          * [create_finished_table description]
-         * @param  [type] $data [description]
+         * @param  Reference to an associative array
          * @return [type]       [description]
          */
-        private function create_finished_table($data){
-            // TODO
-        }
+        private function create_finished_table(&$data){
+            $data['finished_table'] = '<div class="std-table">'."\n";
+
+            $heading = array("Assignment", "Section", "Completed", "");
+            $data['finished_table'] .= $this->generate_heading($heading);
+
+            // Opening table-body
+            $data['finished_table'] .= self::START_TABS.'<div class="table-body">'."\n";
+
+            // TODO: Ask for data & format
+
+            // Closing Tags
+            $data['finished_table'] .= self::START_TABS."</div><!-- End of table-body -->\n";
+            $data['finished_table'] .= "\t\t\t</div><!-- End of std-table -->\n";
+        } // End of create_finished_table
 
     } // End of Dashboard
 ?>

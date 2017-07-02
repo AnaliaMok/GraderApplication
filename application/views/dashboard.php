@@ -14,7 +14,7 @@
             <div class="table-heading">
                 <h2>Unfinished Grading</h2>
             </div>
-
+            <?php echo $unfinished_table; ?>
         </div><!-- End of table group -->
 
         <!-- Finished Grading Table -->
@@ -22,7 +22,7 @@
             <div class="table-heading">
                 <h2>Finished Grading</h2>
             </div>
-
+            <?php echo $finished_table; ?>
         </div><!-- End of table group -->
 
     </div><!-- End of content -->
