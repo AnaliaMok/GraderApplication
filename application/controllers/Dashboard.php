@@ -1,4 +1,6 @@
 <?php
+    defined('BASEPATH') OR exit('No direct script access allowed');
+
     /**
      * Dashboard - Controller to handle all interactions with the dashboard
      * page.
@@ -32,13 +34,17 @@
          */
         public function view(){
 
-            $this->load->view('templates/header');
-            $this->load->view('templates/nav');
-
+            // Constructing data
             $data = array();
             $data = $this->create_time_table($data);
             $this->create_unfinished_table($data);
             $this->create_finished_table($data);
+
+            // Variable for nav
+            $data['active'] = "dashboard";
+
+            $this->load->view('templates/header');
+            $this->load->view('templates/nav', $data);
 
             // Loading Remaining View & Passing data to dashboard
             $this->load->view('dashboard', $data);

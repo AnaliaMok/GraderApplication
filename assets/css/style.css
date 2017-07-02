@@ -115,6 +115,8 @@ main{
 /* Content Wrapper */
 div.content{
     padding-left: 5.5em;
+    overflow: auto;
+    min-height: 100vh;
 }
 
 /* Container for table heading and table itself */
@@ -225,6 +227,52 @@ div.table-button-holder{
     font-family: "Open Sans", sans-serif !important;
 }
 
+/* Calendar Styling */
+div.upcoming-container,
+table.calendar{
+    font-family: Montserrat, sans-serif;
+    background-color: #FFF;
+    border-collapse: collapse;
+    width: 80%;
+    height: auto;
+    margin: 2rem auto;
+}
+
+/* Table cells*/
+table.calendar thead tr th{
+    padding: 0.5em 0;
+    background-color: #53DF83;
+    color: #FFF;
+    font-weight: normal;
+}
+
+table.calendar th,
+table.calendar td{
+    text-align: center;
+    vertical-align: middle;
+    color: #2B2B2B;
+    padding: 0.5em 0;
+}
+
+table.calendar td.other-month{
+    /* Fade Out Other Month Days */
+    opacity: 0.6;
+}
+
+/* Table Row Containing Weekdays */
+table.calendar tr.weekdays td{
+    /*padding: 0.5em 0;*/
+    color: #53DF83;
+}
+
+/* Upcoming Events Container */
+div.upcoming-container h2{
+    text-align: center;
+    background-color: #53DF83;
+    color: #FFF;
+    font-weight: normal;
+    padding: 0.25em 0;
+}
 
 /* Desktop Styling */
 @media screen and (min-width: 768px){

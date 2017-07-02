@@ -1,0 +1,125 @@
+commit 2065d78d02cd978115935be432b1a09412282afb
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 17:01:18 2017 -0400
+
+    Generated all html manually. Formatted echoed php
+
+commit 087b2884e12b1c41418b6f299641bf05d5d36dd5
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 16:16:36 2017 -0400
+
+    Applied new structure to Table template. Html attributes are not being applied. May need to structure table manually. [newTable]
+
+commit b55f01e6ff4f1cb1431a28ca58257c7629328a31
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 13:31:25 2017 -0400
+
+    Restructured table now works for mobile & larger screens. Need to apply to HTML table template generator. [newTable]
+
+commit 86f61cfc6e3bbef349d9a4570f5b4fb662db3fe9
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 12:18:19 2017 -0400
+
+    Restructured html table structure in test.php. Mobile view complete. [newTable]
+
+commit 700655e6ce7a78dfa8079da706911f4e610bef3f
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 11:04:58 2017 -0400
+
+    Fixed scrolling issue with main content [newLayout]
+
+commit c9b27427db891ca187af09136ce57dd78283ce23
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jun 30 14:55:03 2017 -0400
+
+    Added table-header styling & added a table-group class
+
+commit b1de5313d8ba8d4883bc42d9f443d161aabe98dd
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jun 30 14:40:00 2017 -0400
+
+    Finally figured out how to do time math
+
+commit 88772fa2dceba0c1dca43be81c3ce670ee932a66
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 19:38:32 2017 -0400
+
+    Styled standard table. Working on calculating total elapsed time
+
+commit 3daf44322495e2ec3f86437cfd495cc4b55b484c
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 19:17:22 2017 -0400
+
+    Now able to select timestamps and output a formatted table to dashboard
+
+commit 5a7302dfc24e7a4a29ee3a34c7e196b86ab8859d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 17:09:31 2017 -0400
+
+    Created Dashboard & Gradebook controller. Not stubbed
+
+commit f10a6d200aa3d18dbdf658f4c35d94ba85365f0d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 12:27:29 2017 -0400
+
+    Re-adjusted routes and views to dashboard and login screen
+
+commit aeabc9fc072b8a73ca7a94daafe9d0be1e5e2d01
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 11:50:11 2017 -0400
+
+    Created and stubbed out files for Login system
+
+commit ef7213076358c566a7b58339321993ae2bdaf0c4
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jun 29 10:33:11 2017 -0400
+
+    Created & Stubbed out all models
+
+commit 59ebdba24e2fd4a006bbcd106aeec24e84ae577d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jun 28 19:10:49 2017 -0400
+
+    Styled side nav bar. Issues with positioning logout button
+
+commit 893c9034feb8652693471cecb3c53b62171fa047
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jun 28 18:20:27 2017 -0400
+
+    Added Ionicons font files and removed linear icon font files. Started navigation page
+
+commit 7099aea896570d54edcff7daf91f5db2544eb88d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jun 28 17:59:32 2017 -0400
+
+    Began working on the basic structure of application. Updated some mockups. Created an htaccess file.
+
+commit 06e28ba18722f90b3ffee888a9f3d99f2a50cffc
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jun 28 15:31:10 2017 -0400
+
+    Created gitignore file
+
+commit aafba9bac6846ee842c41a6ed854e552dfac23f5
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Jun 27 18:22:26 2017 -0400
+
+    Forgot a space after the pound sign
+
+commit 28c0bf34fbf469170eb80e42a5930f557e338d57
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Jun 27 18:21:28 2017 -0400
+
+    Created a markdown readme file
+
+commit f8a01c232b41e5ba663c6fecc195e9e06dc302a5
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Jun 27 18:19:31 2017 -0400
+
+    Completed database and basic setting configurations
+
+commit c9a7bfe42c409932ea06b0aac4bd948dbbd4059d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Jun 27 18:10:47 2017 -0400
+
+    Initial Commit
