@@ -6,6 +6,7 @@ $route['dashboard'] = 'dashboard/view';
 
 // Clean URL to Calendar View
 $route['calendar'] = 'calendar/view';
+$oute['calendar/(:any)'] = 'calendar/$1';
 
 // User System URLS
 $route['default_controller'] = 'users/login';

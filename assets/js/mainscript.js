@@ -16,6 +16,10 @@ function init(){
         modifyTables();
     }
 
+    if($("#list") != null){
+        getUpcomingList();
+    }
+
 } // End of init
 
 
@@ -75,4 +79,38 @@ function modifyTables(){
         }
 
     }
-}
+} // End of modifyTables
+
+
+/**
+ * completeAssignment - Given an assignment ID, send an AJAX request to
+ *      Calendar controller to change is_completed state of assignment to true.
+ * @param assignmentID - int
+ * @return null
+ */
+function completedAssignment(assignmentID){
+    // TODO
+} // End of completedAssignment
+
+
+/**
+ * [getUpcomingList description]
+ * @return {[type]} [description]
+ */
+function getUpcomingList(){
+
+    // Requesting to populate upcoming list
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/calendar/find_upcoming",
+        type: "post",
+        mimetype: "json",
+        data: {},
+        success: function(response){
+            $("#list").html(response);
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+
+} // End of getUpcomingList

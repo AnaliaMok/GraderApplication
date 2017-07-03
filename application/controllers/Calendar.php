@@ -59,10 +59,12 @@
                 if(!isset($events[$due_date])){
                     // Initialize day as a new array containing the assignment
                     // name
-                    $events[$due_date] = '<span class="events">'.$curr['name']."</span>";
+                    $events[$due_date] = '<span class="events" id="event'
+                        .$curr['assignment_id'].'">'.$curr['name']."</span>";
                 }else{
                     // If already set, just push new name
-                    $events[$due_date] .= '<span class="events">'.$curr['name']."</span>";
+                    $events[$due_date] .= '<span class="events" id="event'
+                        .$curr['assignment_id'].'">'.$curr['name']."</span>";
                 }
             }
 
@@ -74,6 +76,33 @@
             $this->load->view('templates/nav', $data);
             $this->load->view('calendar', $data);
             $this->load->view('templates/footer');
+        }
+
+
+        public function find_upcoming(){
+            // Current year & month variables
+            $this_year = date("Y", strtotime("this year"));
+            $this_month = date("m", strtotime("this month"));
+
+            // Getting Upcoming Assignments for this Month
+            $fields = array('assignment_id', 'name', 'due_date');
+            $assignments = $this->Assignment->get_assignments($this_month, $this_year, $fields);
+            // $data['upcoming'] = $assignments;
+            // echo json_encode($assignments);
+
+            for($i = 0, $length=count($assignments); $i < $length; $i++){
+                $curr_assignment = $assignments[$i];
+                echo '<div class="upcoming-list-item">'."\n";
+                // TODO: Calculate time between now and due_date assign class
+                // to indicator based on difference
+                echo '<div class="info-holder">'."\n";
+                echo '<span class="date">Due&nbsp;'.nice_date($curr_assignment['due_date'], 'm.d')."</span>";
+                echo "<span>".$curr_assignment['name']."</span>\n";
+                echo "</div>\n";
+                echo '<input type="checkbox" onclick="completedAssignment('.$curr_assignment['assignment_id'].')"/>';
+                echo "</div>\n";
+            }
+
         }
 
   } // End of Calendar Class

@@ -14,9 +14,10 @@
          * @param curr_year Date
          * @param fields Array of Strings representing fields/columns in
          *                     Assignment table
+         * @param $all Boolean - Get all assignments are just incomplete?
          * @return Result Array
          */
-        public function get_assignments($curr_month, $curr_year, $fields){
+        public function get_assignments($curr_month, $curr_year, $fields, $all=0){
             $first_day_of_mth = date("Y-m-d", strtotime($curr_year."-".$curr_month."-01"));
             $date = new DateTime();
             $last_day_of_mth = date("Y-m-d", strtotime($curr_year."-".$curr_month."-".$date->format("t")));
@@ -29,7 +30,7 @@
                      ->group_end()
                     ->group_end();
 
-            $query = $this->db->get_where("assignments", 'is_completed=0');
+            $query = $this->db->get_where("assignments", "is_completed=$all");
             return $query->result_array();
         } // End of get_assignments
 
