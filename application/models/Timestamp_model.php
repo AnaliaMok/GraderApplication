@@ -26,9 +26,9 @@
             $this->db->select('date, start, end, assignments.name, section_id');
             $this->db->join('assignments', 'assignments.assignment_id=timestamps.assignment_id');
 
-            // Date Range: This Sunday to This Saturday
+            // Date Range: Last Sunday to This Saturday
             if($start == NULL && $end == NULL){
-                $start = date("Y-m-d", strtotime("This Sunday"));
+                $start = date("Y-m-d", strtotime("Last Sunday"));
                 $end = date("Y-m-d", strtotime("This Saturday"));
             }
 

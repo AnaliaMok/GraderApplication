@@ -271,6 +271,11 @@ table.calendar td#today{
     color: #53DF83;
 }
 
+/* Events of a day */
+table.calendar span.events{
+    display: none;
+}
+
 /* Upcoming Events Container */
 div.upcoming-container{ background-color: #EEE; }
 
@@ -407,7 +412,7 @@ div.upcoming-list-item input[type=checkbox]{
     table.calendar{
         /* Removing auto margin */
         width: 70%;
-        margin: 2rem 0 0 0.5rem;
+        margin: 2rem 0 2rem 0.5rem;
     }
 
     table.calendar thead tr th{
@@ -434,6 +439,18 @@ div.upcoming-list-item input[type=checkbox]{
         text-align: center;
         vertical-align: middle;
         font-weight: 600;
+    }
+
+    /* Events of a day */
+    table.calendar span.events{
+        display: block;
+        background-color: #E74C3C;
+        color: #FFF;
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0 0.5rem 0.25rem 0;
+        padding: 0.25rem;
+        border-radius: 9px;
     }
 
     div.upcoming-container{

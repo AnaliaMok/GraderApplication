@@ -23,6 +23,8 @@
                 {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
                 {cal_cell_start_today}<td id="today">{/cal_cell_start_today}
 
+                {cal_cell_content}{day}{content}{/cal_cell_content}
+
             ';
             // TODO: Turn templates back on after styling
             $this->load->library('calendar', $prefs);
@@ -46,10 +48,28 @@
             $assignments = $this->Assignment->get_assignments($this_month, $this_year, $fields);
             $data['upcoming'] = $assignments;
 
+            // Generating Calendar
+            $events = array();
+            for($i = 0, $length = count($assignments); $i < $length; $i++){
+                // Current Assignment
+                $curr = $assignments[$i];
 
-            $data['calendar'] = $this->calendar->generate($this_year, $this_month);
+                // Getting day of month from assignment due date
+                $due_date = date("j", strtotime($curr['due_date']));
+                if(!isset($events[$due_date])){
+                    // Initialize day as a new array containing the assignment
+                    // name
+                    $events[$due_date] = '<span class="events">'.$curr['name']."</span>";
+                }else{
+                    // If already set, just push new name
+                    $events[$due_date] .= '<span class="events">'.$curr['name']."</span>";
+                }
+            }
+
+            $data['calendar'] = $this->calendar->generate($this_year, $this_month, $events);
             $data['active'] = "calendar";
 
+            // Loading Views
             $this->load->view('templates/header');
             $this->load->view('templates/nav', $data);
             $this->load->view('calendar', $data);

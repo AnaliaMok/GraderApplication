@@ -18,6 +18,8 @@
                     echo '<input type="checkbox" onclick="completed('.$curr_assignment['assignment_id'].')"/>';
                     echo "</div>\n";
                 }
+
+                // TODO: Write AJAX event with jQuery for checkboxes
             ?>
         </div>
     </div>
