@@ -319,6 +319,14 @@ div.upcoming-list-item input[type=checkbox]{
     top: 32.7%;
 }
 
+/* Nothing to find messages */
+span#nothing-message{
+    display: block;
+    color: #2B2B2B;
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+}
+
 /* Desktop Styling */
 @media screen and (min-width: 768px){
 
@@ -481,6 +489,14 @@ div.upcoming-list-item input[type=checkbox]{
     div.upcoming-list-item div.info-holder{
         display: inline-block;
         margin: 0.5em;
+    }
+
+
+    /* Nothing to find messages */
+    span#nothing-message{
+        color: #FFF;
+        text-align: left;
+        margin-left: 2rem;
     }
 
 } /* End of desktop styling */

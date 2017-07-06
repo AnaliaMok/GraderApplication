@@ -118,7 +118,12 @@ function completedAssignment(assignmentID){
         mimetype: "json",
         data: { 'assignmentID': assignmentID },
         success: function(response){
+            // Replace list items to reflect change
             $("#list").html(response);
+
+            // Look for event in calendar to remove
+            $("#event"+assignmentID).css("display", "none");
+
         },
         error: function(response){
             console.log("ERROR: " + response);
