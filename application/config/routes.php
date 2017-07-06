@@ -9,8 +9,8 @@ $route['calendar'] = 'calendar/view';
 $oute['calendar/(:any)'] = 'calendar/$1';
 
 // User System URLS
-$route['default_controller'] = 'users/login';
-$route['(:any)'] = 'users/login';
+$route['default_controller'] = 'users';
+$route['(:any)'] = 'users/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
