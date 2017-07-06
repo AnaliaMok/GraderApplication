@@ -286,6 +286,7 @@ table.calendar span.events{
 /* Upcoming Events Container */
 div.upcoming-container{ background-color: #EEE; }
 
+div#home-upcoming h2,
 div.upcoming-container h2{
     text-align: center;
     background-color: #53DF83;
@@ -483,11 +484,30 @@ span#nothing-message{
         box-shadow: 0 0 20px rgba(0, 0, 0, .16);
     }
 
+    div#home-upcoming{
+        overflow-y: scroll;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0px;  /* remove scrollbar space */
+        background: transparent;  /* optional: just make scrollbar invisible */
+    }
+
     div.upcoming-container h2{
         text-align: left;
         background-color: #3F3F3F;
         font-weight: 600;
         margin-left: 2rem;
+    }
+
+    div#home-upcoming h2{
+        text-align: center;
+        background-color: #53DF83;
+        color: #FFF;
+        font-size: 1rem;
+        font-weight: normal;
+        margin: 0 2rem 1rem 2rem;
+        padding: 0.5em 0;
     }
 
     /* List Item Styling */
