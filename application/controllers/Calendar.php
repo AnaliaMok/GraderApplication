@@ -99,11 +99,27 @@
                 echo '<span class="date">Due&nbsp;'.nice_date($curr_assignment['due_date'], 'm.d')."</span>";
                 echo "<span>".$curr_assignment['name']."</span>\n";
                 echo "</div>\n";
-                echo '<input type="checkbox" onclick="completedAssignment('.$curr_assignment['assignment_id'].')"/>';
+                echo '<input type="checkbox" onclick="return completedAssignment('.$curr_assignment['assignment_id'].')"/>';
                 echo "</div>\n";
             }
 
-        }
+        } // End of find_upcoming
+
+
+        /**
+         * completeAssignment - Given an assignmentID, accept the sent AJAX
+         * request and change the is_completed state of the Assignment
+         *
+         * @return [type]               [description]
+         */
+        public function complete_assignment(){
+            // Sending assignmentID to model method
+            $this->Assignment->edit_assignment($_POST['assignmentID'], NULL, 1);
+
+            // Re-generating upcoming-list-items
+            $this->find_upcoming();
+
+        } // End of completeAssignment
 
   } // End of Calendar Class
 

@@ -40,9 +40,27 @@
         }
 
 
-        public function edit_assignment(){
-            // TODO
-        }
+        public function edit_assignment($assignment_id, $data=NULL, $is_completed=0){
+
+            // $data = array(
+            //     "name"          =>
+            //     "due_date"      =>
+            //     "total_pts"     =>
+            //     "breakdown"     =>
+            //     "started"       =>
+            //     "is_completed"  =>
+            // );
+            if($data == NULL){
+                // If no data given, then this is a simple request to change the
+                // is_completed field
+                $data = array("is_completed" => $is_completed);
+                //$this->db->set("is_completed", $is_completed, FALSE);
+            }
+
+            $this->db->where("assignment_id", (int)$assignment_id);
+            return $this->db->update("assignments", $data);
+
+        } // End of edit_assignment
 
 
         public function delete_assignment(){

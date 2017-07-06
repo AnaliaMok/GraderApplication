@@ -83,17 +83,6 @@ function modifyTables(){
 
 
 /**
- * completeAssignment - Given an assignment ID, send an AJAX request to
- *      Calendar controller to change is_completed state of assignment to true.
- * @param assignmentID - int
- * @return null
- */
-function completedAssignment(assignmentID){
-    // TODO
-} // End of completedAssignment
-
-
-/**
  * [getUpcomingList description]
  * @return {[type]} [description]
  */
@@ -114,3 +103,25 @@ function getUpcomingList(){
     });
 
 } // End of getUpcomingList
+
+
+/**
+ * completeAssignment - Given an assignment ID, send an AJAX request to
+ *      Calendar controller to change is_completed state of assignment to true.
+ * @param assignmentID - int
+ * @return null
+ */
+function completedAssignment(assignmentID){
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/calendar/complete_assignment",
+        type: "post",
+        mimetype: "json",
+        data: { 'assignmentID': assignmentID },
+        success: function(response){
+            $("#list").html(response);
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+} // End of completedAssignment
