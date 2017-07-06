@@ -25,5 +25,13 @@
             <?php echo $finished_table; ?>
         </div><!-- End of table group -->
 
+        <div class="upcoming-container" id="home-upcoming">
+            <?php echo $calendar; ?>
+
+            <h2>Upcoming</h2>
+            <!-- Holder for upcoming list items -->
+            <div id="list"></div>
+        </div><!-- End of upcoming-container -->
+
     </div><!-- End of content -->
 </main>

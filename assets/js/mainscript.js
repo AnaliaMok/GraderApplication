@@ -88,12 +88,14 @@ function modifyTables(){
  */
 function getUpcomingList(){
 
+    var withCheckBoxes = (document.getElementById("home-upcoming") == null);
+
     // Requesting to populate upcoming list
     $.ajax({
         url: "http://localhost/GraderApplication/index.php/calendar/find_upcoming",
         type: "post",
         mimetype: "json",
-        data: {},
+        data: {'withCheckBoxes' : withCheckBoxes},
         success: function(response){
             $("#list").html(response);
         },

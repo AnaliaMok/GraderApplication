@@ -21,6 +21,29 @@
             // Loading Libraries
             $this->load->library('table');
 
+            // Loading Calendar Library w/ Preferences
+            $prefs = array(
+                'day_type'          => 'short',
+                'show_other_days'   => TRUE
+            );
+
+            $prefs['template'] = '
+                {table_open}<table id="mini-calendar">{/table_open}
+                {heading_row_start}<thead>{/heading_row_start}
+                {heading_row_end}</thead>{/heading_row_end}
+
+                {week_row_start}<tr class="weekdays">{/week_row_start}
+                {week_row_end}</tr>{/week_row_end}
+
+                {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
+                {cal_cell_start_today}<td id="today">{/cal_cell_start_today}
+
+                {cal_cell_content}{day}{content}{/cal_cell_content}
+
+            ';
+
+            $this->load->library('calendar', $prefs);
+
             // Loading My Models
             $this->load->model('Timestamp_model', 'Timestamp');
 
@@ -36,9 +59,17 @@
 
             // Constructing data
             $data = array();
+
+            // Info Tables
             $data = $this->create_time_table($data);
             $this->create_unfinished_table($data);
             $this->create_finished_table($data);
+
+            // Calendar
+            // Current year & month variables
+            $this_year = date("Y", strtotime("this year"));
+            $this_month = date("m", strtotime("this month"));
+            $data['calendar'] = $this->calendar->generate($this_year, $this_month);
 
             // Variable for nav
             $data['active'] = "dashboard";

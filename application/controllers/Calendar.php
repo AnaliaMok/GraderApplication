@@ -95,6 +95,9 @@
             if($length == 0){
                 echo '<span id="nothing-message">No Upcoming Assignments</span>'."\n";
             }else{
+
+                $withCheckBoxes = json_decode($_POST['withCheckBoxes']);
+
                 for($i = 0; $i < $length; $i++){
                     $curr_assignment = $assignments[$i];
                     echo '<div class="upcoming-list-item">'."\n";
@@ -104,7 +107,12 @@
                     echo '<span class="date">Due&nbsp;'.nice_date($curr_assignment['due_date'], 'm.d')."</span>";
                     echo "<span>".$curr_assignment['name']."</span>\n";
                     echo "</div>\n";
-                    echo '<input type="checkbox" onclick="return completedAssignment('.$curr_assignment['assignment_id'].')"/>';
+
+                    if($withCheckBoxes === TRUE){
+                        // Only generate on complete calendar view
+                        echo '<input type="checkbox" onclick="return completedAssignment('.$curr_assignment['assignment_id'].')"/>';
+                    }
+
                     echo "</div>\n";
                 }
             }

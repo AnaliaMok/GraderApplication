@@ -228,6 +228,7 @@ div.table-button-holder{
 }
 
 /* Calendar Styling */
+table#mini-calendar,
 div.upcoming-container,
 table.calendar{
     font-family: Montserrat, sans-serif;
@@ -239,6 +240,7 @@ table.calendar{
 }
 
 /* Table cells*/
+table#mini-calendar thead tr th,
 table.calendar thead tr th{
     padding: 0.5em 0;
     background-color: #53DF83;
@@ -246,6 +248,8 @@ table.calendar thead tr th{
     font-weight: normal;
 }
 
+table#mini-calendar th,
+table#mini-calendar td,
 table.calendar th,
 table.calendar td{
     text-align: center;
@@ -254,17 +258,20 @@ table.calendar td{
     padding: 0.5em 0;
 }
 
+table#mini-calendar td.other-month,
 table.calendar td.other-month{
     /* Fade Out Other Month Days */
     opacity: 0.6;
 }
 
 /* Table Row Containing Weekdays */
+table#mini-calendar tr.weekdays td,
 table.calendar tr.weekdays td{
     /*padding: 0.5em 0;*/
     color: #53DF83;
 }
 
+table#mini-calendar td#today,
 table.calendar td#today{
     /* Today's Cell */
     font-weight: 600;
@@ -472,6 +479,8 @@ span#nothing-message{
         background-color: #3F3F3F;
         width: 25%;
         margin: 0 0 0 1rem;
+
+        box-shadow: 0 0 20px rgba(0, 0, 0, .16);
     }
 
     div.upcoming-container h2{
@@ -489,6 +498,11 @@ span#nothing-message{
     div.upcoming-list-item div.info-holder{
         display: inline-block;
         margin: 0.5em;
+    }
+
+    /* Hide list item checkboxes when displaying on dashboard */
+    div.upcoming-list-item div#home-upcoming input[type=checkbox]{
+        display: none !important;
     }
 
 
