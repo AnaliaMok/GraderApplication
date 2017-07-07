@@ -122,11 +122,6 @@ div.content{
 
 /* Login & Registration Page Styling */
 
-/*
-    Light Blue: #47D2E9
-    Background Gray: #2B2B2B
-    Icon Gray: #606060
- */
 main#login-main{
     width: 100%;
     height: 100%;
@@ -308,6 +303,7 @@ div.std-table div.table-head{
     =============
  */
 div.std-table ul{
+    position: relative;
     list-style: none;
     margin: 0;
     padding: 1em 0 1em 1em;
@@ -338,6 +334,25 @@ div.std-table ul li.empty-cell{
 div.std-table ul li.empty-cell::before{
     /* Empty Cells should not have content */
     content: "";
+}
+
+/* More specific parts of table */
+
+div.std-table ul li.date{
+    position: absolute;
+    right: 1rem;
+}
+
+/* Icon Holders */
+div.std-table ul li a{
+    display: inline-block;
+    margin-top: 0.75rem;
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+    background-color: #47D2E9;
+    border-radius: 40px;
+    font-size: 20px;
+    color: #FFF;
 }
 
 /* Button Holder */
@@ -553,6 +568,15 @@ span#nothing-message{
 
     div.std-table ul li.empty-cell{
         display: none;
+    }
+
+    /* More unique table specifc styling */
+    div.std-table ul li.date{
+        position: static;
+    }
+
+    div.std-table ul li a{
+        margin-top: 0;
     }
 
 

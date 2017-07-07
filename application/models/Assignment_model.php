@@ -14,7 +14,7 @@
          * @param curr_year Date
          * @param fields Array of Strings representing fields/columns in
          *                     Assignment table
-         * @param $all Boolean - Get all assignments are just incomplete?
+         * @param $all Boolean - Get all assignments or just incompleted items?
          * @return Result Array
          */
         public function get_assignments($curr_month, $curr_year, $fields, $all=0){
@@ -30,7 +30,15 @@
                      ->group_end()
                     ->group_end();
 
-            $query = $this->db->get_where("assignments", "is_completed=$all");
+            if($all){
+                // if all is true, get all assignments from this month, not just
+                // incomplete items
+                $query = $this->db->get_where("assignments", "started IS NOT NULL");
+            }else{
+                // Otherwise, get this month's incomplete items
+                $query = $this->db->get_where("assignments", "is_completed=$all");
+            }
+
             return $query->result_array();
         } // End of get_assignments
 

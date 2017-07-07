@@ -46,6 +46,7 @@
 
             // Loading My Models
             $this->load->model('Timestamp_model', 'Timestamp');
+            $this->load->model('Assignment_model', 'Assignments');
 
         } // End of __construct
 
@@ -62,18 +63,37 @@
                 redirect("users/index");
             }
 
+            // Current year & month variables
+            $this_year = date("Y", strtotime("this year"));
+            $this_month = date("m", strtotime("this month"));
+
             // Constructing data
             $data = array();
 
             // Info Tables
             $data = $this->create_time_table($data);
-            $this->create_unfinished_table($data);
-            $this->create_finished_table($data);
+
+            // Passing Assignments
+            $fields = array("assignment_id", "name", "due_date", "started", "completed", "is_completed");
+            $assignments = $this->Assignments->get_assignments($this_month, $this_year, $fields, 1);
+
+            $complete = array();
+            $incomplete = array();
+
+            // Sorting $assignments
+            foreach($assignments as $assign){
+                if($assign['is_completed'] == 0){
+                    $incomplete[] = $assign;
+                }else{
+                    $complete[] = $assign;
+                }
+            }
+
+            // Assembling tables
+            $this->create_unfinished_table($data, $incomplete);
+            $this->create_finished_table($data, $complete);
 
             // Calendar
-            // Current year & month variables
-            $this_year = date("Y", strtotime("this year"));
-            $this_month = date("m", strtotime("this month"));
             $data['calendar'] = $this->calendar->generate($this_year, $this_month);
 
             // Variable for nav
@@ -228,20 +248,33 @@
 
         /**
          * [create_unfinished_table description]
-         * @param  Reference to an associative array
+         * @param  Array data - Reference to an associative array
+         * @param Array assignments - Array of assignment objects from db
          * @return [type]       [description]
          */
-        private function create_unfinished_table(&$data){
+        private function create_unfinished_table(&$data, $assignments){
             $data['unfinished_table'] = '<div class="std-table">'."\n";
 
-            $heading = array("Assignment", "Section", "Started", "");
+            $heading = array("Assignment", "Started", "");
             $data['unfinished_table'] .= $this->generate_heading($heading);
 
             // Opening table-body
             $data['unfinished_table'] .= self::START_TABS.'<div class="table-body">'."\n";
 
-            // TODO: Ask for data & format;
-            // NOTE: Might be able to organize finished & unfinished at same time
+            foreach($assignments as $assign){
+
+                $formattedDate = nice_date($assign['started'], 'm.d.y');
+
+                $data['unfinished_table'] .= self::START_TABS."\t<ul>\n";
+                $data['unfinished_table'] .= self::START_TABS."\t\t".'<li>'.$assign['name']."</li>\n";
+
+                $data['unfinished_table'] .= self::START_TABS."\t\t".'<li class="date">'.$formattedDate."</li>\n";
+                $data['unfinished_table'] .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+                // TODO: Add links to assignments
+                $data['unfinished_table'] .= self::START_TABS."\t\t".'<li>'.
+                    '<a href="#" class="lnr lnr-printer"></a>'.'<a href="#" class="lnr lnr-pencil"></a>'."</li>\n";
+                $data['unfinished_table'] .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
+            }
 
             // Closing Tags
             $data['unfinished_table'] .= self::START_TABS."</div><!-- End of table-body -->\n";
@@ -253,19 +286,33 @@
 
         /**
          * [create_finished_table description]
-         * @param  Reference to an associative array
+         * @param  &Array data - Reference to an associative array
+         * @param Array assignments - Array of assignment objects from db
          * @return [type]       [description]
          */
-        private function create_finished_table(&$data){
+        private function create_finished_table(&$data, $assignments){
             $data['finished_table'] = '<div class="std-table">'."\n";
 
-            $heading = array("Assignment", "Section", "Completed", "");
+            $heading = array("Assignment", "Completed", "");
             $data['finished_table'] .= $this->generate_heading($heading);
 
             // Opening table-body
             $data['finished_table'] .= self::START_TABS.'<div class="table-body">'."\n";
 
-            // TODO: Ask for data & format
+            foreach($assignments as $assign){
+
+                $formattedDate = nice_date($assign['completed'], 'm.d.y');
+
+                $data['finished_table'] .= self::START_TABS."\t<ul>\n";
+                $data['finished_table'] .= self::START_TABS."\t\t".'<li>'.$assign['name']."</li>\n";
+
+                $data['finished_table'] .= self::START_TABS."\t\t".'<li class="date">'.$formattedDate."</li>\n";
+                $data['finished_table'] .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+                // TODO: Add links to assignments
+                $data['finished_table'] .= self::START_TABS."\t\t".'<li>'.
+                    '<a href="#" class="lnr lnr-printer"></a>'.'<a href="#" class="lnr lnr-pencil"></a>'."</li>\n";
+                $data['finished_table'] .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
+            }
 
             // Closing Tags
             $data['finished_table'] .= self::START_TABS."</div><!-- End of table-body -->\n";
