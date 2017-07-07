@@ -24,6 +24,17 @@ function init(){
 
 
 /**
+ * jumpPage - Simple method that takes a url and directs to the page
+ * represented by that url
+ * @param  String location - Full url
+ * @return null
+ */
+function jumpPage(location){
+    window.location.href = location;
+} // End of jumpPage
+
+
+/**
  * modifyTables - Setup function that looks at each table on the dashboard,
  *      and shortens a table if it is more than 3 rows long. If so, the last
  *      3 rows are hidden and replaced with a "See More" button.

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/ionicons.css' ?>">
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <!-- Font Style Sheets -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans%7CRaleway" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/style.css'; ?>">
     <!-- JavaScript&JQuery Includes -->

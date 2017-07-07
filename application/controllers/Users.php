@@ -20,11 +20,23 @@
                 show_404();
             }
 
-            // TODO: Implement Login System
+            // Form Rules
+            $this->form_validation->set_rules('username', "Username", 'required');
+            $this->form_validation->set_rules('password', "Password", 'required');
 
-            $this->load->view('templates/header');
-            $this->load->view('users/index');
-            $this->load->view('templates/footer');
+            // Check if form has been submited yet
+            if($this->form_validation->run() === FALSE){
+                // If not, just display form
+                $this->load->view('templates/header');
+                $this->load->view('users/index');
+                $this->load->view('templates/footer');
+
+            }else{
+                // Otherwise, login to dashboard
+                die("continue");
+            }
+
+            // TODO: Implement Login System
 
         } // End of login
 
