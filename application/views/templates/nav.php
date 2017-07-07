@@ -2,7 +2,7 @@
 <nav>
     <div id="inner-container">
         <!-- TODO: Current User's Initials -->
-        <div id="profile-img"><span>AM</span></div>
+        <div id="profile-img"><span><?php echo $this->session->userdata('abbr_username'); ?></span></div>
 
         <ul>
             <!-- TODO: Add Appropriate Icons -->

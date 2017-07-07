@@ -42,9 +42,13 @@
 
                 if($user_id){
                     // Create session
+                    // First two chars of username
+                    $abbr_username = strtoupper(substr($username, 0, 2));
+
                     $user_data = array(
                         'user_id'       =>  $user_id,
                         'username'      =>  $username,
+                        'abbr_username' =>  $abbr_username,
                         'logged_in'     =>  true
                     );
 
