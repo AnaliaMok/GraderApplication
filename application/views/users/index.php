@@ -3,7 +3,26 @@
         <h2>LOGIN</h2>
 
         <!-- Validation Error Area -->
-        <div id="errors"><?php echo validation_errors(); ?></div>
+        <div id="errors">
+            <?php echo validation_errors(); ?>
+            <!-- Alert Message Set In Session Flash Data -->
+            <?php if($this->session->flashdata('login_failed')): ?>
+                <?php echo '<div class="alert-message"><p>'.
+                    $this->session->flashdata('login_failed').'</p></div>'; ?>
+            <?php endif; ?>
+        </div>
+        
+        <div id="successes">
+            <?php if($this->session->flashdata('user_registered')): ?>
+                <?php echo '<p>'.
+                    $this->session->flashdata('user_registered').'</p>'; ?>
+            <?php endif; ?>
+
+            <?php if($this->session->flashdata('user_loggedout')): ?>
+                <?php echo '<p>'.
+                    $this->session->flashdata('user_loggedout').'</p>'; ?>
+            <?php endif; ?>
+        </div>
 
         <?php echo form_open('users/index'); ?>
 
@@ -23,7 +42,7 @@
                     onclick="return jumpPage('<?php echo base_url(); ?>register');">
                     REGISTER</button>
 
-                <input type="submit" name="submit" value="SIGN IN"></input>
+                <input type="submit" name="submit" value="SIGN IN"/>
             </div>
 
         <?php echo form_close(); ?>

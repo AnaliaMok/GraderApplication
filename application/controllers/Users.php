@@ -32,11 +32,33 @@
                 $this->load->view('templates/footer');
 
             }else{
-                // Otherwise, login to dashboard
-                die("continue");
-            }
+                // Get username
+                $username = $this->input->post("username");
+                // Get and encrypt password
+                $enc_password = md5($this->input->post("password"));
 
-            // TODO: Implement Login System
+                // Login User ID
+                $user_id = $this->User_model->login($username, $enc_password);
+
+                if($user_id){
+                    // Create session
+                    $user_data = array(
+                        'user_id'       =>  $user_id,
+                        'username'      =>  $username,
+                        'logged_in'     =>  true
+                    );
+
+                    $this->session->set_userdata($user_data);
+
+                    // Set Message
+                    $this->session->set_flashdata("user_loggedin", "You are now logged in");
+                    redirect("dashboard");
+                }else{
+                    // Set error
+                    $this->session->set_flashdata("login_failed", "Login is invalid");
+                    redirect("users/index");
+                }
+            }
 
         } // End of login
 
@@ -68,7 +90,7 @@
                 // Set Message
                 $this->session->set_flashdata('user_registered', "You are now registered and can login");
 
-                redirect('dashboard');
+                redirect('index');
             }
 
         } // End of register
@@ -84,19 +106,20 @@
             // Set Flash Message
             $this->form_validation->set_message('check_username_exists',
             'That username is taken. Please choose another one.');
-            if($this->User_model->check_username_exists($username)){
 
-
-                return true;
-            }else{
-                return false;
-            }
-
+            return $this->User_model->check_username_exists($username);
         } // End of check_username_exists
 
 
         public function logout(){
-            // TODO
+            // Kill session data
+            $this->session->unset_userdata('logged_in');
+            $this->session->unset_userdata('user_id');
+            $this->session->unset_userdata('username');
+
+            $this->session->set_flashdata('user_loggedout', "Successfully Logged Out");
+
+            redirect("users/index");
         }
 
     } // End of Users class

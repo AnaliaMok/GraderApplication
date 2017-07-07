@@ -152,16 +152,22 @@ main#login-main div.form-holder{
     top: 30%;
 }
 
+main#login-main div.form-holder div#successes,
 main#login-main div.form-holder div#errors{
     width: 90%;
     margin: 0 auto;
     text-align: justify;
 }
 
+main#login-main div#successes p,
 main#login-main div.form-holder div#errors p{
     display: list-item;
     font-family: Montserrat, sans-serif;
     color: #E74C3C;
+}
+
+main#login-main div.form-holder div#successes p{
+    color: #2ECC71;
 }
 
 main#login-main div.form-holder div.input-group{

@@ -33,6 +33,23 @@
             }
         } // End of check_username_exists
 
+
+        public function login($username, $password){
+            // Validate
+            $this->db->where("username", $username);
+            $this->db->where("password", $password);
+            $result = $this->db->get("logins");
+
+            if($result->num_rows() == 1){
+                // If row found, return user id
+                return $result->row(0)->id;
+            }else{
+                // Otherwise, not found
+                return FALSE;
+            }
+
+        } // End of login
+
     } // End of User_model
 
 

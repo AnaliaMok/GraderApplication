@@ -1,7 +1,7 @@
 <!-- Global Navigation Bar -->
 <nav>
     <div id="inner-container">
-        <!-- TODO: Current User's Profile Image or Initials -->
+        <!-- TODO: Current User's Initials -->
         <div id="profile-img"><span>AM</span></div>
 
         <ul>
@@ -43,6 +43,6 @@
             </li>
         </ul>
         <!-- TODO: Add link -->
-        <a href="#" id="logout-btn" class="lnr lnr-exit"></a>
+        <a href="<?php echo base_url(); ?>logout" id="logout-btn" class="lnr lnr-exit"></a>
     </div>
 </nav>
