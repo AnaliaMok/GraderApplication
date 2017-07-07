@@ -170,21 +170,52 @@ main#login-main div.form-holder div#successes p{
     color: #2ECC71;
 }
 
+main#login-main div.form-holder input[type=text],
+main#login-main div.form-holder input[type=password],
 main#login-main div.form-holder div.input-group{
     display: block;
     width: 95%;
     margin: 0.5rem auto;
 }
 
+main#login-main div.form-holder input[type=text],
+main#login-main div.form-holder input[type=password],
 div.form-holder div.input-group input[type=text],
 div.form-holder div.input-group input[type=password]{
     /* Change Later to account for icon spans */
     display: block;
     width: 100%;
+    margin: 0.5rem auto;
     padding: 0.75rem 0.5rem;
     font-family: Montserrat, sans-serif;
     font-weight: normal;
     color: #2B2B2B;
+}
+
+main#login-main div.form-holder div.input-group span{
+    display: inline-block;
+    margin: 0;
+    padding: 0.75rem 0;
+    width: 15.6%;
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #606060;
+    color: #FFF;
+}
+
+main#login-main div.form-holder div.input-group input[type=text],
+main#login-main div.form-holder div.input-group input[type=password]{
+    display: inline-block;
+    width: 80%;
+    height: 100%;
+    padding: 0.8rem 0 0.8rem 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    vertical-align: middle;
+    outline: none;
+    border: 0;
 }
 
 main#login-main div#button-group{

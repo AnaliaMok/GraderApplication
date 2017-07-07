@@ -8,19 +8,14 @@
         <!-- TODO: Design & Style This page later -->
         <?php echo form_open('users/register'); ?>
 
-            <div class="input-group">
-                <input type="text" name="name" placeholder="Name" />
-            </div>
-            <div class="input-group">
-                <input type="text" name="username" placeholder="Username" />
-            </div>
-            <div class="input-group">
-                <input type="password" name="password" placeholder="Password" />
-            </div>
-            <div class="input-group">
-                <input type="password" name="password_two" placeholder="Confirm Password" />
-            </div>
-            
+            <input type="text" name="name" placeholder="Name" />
+
+            <input type="text" name="username" placeholder="Username" />
+
+            <input type="password" name="password" placeholder="Password" />
+
+            <input type="password" name="password_two" placeholder="Confirm Password" />
+
             <div id="button-group">
                 <button type="button" name="button"
                     onclick="return jumpPage('<?php echo base_url(); ?>index');">

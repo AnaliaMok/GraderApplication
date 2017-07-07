@@ -11,7 +11,7 @@
                     $this->session->flashdata('login_failed').'</p></div>'; ?>
             <?php endif; ?>
         </div>
-        
+
         <div id="successes">
             <?php if($this->session->flashdata('user_registered')): ?>
                 <?php echo '<p>'.
@@ -27,12 +27,12 @@
         <?php echo form_open('users/index'); ?>
 
             <div class="input-group">
-                <span></span><!-- TODO: Insert android-person icon -->
+                <span class="ion ion-android-person"></span><!-- TODO: Insert android-person icon -->
                 <input type="text" name="username" placeholder="Username" />
             </div>
 
             <div class="input-group">
-                <span></span><!-- TODO: Insert key icon -->
+                <span class="ion ion-key"></span><!-- TODO: Insert key icon -->
                 <input type="password" name="password" placeholder="Password" />
             </div>
 
