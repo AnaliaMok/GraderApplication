@@ -80,12 +80,12 @@
          * @param  String $username
          * @return Boolean true if username is in db; otherwise, false
          */
-        function check_username_exists($username){
-
+        public function check_username_exists($username){
+            // Set Flash Message
+            $this->form_validation->set_message('check_username_exists',
+            'That username is taken. Please choose another one.');
             if($this->User_model->check_username_exists($username)){
-                // Set Flash Message
-                $this->form_validation->set_message('check_username_exists',
-                'That username is taken. Please choose another one.');
+
 
                 return true;
             }else{

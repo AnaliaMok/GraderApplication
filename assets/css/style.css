@@ -152,6 +152,18 @@ main#login-main div.form-holder{
     top: 30%;
 }
 
+main#login-main div.form-holder div#errors{
+    width: 90%;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+main#login-main div.form-holder div#errors p{
+    display: list-item;
+    font-family: Montserrat, sans-serif;
+    color: #E74C3C;
+}
+
 main#login-main div.form-holder div.input-group{
     display: block;
     width: 95%;
@@ -423,6 +435,11 @@ span#nothing-message{
         left: 0.75rem;
         bottom: 0.75rem;
         z-index: 1;
+    }
+
+    /* Login & Registration Form Holder */
+    main#login-main div.form-holder{
+        width: 30%;
     }
 
     /* Make table group smaller */
