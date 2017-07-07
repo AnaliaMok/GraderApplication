@@ -57,6 +57,11 @@
          */
         public function view(){
 
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
             // Constructing data
             $data = array();
 

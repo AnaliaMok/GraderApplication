@@ -15,7 +15,12 @@
 
 
         public function view(){
-            # code...
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
+            // TODO
         }
 
     } // End of Gradebook Class

@@ -39,6 +39,12 @@
          * @return [type] [description]
          */
         public function view(){
+
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
             // Current year & month variables
             $this_year = date("Y", strtotime("this year"));
             $this_month = date("m", strtotime("this month"));
