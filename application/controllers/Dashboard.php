@@ -74,7 +74,8 @@
             $data = $this->create_time_table($data);
 
             // Passing Assignments
-            $fields = array("assignment_id", "name", "due_date", "started", "completed", "is_completed");
+            $fields = array("assignment_id", "name", "due_date", "started",
+                "completed", "is_completed");
             $assignments = $this->Assignments->get_assignments($this_month, $this_year, $fields, 1);
 
             $complete = array();

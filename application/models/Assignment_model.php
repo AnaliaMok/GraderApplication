@@ -43,6 +43,11 @@
         } // End of get_assignments
 
 
+        public function get_all_assignments($section_id){
+            // TODO
+        } // End of get_all_assignments
+
+
         public function create_assignment(){
             // TODO
         }

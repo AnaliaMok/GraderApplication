@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Clean URL to Gradebook
+$route['gradebook'] = 'gradebook/view';
+$route['gradebook/(:any)'] = 'gradebook/$1';
+
 // Clean URL to dashboard view
 $route['dashboard'] = 'dashboard/view';
 

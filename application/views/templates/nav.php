@@ -12,7 +12,7 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>gradebook" <?php echo ($active === "gradebook") ? "id=active" : ""; ?>>
                     <span class="ion ion-ios-bookmarks-outline"></span>
                 </a>
             </li>
@@ -22,22 +22,22 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>" <?php echo ($active === "export") ? "id=active" : ""; ?>>
                     <span class="lnr lnr-printer"></span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>" <?php echo ($active === "timestamps") ? "id=active" : ""; ?>>
                     <span class="lnr lnr-clock"></span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>" <?php echo ($active === "backup") ? "id=active" : ""; ?>>
                     <span class="lnr lnr-database"></span>
                 </a>
             </li>
             <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="<?php echo base_url(); ?>" <?php echo ($active === "settings") ? "id=active" : ""; ?>>
                     <span class="ion ion-ios-gear-outline"></span>
                 </a>
             </li>
