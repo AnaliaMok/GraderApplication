@@ -8,7 +8,20 @@
 
 
         public function get_grades(){
-            // TODO
+            // Current gets all grades
+
+            $this->db->select('grades.score, grades.letter_grade, assignments.name,
+                students.last_name, students.first_name');
+            $this->db->from('grades');
+            //$this->db->where('students.section_id', $_POST['section_id']);
+            $this->db->join("students",
+                "grades.student_id = students.student_id", "inner");
+            $this->db->join("assignments",
+                "grades.assignment_id = assignments.assignment_id", "inner");
+
+            $query = $this->db->get();
+
+            return $query->result_array();
         } // End of get_grades
 
 

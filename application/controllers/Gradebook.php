@@ -17,6 +17,7 @@
             // Loading Models
             $this->load->model('Section_model', 'Sections');
             $this->load->model('Student_model', 'Students');
+            $this->load->model('Grade_model', 'Grades');
             $this->load->model('Assignment_model', 'Assignments');
 
         } // End of __construct
@@ -45,6 +46,9 @@
             }
 
             $data['sections'] .= "</select>\n";
+
+            // Create main grade tables
+            $this->generate_grade_table($data);
 
             $data['active'] = "gradebook";
 
@@ -90,12 +94,67 @@
          * @return [type] [description]
          */
         public function generate_grade_table(&$data){
-            // TODO
+
+            // Grabbing Records
+            $grades = $this->Grades->get_grades();
+
+            $heading = array("Last, First");
+            $students = array();
+
+            // Organizing grades to students
+            foreach ($grades as $grade) {
+
+                $assignment = "".$grade['name'];
+
+                if(in_array($assignment, $heading) === FALSE){
+                    // If grade name has not been added yet, add to heading
+                    array_push($heading, $assignment);
+                }
+
+                $student_name = $grade['last_name'] . ", " . $grade['first_name'];
+                $score = $grade['score']."(".$grade['letter_grade'].")";
+
+                // Adding assignment-score pair to student's values
+                $students[$student_name][$assignment] = $score;
+            }
+
+            // Constructing Table
+            $grade_table = '<div class="std-table">'."\n";
+            $grade_table .= $this->generate_heading($heading);
+            $grade_table .= self::START_TABS.'<div class="table-body">'."\n";
+
+            // Forming Rows
+            foreach ($students as $student => $assigns) {
+                $grade_table .= self::START_TABS."\t<ul>\n";
+                $grade_table .= self::START_TABS."\t\t".'<li>'.$student."</li>\n";
+
+                foreach($assigns as $curr){
+                    $grade_table .= self::START_TABS."\t\t".'<li>'.$curr."</li>\n";
+                }
+
+                $grade_table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
+            }
+
+            // Closing Tags
+            $grade_table .= self::START_TABS."</div><!-- End of table-body -->\n";
+            $grade_table .= "\t\t\t</div><!-- End of std-table -->\n";
+
+            $data['grade_table'] = $grade_table;
+
         } // End of generate_grade_table
 
 
         public function add_student(){
             // TODO
+
+
+            $data['active'] = "gradebook";
+
+            // Loading Views
+            $this->load->view('templates/header');
+            $this->load->view('templates/nav', $data);
+            $this->load->view('gradebook/new_student', $data);
+            $this->load->view('templates/footer');
         }
 
 

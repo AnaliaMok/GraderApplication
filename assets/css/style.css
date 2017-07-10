@@ -477,6 +477,39 @@ span#nothing-message{
     text-align: center;
 }
 
+/* Input Sections Above a Standard table */
+div.input-section{
+    margin: 1rem 0 0 2rem;
+}
+
+div.input-section input[type=search],
+div.input-section select{
+    font-family: "Open Sans", sans-serif;
+    padding: 0.5rem 1rem;
+}
+
+/* Reusable Button Class */
+a.blue-btn{
+    display: inline-block;
+    color: #FFF;
+    background-color: #47D2E9;
+    font-family: Montserrat, sans-serif;
+    margin-right: 1rem;
+    margin-left: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+a.blue-btn .ion-plus{
+    font-size: 20px;
+    margin-right: 0.5em;
+}
+
+a.blue-btn span{
+    vertical-align: middle;
+}
+
+
 /* Desktop Styling */
 @media screen and (min-width: 768px){
 
