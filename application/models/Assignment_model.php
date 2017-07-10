@@ -49,7 +49,7 @@
 
 
         public function create_assignment(){
-            // TODO
+            // TODO: Remember query bindings for security
         }
 
 

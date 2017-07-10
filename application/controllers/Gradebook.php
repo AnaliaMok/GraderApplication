@@ -4,6 +4,9 @@
      */
     class Gradebook extends CI_Controller{
 
+        // Constant Offset Used for Better Code Formatting in Page Source
+        const START_TABS = "\t\t\t\t";
+
         public function __construct(){
             // CodeIgniter Parent Constructor
             parent::__construct();
@@ -30,6 +33,19 @@
                 redirect("users/index");
             }
 
+            // Gathering Data
+
+            // Creating section dropdown
+            $data['sections'] = "<select>\n";
+
+            $sections = $this->Sections->get_sections();
+            foreach($sections as $sect){
+                $data['sections'] .=
+                    '<option value="'.$sect['section_id'].'">'.$sect['section_id']."</option>\n";
+            }
+
+            $data['sections'] .= "</select>\n";
+
             $data['active'] = "gradebook";
 
             // Loading Views
@@ -40,8 +56,46 @@
         } // End of view
 
 
-        public function add_student(){
+        /**
+         * generate_heading - Accepts an array of strings and formats the table-head
+         *      header to be used.
+         *
+         * @param  headers - Array of Strings
+         * @return String
+         */
+        private function generate_heading($headers){
+            // Formatted table-head String
+            $out = "";
 
+            // Creating table-head
+            $out .= self::START_TABS.'<div class="table-head">'."\n";
+            $out .= self::START_TABS."\t<ul>\n";
+
+            // Adding list items
+            foreach($headers as $head){
+                $out .= "<li>".$head."</li>";
+            }
+
+            // Closing tags
+            $out .= self::START_TABS."\t</ul>\n";
+            $out .= self::START_TABS."</div>\n";
+
+            return $out;
+        } // End of generate_heading
+
+
+        /**
+         * generate_grade_table - Creates and formats gradebook data
+         *
+         * @return [type] [description]
+         */
+        public function generate_grade_table(&$data){
+            // TODO
+        } // End of generate_grade_table
+
+
+        public function add_student(){
+            // TODO
         }
 
 

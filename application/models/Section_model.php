@@ -9,8 +9,13 @@
 
 
         public function get_sections(){
-            // TODO
-        }
+            // Getting all sections ORDERED BY date created
+            $this->db->select("section_id");
+            $this->db->order_by("created", "DESC");
+            $query = $this->db->get("sections");
+
+            return $query->result_array();
+        } // End of get_sections
 
 
         public function create_section(){
