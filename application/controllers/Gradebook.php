@@ -40,6 +40,7 @@
             $data['sections'] = "<select>\n";
 
             $sections = $this->Sections->get_sections();
+
             foreach($sections as $sect){
                 $data['sections'] .=
                     '<option value="'.$sect['section_id'].'">'.$sect['section_id']."</option>\n";
@@ -48,7 +49,7 @@
             $data['sections'] .= "</select>\n";
 
             // Create main grade tables
-            $this->generate_grade_table($data);
+            $this->generate_grade_table($data, $sections[0]['section_id']);
 
             $data['active'] = "gradebook";
 
@@ -93,10 +94,10 @@
          *
          * @return [type] [description]
          */
-        public function generate_grade_table(&$data){
+        public function generate_grade_table(&$data, $section_id){
 
             // Grabbing Records
-            $grades = $this->Grades->get_grades();
+            $grades = $this->Grades->get_grades($section_id);
 
             $heading = array("Last, First");
             $students = array();
@@ -112,7 +113,7 @@
                 }
 
                 $student_name = $grade['last_name'] . ", " . $grade['first_name'];
-                $score = $grade['score']."(".$grade['letter_grade'].")";
+                $score = $grade['score']."&nbsp;(".$grade['letter_grade'].")";
 
                 // Adding assignment-score pair to student's values
                 $students[$student_name][$assignment] = $score;
@@ -128,8 +129,10 @@
                 $grade_table .= self::START_TABS."\t<ul>\n";
                 $grade_table .= self::START_TABS."\t\t".'<li>'.$student."</li>\n";
 
-                foreach($assigns as $curr){
-                    $grade_table .= self::START_TABS."\t\t".'<li>'.$curr."</li>\n";
+                foreach($assigns as $name => $score){
+                    // TODO: wrap in anchor tag to open edit grade modal
+                    $grade_table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+                    $grade_table .= self::START_TABS."\t\t".'<li data-title="'.$name.':">'.$score."</li>\n";
                 }
 
                 $grade_table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";

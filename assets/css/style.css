@@ -119,6 +119,13 @@ div.content{
     min-height: 100vh;
 }
 
+div.content h2{
+    margin: 2rem 0 0 1rem;
+    font-family: Montserrat, sans-serif;
+    font-weight: normal;
+    color: #2B2B2B;
+}
+
 
 /* Login & Registration Page Styling */
 
@@ -482,20 +489,53 @@ div.input-section{
     margin: 1rem 0 0 2rem;
 }
 
-div.input-section input[type=search],
 div.input-section select{
     font-family: "Open Sans", sans-serif;
+    width: 50%;
     padding: 0.5rem 1rem;
+}
+
+div.input-section input[type=search]{
+    background: transparent;
+    border: none;
+}
+
+div.search-bar{
+    display: inline-block;
+    width: 50%;
+    border: 1px solid #95989A;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    background-color: #FFF;
+
+    padding: 0.5rem 1rem;
+}
+
+div.search-bar span.ion-android-search{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #2B2B2B;
+    margin-right: 0.5rem;
+}
+
+div.search-bar input[type=search]{
+    display: inline-block;
+    vertical-align: middle;
+    font-family: "Open Sans", sans-serif;
 }
 
 /* Reusable Button Class */
 a.blue-btn{
-    display: inline-block;
+    display: block;
+    width: 50%;
     color: #FFF;
     background-color: #47D2E9;
     font-family: Montserrat, sans-serif;
-    margin-right: 1rem;
-    margin-left: 2rem;
+    margin: 1rem 0 0 0;
     padding: 0.5rem 1rem;
     border-radius: 6px;
 }
@@ -726,6 +766,19 @@ a.blue-btn span{
         color: #FFF;
         text-align: left;
         margin-left: 2rem;
+    }
+
+    /* Reusable Button Class */
+    a.blue-btn{
+        display: inline-block;
+        width: auto;
+        margin-right: 1rem;
+        margin-left: 1rem;
+    }
+
+    div.input-section .search-bar,
+    div.input-section select{
+        width: auto;
     }
 
 } /* End of desktop styling */

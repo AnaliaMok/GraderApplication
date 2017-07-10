@@ -9,7 +9,10 @@
             </a>
         </div>
         <div class="input-section">
-            <input type="search" name="search_student" placeholder="Search Student Names">
+            <div class="search-bar">
+                <span class="ion ion-android-search"></span>
+                <input type="search" name="search_student" placeholder="Search Student Names">
+            </div>
         </div>
 
         <div class="table-group">
