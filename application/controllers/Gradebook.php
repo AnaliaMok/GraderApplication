@@ -147,18 +147,42 @@
         } // End of generate_grade_table
 
 
+        /**
+         * add_student - Given a set of student forms, asks student model to
+         *      add new students to database
+         */
         public function add_student(){
             // TODO
+            $sections = $this->Sections->get_sections();
+            $js = 'id="section-dropdown"';
+
+            $options = array();
+            foreach($sections as $sect){
+                $options[$sect['section_id']] = $sect['section_id'];
+            }
+
+            $data['sections'] = form_dropdown("sections0", $options, $sections[0]['section_id'], $js);
 
 
             $data['active'] = "gradebook";
 
-            // Loading Views
-            $this->load->view('templates/header');
-            $this->load->view('templates/nav', $data);
-            $this->load->view('gradebook/new_student', $data);
-            $this->load->view('templates/footer');
-        }
+            // Form Rules
+            $this->form_validation->set_rules('first_name0', 'First Name', 'required');
+            $this->form_validation->set_rules('last_name0', 'Last Name', 'required');
+            $this->form_validation->set_rules('section_id0', 'Section ID', 'required');
+
+            if($this->form_validation->run() === FALSE){
+                // Loading Views
+                $this->load->view('templates/header');
+                $this->load->view('templates/nav', $data);
+                $this->load->view('gradebook/new_student', $data);
+                $this->load->view('templates/footer');
+            }else{
+                // TODO: Submit data to model
+                redirect('gradebook');
+            }
+
+        } // End of add_student
 
 
         public function add_grade(){

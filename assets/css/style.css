@@ -120,10 +120,39 @@ div.content{
 }
 
 div.content h2{
-    margin: 2rem 0 0 1rem;
+    margin: 2rem 0 0 2rem;
     font-family: Montserrat, sans-serif;
     font-weight: normal;
     color: #2B2B2B;
+}
+
+/* Global form-holder styling */
+div.form-holder{
+    /*width: 80%;
+    margin: 0 auto;
+    text-align: center;*/
+    margin: 1rem 0 0 2rem;
+}
+
+div.form-holder div.student-info-group{
+    display: inline-block;
+    text-align: left;
+    font-family: Montserrat, sans-serif;
+}
+
+div.form-holder div.student-info-group div select option,
+div.form-holder div.student-info-group div input[type=text]{
+    font-family: "Open Sans", sans-serif;
+    font-weight: normal;
+}
+
+div.form-holder div.student-info-group div{
+    margin: 0.5rem 0;
+}
+
+div.form-holder div.student-info-group div label{
+    margin-right: 1rem;
+    font-weight: normal;
 }
 
 
@@ -149,6 +178,7 @@ main#login-main h2{
 
 main#login-main div.form-holder{
     width: 90%;
+    text-align: left;
     margin: 0 auto;
     position: relative;
     top: 30%;
@@ -529,23 +559,26 @@ div.search-bar input[type=search]{
 }
 
 /* Reusable Button Class */
-a.blue-btn{
+.blue-btn{
     display: block;
+    border: 0;
+    outline: none;
     width: 50%;
     color: #FFF;
     background-color: #47D2E9;
+    font-size: 1rem;
     font-family: Montserrat, sans-serif;
     margin: 1rem 0 0 0;
     padding: 0.5rem 1rem;
     border-radius: 6px;
 }
 
-a.blue-btn .ion-plus{
+.blue-btn .ion-plus{
     font-size: 20px;
     margin-right: 0.5em;
 }
 
-a.blue-btn span{
+.blue-btn span{
     vertical-align: middle;
 }
 
@@ -769,10 +802,10 @@ a.blue-btn span{
     }
 
     /* Reusable Button Class */
-    a.blue-btn{
+    .blue-btn{
         display: inline-block;
         width: auto;
-        margin-right: 1rem;
+        /*margin-right: 1rem;*/
         margin-left: 1rem;
     }
 

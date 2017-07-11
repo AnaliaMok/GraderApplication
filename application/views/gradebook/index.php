@@ -7,6 +7,11 @@
                 <span class="ion ion-plus"></span>
                 <span>Add Student(s)</span>
             </a>
+            <!-- TODO: Button Goes to "Add Assignment" page-->
+            <a href="<?php echo base_url(); ?>gradebook" class="blue-btn">
+                <span class="ion ion-plus"></span>
+                <span>Add Assignment(s)</span>
+            </a>
         </div>
         <div class="input-section">
             <div class="search-bar">
