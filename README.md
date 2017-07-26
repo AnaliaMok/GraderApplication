@@ -15,7 +15,7 @@ is meant to be a one-stop solution for all facets of the student grader position
 
 ## Technologies
 
-- Main Framework: CodeIgniter v3.1.5
+* Main Framework: CodeIgniter v3.1.5
 * Front-End: HTML5 // CSS3 // JavaScript
 * Back-End: PHP 5.6.1 // MySQL
 * Database: MariaDB
