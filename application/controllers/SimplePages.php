@@ -55,24 +55,71 @@
 
 
         /**
-         * dashboard - Generates dashboard which includes:
-         *              - Current Week's Timestamps
-         *              - Unfinished grading table
-         *              - Completed Grading
-         *              - Mini-calendar for upcoming assignments
+         * export - Generates the file export page
          * @return NULL
          */
-        public function dashboard(){
+        public function export(){
+            // TODO:
 
-            // TODO: Call on models to get data to send to dashboard
+            $data['active'] = "export";
 
-            $this->load->view("simplepages/dashboard");
-        }
+            // Loading views
+            $this->load->view("templates/header");
+            $this->load->view("templates/nav", $data);
+            $this->load->view("simplepages/export");
+            $this->load->view("templates/footer");
+        } // End of export
 
 
-        public function calendar(){
-            // TODO: Generate Full Calendar Page
-        }
+        /**
+         * settings - Generates settings page
+         * @return NULL
+         */
+        public function settings(){
+            // TODO
+
+            $data['active'] = "settings";
+
+            // Loading views
+            $this->load->view("templates/header");
+            $this->load->view("templates/nav", $data);
+            $this->load->view("simplepages/settings");
+            $this->load->view("templates/footer");
+        } // End of settings
+
+
+        /**
+         * timestamps - Generates time table page
+         * @return [type] [description]
+         */
+        public function timestamps(){
+            // TODO: Might be moved to its own controller
+
+            $data['active'] = "timestamps";
+
+            // Loading views
+            $this->load->view("templates/header");
+            $this->load->view("templates/nav", $data);
+            $this->load->view("simplepages/timestamps");
+            $this->load->view("templates/footer");
+        } // End of timestamps
+
+
+        /**
+         * backup - Generates manual database backup page
+         * @return NULL
+         */
+        public function backup(){
+            // TODO: Might be moved to its own controller
+
+            $data['active'] = "backup";
+
+            // Loading views
+            $this->load->view("templates/header");
+            $this->load->view("templates/nav", $data);
+            $this->load->view("simplepages/backup");
+            $this->load->view("templates/footer");
+        } // End of backup
 
     } // End of SimplePages class
 ?>

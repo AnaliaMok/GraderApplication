@@ -21,6 +21,9 @@
                     </div>
                 </div>
 
+                <!-- Internal Counter to keep track of total student forms -->
+                <input type="hidden" name="total_forms" value="1" />
+
                 <div class="button-group">
                     <!-- <a href="#" class="blue-btn">Add Student</a> -->
                     <input type="submit" value="Add Student" class="blue-btn"/>
@@ -28,7 +31,6 @@
                 </div>
 
             <?php echo form_close(); ?>
-            <!-- TODO: Add Buttons for adding another student row & submitting -->
 
         </div><!-- End of form holder -->
     </div><!-- End of content -->
