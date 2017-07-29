@@ -135,7 +135,7 @@ div.form-holder{
 }
 
 div.form-holder div.student-info-group{
-    display: inline-block;
+    display: table;
     text-align: left;
     font-family: Montserrat, sans-serif;
 }
@@ -147,7 +147,16 @@ div.form-holder div.student-info-group div input[type=text]{
 }
 
 div.form-holder div.student-info-group div{
-    margin: 0.5rem 0;
+    display: table-row;
+    margin: 0.3rem 0.5rem;
+}
+
+div.form-holder div.student-info-group div select,
+div.form-holder div.student-info-group div input[type=text],
+div.form-holder div.student-info-group div label{
+    display: table-cell;
+    vertical-align: middle;
+    margin: 0.5rem;
 }
 
 div.form-holder div.student-info-group div label{
@@ -155,6 +164,12 @@ div.form-holder div.student-info-group div label{
     font-weight: normal;
 }
 
+div.form-holder div.button-group input[type=submit],
+div.form-holder div.button-group input[type=button]{
+    -webkit-box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+}
 
 /* Login & Registration Page Styling */
 
@@ -561,16 +576,19 @@ div.search-bar input[type=search]{
 /* Reusable Button Class */
 .blue-btn{
     display: block;
+    width: 50%;
+    margin: 1rem 0 0 0;
+    padding: 0.5rem 1rem;
     border: 0;
     outline: none;
-    width: 50%;
+
     color: #FFF;
     background-color: #47D2E9;
     font-size: 1rem;
     font-family: Montserrat, sans-serif;
-    margin: 1rem 0 0 0;
-    padding: 0.5rem 1rem;
+
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .blue-btn .ion-plus{

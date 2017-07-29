@@ -152,7 +152,11 @@
          *      add new students to database
          */
         public function add_student(){
-            // TODO
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
             $sections = $this->Sections->get_sections();
             $js = 'id="section-dropdown"';
 
@@ -167,9 +171,15 @@
             $data['active'] = "gradebook";
 
             // Form Rules
-            $this->form_validation->set_rules('first_name0', 'First Name', 'required');
-            $this->form_validation->set_rules('last_name0', 'Last Name', 'required');
-            $this->form_validation->set_rules('section_id0', 'Section ID', 'required');
+            if($this->input->post("total_forms") != null || $this->input->post("total_forms") != ""){
+                // Set rules for total_forms forms
+                // TODO
+            }else{
+                // If first time visiting this page, just set rules for 1 form
+                $this->form_validation->set_rules('first_name_0', 'First Name', 'required');
+                $this->form_validation->set_rules('last_name_0', 'Last Name', 'required');
+                $this->form_validation->set_rules('section_id_0', 'Section ID', 'required');
+            }
 
             if($this->form_validation->run() === FALSE){
                 // Loading Views
@@ -185,9 +195,70 @@
         } // End of add_student
 
 
+        /**
+         * set_more_rules - Target of add_student AJAX request. Sets the
+         *      validation rules for a new set of form inputs.
+         */
+        public function set_more_rules(){
+
+            // Check login state
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
+            // Create sections dropdown
+            $sections = $this->Sections->get_sections();
+            $js = 'id="section-dropdown"';
+
+            $options = array();
+            foreach($sections as $sect){
+                $options[$sect['section_id']] = $sect['section_id'];
+            }
+
+            $section_dropdown = form_dropdown("sections0", $options, $sections[0]['section_id'], $js);
+
+            // Pre-Incremented total form value
+            // NOTE: Forms are 0-based indexed
+            $total_forms = $_POST['total_forms'];
+
+            // Set new validation rules
+            $this->form_validation->set_rules("first_name_".$total_forms, "First Name", "required");
+            $this->form_validation->set_rules('last_name_'.$total_forms, 'Last Name', 'required');
+            $this->form_validation->set_rules('section_id_'.$total_forms, 'Section ID', 'required');
+
+            // Create new form group
+            $new_form = '<div class="student-info-group" id="form_'.$total_forms.'">'."\n";
+
+            $new_form .= "<div>\n<label>First Name</label>\n";
+            $new_form .= '<input type="text" name="first_name_'.$total_forms.'" />'."\n";
+            $new_form .= "</div>\n";
+
+            $new_form .= "<div>\n<label>Last Name</label>\n";
+            $new_form .= '<input type="text" name="last_name_'.$total_forms.'" />'."\n";
+            $new_form .= "</div>\n";
+
+            $new_form .= "<div>\n<label>Section ID</label>\n";
+            $new_form .= $section_dropdown;
+            $new_form .= "</div>\n";
+
+            $new_form .= "</div>\n";
+
+            echo $new_form;
+        } // End of set_more_rules
+
+
+        /**
+         * add_grade: TODO
+         */
         public function add_grade(){
             // TODO
-        }
+
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
+        } // End of add_grade
 
     } // End of Gradebook Class
 ?>

@@ -20,6 +20,11 @@ function init(){
         getUpcomingList();
     }
 
+    if($("#add_another") != null){
+        // Add Another Button Event
+        $("#add_another").click(addAnotherStudent);
+    }
+
 } // End of init
 
 
@@ -143,3 +148,36 @@ function completedAssignment(assignmentID){
         }
     });
 } // End of completedAssignment
+
+
+/**
+ * addAnotherStudent - Makes an AJAX request to the Gradebook
+ *      controller to create another new student form
+ */
+function addAnotherStudent(){
+    // Total Current forms
+    var totalForms = $("#total_forms").attr("value");
+
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/gradebook/set_more_rules",
+        type: "post",
+        mimetype: "json",
+        data: { 'total_forms': totalForms },
+        success: function(response){
+            // TODO: If successful, append a a set of
+            // Reset and delete buttons to latest form,
+            // then append new form
+            var currForm = "#form_" + (totalForms-1);
+            $(currForm).after(response);
+
+            // Increment value in total_form hidden input
+            $("#total_forms").attr("value", ++totalForms);
+            console.log("Success");
+            console.log(response);
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+
+} // End of addAnotherStudent

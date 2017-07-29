@@ -1,5 +1,6 @@
 <main>
     <div class="content">
+        <!-- TODO: Output flashdata message -->
         <div class="input-section">
             <?php echo $sections; ?>
             <!-- Button Goes to "Add Student" page-->
@@ -22,6 +23,12 @@
 
         <div class="table-group">
             <?php echo $grade_table; ?>
+        </div>
+
+        <!-- Quick Adding Side Bar -->
+        <div class="upcoming-container">
+            <h2>Quick Add: Grade</h2>
+            <!-- TODO: Add form -->
         </div>
 
     </div>
