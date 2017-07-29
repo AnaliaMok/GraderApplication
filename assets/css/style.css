@@ -136,6 +136,7 @@ div.form-holder{
 
 div.form-holder div.student-info-group{
     display: table;
+    margin-bottom: 1.5rem;
     text-align: left;
     font-family: Montserrat, sans-serif;
 }
@@ -151,6 +152,7 @@ div.form-holder div.student-info-group div{
     margin: 0.3rem 0.5rem;
 }
 
+div.form-holder div.student-info-group div.button-group button,
 div.form-holder div.student-info-group div select,
 div.form-holder div.student-info-group div input[type=text],
 div.form-holder div.student-info-group div label{

@@ -168,12 +168,41 @@ function addAnotherStudent(){
             // Reset and delete buttons to latest form,
             // then append new form
             var currForm = "#form_" + (totalForms-1);
+
+            // Adding a button group to latest group
+            var buttonGroup = document.createElement("div");
+            buttonGroup.className = "button-group";
+
+            // Clear Button
+            var clearBtn = document.createElement("button");
+            clearBtn.name = "clear_"+(totalForms-1);
+            clearBtn.value = "clear_"+(totalForms-1);
+            clearBtn.className = "blue-btn";
+            clearBtn.appendChild(document.createTextNode("Clear"));
+
+            // Delete Button
+            var deleteBtn = document.createElement("button");
+            deleteBtn.name = "delete_"+(totalForms-1);
+            deleteBtn.value = "delete_"+(totalForms-1);
+            deleteBtn.className = "blue-btn";
+            deleteBtn.appendChild(document.createTextNode("Delete"));
+
+            buttonGroup.appendChild(clearBtn);
+            buttonGroup.appendChild(deleteBtn);
+
+            $(currForm).append(buttonGroup);
+
+            // Inserting new form after the latest form
             $(currForm).after(response);
 
             // Increment value in total_form hidden input
             $("#total_forms").attr("value", ++totalForms);
-            console.log("Success");
-            console.log(response);
+
+            // Change value of "Add Student" button
+            $("input[type=submit]").attr("value", "Add All Students");
+
+            console.log("Success: New Form Added");
+
         },
         error: function(response){
             console.log("ERROR: " + response);

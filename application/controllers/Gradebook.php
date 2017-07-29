@@ -241,6 +241,7 @@
             $new_form .= $section_dropdown;
             $new_form .= "</div>\n";
 
+            // Closing tag for student-info-group
             $new_form .= "</div>\n";
 
             echo $new_form;
