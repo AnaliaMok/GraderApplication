@@ -158,7 +158,7 @@
             }
 
             $sections = $this->Sections->get_sections();
-            $js = 'id="section-dropdown"';
+            $js = 'class="section-dropdown"';
 
             $options = array();
             foreach($sections as $sect){

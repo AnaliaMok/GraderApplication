@@ -209,13 +209,35 @@ function addAnotherStudent(){
 
             deleteBtn.onclick = function(){
                 var underscoreIdx = this.name.lastIndexOf("_");
-                var formNumber = this.name.substr(underscoreIdx+1);
+                var formNumber = parseInt(this.name.substr(underscoreIdx+1));
 
                 // Remove form entirely
-                var form = $("#form_"+formNumber);
+                $("#form_"+formNumber).remove();
 
+                // Decrement value in total_form hidden input
+                var totalForms = $("#total_forms").attr("value") - 1;
+                $("#total_forms").attr("value", totalForms);
 
-                // TODO: Re-number forms?
+                // Re-number forms
+                var forms = $(".student-info-group");
+                for(var i = 0; i < totalForms; i++){
+                    var curr = forms[i];
+                    underscoreIdx = curr.id.lastIndexOf("_");
+                    var currFormNumber = curr.id.substr(underscoreIdx+1);
+
+                    curr.id = "form_" + i;
+                    var firstName = document.getElementById("first_name_"+currFormNumber);
+                    firstName.id = "first_name_"+i;
+                    firstName.name = "first_name_"+i;
+
+                    var lastName = document.getElementById("last_name_"+currFormNumber);
+                    lastName.id = "last_name_"+i;
+                    lastName.name = "last_name_"+i;
+
+                    var sections = document.getElementsByClassName("section-dropdown")[i];
+                    sections.name = "sections_"+i;
+
+                }
 
                 // Do not submit
                 return false;
