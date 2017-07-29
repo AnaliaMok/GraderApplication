@@ -180,12 +180,46 @@ function addAnotherStudent(){
             clearBtn.className = "blue-btn";
             clearBtn.appendChild(document.createTextNode("Clear"));
 
+            // Clear values of this forms inputs
+            clearBtn.onclick = function(){
+                var underscoreIdx = this.name.lastIndexOf("_");
+                var formNumber = this.name.substr(underscoreIdx+1);
+
+                var firstName = document.getElementById("first_name_"+formNumber);
+
+                if(firstName != null){
+                    firstName.value = "";
+                }
+
+                var lastName = document.getElementById("last_name_"+formNumber);
+                if(lastName != null){
+                    lastName.value = "";
+                }
+
+                // Do not submit
+                return false;
+            };
+
             // Delete Button
             var deleteBtn = document.createElement("button");
             deleteBtn.name = "delete_"+(totalForms-1);
             deleteBtn.value = "delete_"+(totalForms-1);
             deleteBtn.className = "blue-btn";
             deleteBtn.appendChild(document.createTextNode("Delete"));
+
+            deleteBtn.onclick = function(){
+                var underscoreIdx = this.name.lastIndexOf("_");
+                var formNumber = this.name.substr(underscoreIdx+1);
+
+                // Remove form entirely
+                var form = $("#form_"+formNumber);
+
+
+                // TODO: Re-number forms?
+
+                // Do not submit
+                return false;
+            };
 
             buttonGroup.appendChild(clearBtn);
             buttonGroup.appendChild(deleteBtn);

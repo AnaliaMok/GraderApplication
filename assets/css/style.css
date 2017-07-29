@@ -137,8 +137,11 @@ div.form-holder{
 div.form-holder div.student-info-group{
     display: table;
     margin-bottom: 1.5rem;
+    padding: 1rem;
     text-align: left;
     font-family: Montserrat, sans-serif;
+
+    border: 2px solid #AAA;
 }
 
 div.form-holder div.student-info-group div select option,
@@ -168,6 +171,8 @@ div.form-holder div.student-info-group div label{
 
 div.form-holder div.button-group input[type=submit],
 div.form-holder div.button-group input[type=button]{
+    margin: 0 2rem 2rem 0;
+
     -webkit-box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
     box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);

@@ -7,12 +7,12 @@
                 <div class="student-info-group" id="form_0">
                     <div>
                         <label>First Name</label>
-                        <input type="text" name="first_name_0" />
+                        <input type="text" name="first_name_0" id="first_name_0" />
                     </div>
 
                     <div>
                         <label>Last Name</label>
-                        <input type="text" name="last_name_0" />
+                        <input type="text" name="last_name_0" id="last_name_0" />
                     </div>
 
                     <div>

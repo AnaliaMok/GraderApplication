@@ -165,7 +165,7 @@
                 $options[$sect['section_id']] = $sect['section_id'];
             }
 
-            $data['sections'] = form_dropdown("sections0", $options, $sections[0]['section_id'], $js);
+            $data['sections'] = form_dropdown("sections_0", $options, $sections[0]['section_id'], $js);
 
 
             $data['active'] = "gradebook";
@@ -206,20 +206,21 @@
                 redirect("users/index");
             }
 
+            // Pre-Incremented total form value
+            // NOTE: Forms are 0-based indexed
+            $total_forms = $_POST['total_forms'];
+
             // Create sections dropdown
             $sections = $this->Sections->get_sections();
-            $js = 'id="section-dropdown"';
+            $js = 'class="section-dropdown"';
 
             $options = array();
             foreach($sections as $sect){
                 $options[$sect['section_id']] = $sect['section_id'];
             }
 
-            $section_dropdown = form_dropdown("sections0", $options, $sections[0]['section_id'], $js);
-
-            // Pre-Incremented total form value
-            // NOTE: Forms are 0-based indexed
-            $total_forms = $_POST['total_forms'];
+            $dropdown_name = "sections_".$total_forms;
+            $section_dropdown = form_dropdown($dropdown_name, $options, $sections[0]['section_id'], $js);
 
             // Set new validation rules
             $this->form_validation->set_rules("first_name_".$total_forms, "First Name", "required");
@@ -229,12 +230,14 @@
             // Create new form group
             $new_form = '<div class="student-info-group" id="form_'.$total_forms.'">'."\n";
 
+            $first_name = "first_name_".$total_forms;
             $new_form .= "<div>\n<label>First Name</label>\n";
-            $new_form .= '<input type="text" name="first_name_'.$total_forms.'" />'."\n";
+            $new_form .= '<input type="text" name="'.$first_name.'" id="'.$first_name.'"/>'."\n";
             $new_form .= "</div>\n";
 
+            $last_name = "last_name_".$total_forms;
             $new_form .= "<div>\n<label>Last Name</label>\n";
-            $new_form .= '<input type="text" name="last_name_'.$total_forms.'" />'."\n";
+            $new_form .= '<input type="text" name="'.$last_name.'" id="'.$last_name.'" />'."\n";
             $new_form .= "</div>\n";
 
             $new_form .= "<div>\n<label>Section ID</label>\n";
