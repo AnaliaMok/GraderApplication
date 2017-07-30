@@ -607,6 +607,46 @@ div.search-bar input[type=search]{
     vertical-align: middle;
 }
 
+/* Reusable Pop-up Messages */
+div.alert-message{
+    width: 80%;
+    position: relative;
+    margin: 1rem auto;
+    padding: 1rem 3rem 1rem 1rem;
+    font-family: "Open Sans", sans-serif;
+    color: #FFF;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+div.alert-message p,
+div.alert-message ul{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div.alert-message .lnr-cross{
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    cursor: pointer;
+}
+
+div.alert-message .lnr-cross:hover{
+    text-decoration: underline;
+}
+
+
+/* Default Colors for Success & Error Messages */
+#success{ background-color: #2ECC71; }
+
+#error{ background-color: #E74C3C; }
+
+
 
 /* Desktop Styling */
 @media screen and (min-width: 768px){
@@ -762,6 +802,7 @@ div.search-bar input[type=search]{
         margin: 1rem auto;*/
     }
 
+    div.alert-space,
     div.upcoming-container{
         /* Position towards right hand side */
         position: fixed;
@@ -774,7 +815,18 @@ div.search-bar input[type=search]{
         width: 25%;
         margin: 0 0 0 1rem;
 
+        -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .16);
+        -moz-box-shadow: 0 0 20px rgba(0, 0, 0, .16);
         box-shadow: 0 0 20px rgba(0, 0, 0, .16);
+    }
+
+    div.alert-space{
+        width: 30%;
+        background-color: #EEE;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
     }
 
     div#home-upcoming{

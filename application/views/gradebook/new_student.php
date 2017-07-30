@@ -35,15 +35,19 @@
 
         </div><!-- End of form holder -->
 
-        <?php if($this->session->flashdata('students_added')): ?>
-            <?php echo '<div class="alert-message modal">'.
+        <div class="alert-space">
+            <?php if($this->session->flashdata('students_added')): ?>
+            <?php echo '<div class="alert-message modal" id="success">'.
+                '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
                 $this->session->flashdata('students_added').'</div>'; ?>
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <?php if($this->session->flashdata('student_exists')): ?>
-            <?php echo '<div class="alert-message modal">'.
-                $this->session->flashdata('student_exists').'</div>'; ?>
-        <?php endif; ?>
+            <?php if($this->session->flashdata('student_exists')): ?>
+                <?php echo '<div class="alert-message modal" id="error">'.
+                    '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
+                    $this->session->flashdata('student_exists').'</div>'; ?>
+            <?php endif; ?>
+        </div>
 
     </div><!-- End of content -->
 </main>

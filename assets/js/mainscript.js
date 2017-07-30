@@ -40,6 +40,15 @@ function jumpPage(location){
 
 
 /**
+ * disappear - Removes the element current being displayed
+ * @return null
+ */
+function disappear(element){
+    element.parentNode.style.display = "none";
+} // End of disappear
+
+
+/**
  * modifyTables - Setup function that looks at each table on the dashboard,
  *      and shortens a table if it is more than 3 rows long. If so, the last
  *      3 rows are hidden and replaced with a "See More" button.
