@@ -144,7 +144,7 @@ div.form-holder div.student-info-group{
     border: 2px solid #AAA;
 }
 
-div.form-holder div.student-info-group div select option,
+div.form-holder div.student-info-group div select,
 div.form-holder div.student-info-group div input[type=text]{
     font-family: "Open Sans", sans-serif;
     font-weight: normal;

@@ -31,11 +31,5 @@
                 $this->session->flashdata('students_added').'</p></div>'; ?>
         <?php endif; ?>
 
-        <!-- Quick Adding Side Bar -->
-        <div class="upcoming-container">
-            <h2>Quick Add: Grade</h2>
-            <!-- TODO: Add form -->
-        </div>
-
     </div>
 </main>
