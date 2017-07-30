@@ -170,15 +170,24 @@
 
             $data['active'] = "gradebook";
 
+            $total_forms = intval($this->input->post("total_forms"));
+            echo $total_forms;
+
             // Form Rules
-            if($this->input->post("total_forms") != null || $this->input->post("total_forms") != ""){
-                // Set rules for total_forms forms
-                // TODO
+            if($total_forms != null && $total_forms > 1){
+                // Set rules for total_forms forms if there is more than 1 form
+
+                for($i = 0; $i < $total_forms; $i++){
+                    $this->form_validation->set_rules('first_name_'.$i, 'First Name', 'required');
+                    $this->form_validation->set_rules('last_name_'.$i, 'Last Name', 'required');
+                    $this->form_validation->set_rules('sections_'.$i, 'Section ID', 'required');
+                }
+
             }else{
                 // If first time visiting this page, just set rules for 1 form
                 $this->form_validation->set_rules('first_name_0', 'First Name', 'required');
                 $this->form_validation->set_rules('last_name_0', 'Last Name', 'required');
-                $this->form_validation->set_rules('section_id_0', 'Section ID', 'required');
+                $this->form_validation->set_rules('sections_0', 'Section ID', 'required');
             }
 
             if($this->form_validation->run() === FALSE){
@@ -188,7 +197,14 @@
                 $this->load->view('gradebook/new_student', $data);
                 $this->load->view('templates/footer');
             }else{
-                // TODO: Submit data to model
+                echo "Submitted";
+                // Submit student data
+                for($i = 0; $i < $total_forms; $i++){
+                    $this->Students->create_student($i);
+                }
+
+                // TODO: Change flash data to list all students that were added
+                $this->session->set_flashdata("students_added", "All students were added");
                 redirect('gradebook');
             }
 
@@ -225,7 +241,7 @@
             // Set new validation rules
             $this->form_validation->set_rules("first_name_".$total_forms, "First Name", "required");
             $this->form_validation->set_rules('last_name_'.$total_forms, 'Last Name', 'required');
-            $this->form_validation->set_rules('section_id_'.$total_forms, 'Section ID', 'required');
+            $this->form_validation->set_rules('sections_'.$total_forms, 'Section ID', 'required');
 
             // Create new form group
             $new_form = '<div class="student-info-group" id="form_'.$total_forms.'">'."\n";

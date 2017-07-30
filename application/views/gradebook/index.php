@@ -25,6 +25,12 @@
             <?php echo $grade_table; ?>
         </div>
 
+        <!-- TODO: Change to a dropdown modal that disappears after a few seconds -->
+        <?php if($this->session->flashdata('students_added')): ?>
+            <?php echo '<div class="alert-message modal"><p>'.
+                $this->session->flashdata('students_added').'</p></div>'; ?>
+        <?php endif; ?>
+
         <!-- Quick Adding Side Bar -->
         <div class="upcoming-container">
             <h2>Quick Add: Grade</h2>

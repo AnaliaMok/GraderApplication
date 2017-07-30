@@ -251,6 +251,9 @@ function addAnotherStudent(){
             // Inserting new form after the latest form
             $(currForm).after(response);
 
+            // Focus on first input of new form
+            $("#first_name_"+totalForms).focus();
+
             // Increment value in total_form hidden input
             $("#total_forms").attr("value", ++totalForms);
 
