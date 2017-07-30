@@ -34,9 +34,16 @@
             <?php echo form_close(); ?>
 
         </div><!-- End of form holder -->
-        <?php if($this->session->flashdata('student_exists')): ?>
-            <?php echo '<div class="alert-message modal"><p>'.
-                $this->session->flashdata('student_exists').'</p></div>'; ?>
+
+        <?php if($this->session->flashdata('students_added')): ?>
+            <?php echo '<div class="alert-message modal">'.
+                $this->session->flashdata('students_added').'</div>'; ?>
         <?php endif; ?>
+
+        <?php if($this->session->flashdata('student_exists')): ?>
+            <?php echo '<div class="alert-message modal">'.
+                $this->session->flashdata('student_exists').'</div>'; ?>
+        <?php endif; ?>
+
     </div><!-- End of content -->
 </main>

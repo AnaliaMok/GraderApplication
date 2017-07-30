@@ -197,17 +197,40 @@
                 $this->load->view('templates/footer');
             }else{
                 // Submit student data
+                $students_added = "";
+                $students_existed = "";
+
                 for($i = 0; $i < $total_forms; $i++){
 
+                    $student = "<li>";
+                    $student .= $this->input->post("first_name_".$i);
+                    $student .= "&nbsp;";
+                    $student .= $this->input->post("last_name_".$i);
+                    $student .= "&nbsp;";
+                    $student .= $this->input->post("sections_".$i);
+                    $student .= "</li>";
+
                     if($this->Students->create_student($i) === FALSE){
-                        $this->session->set_flashdata("student_exists", "One or more student(s) already exist");
+                        $students_existed .= $student . "\n";
+                    }else{
+                        $students_added .= $student . "\n";
                     }
 
                 }
 
-                // TODO: Change flash data to list all students that were added
-                $this->session->set_flashdata("students_added", "All students were added");
-                //redirect('gradebook');
+                // Flash data to list all students that were added or existed
+                if($students_existed != ""){
+                    $students_existed = "<p>One or more student(s) already exist</p>\n<ul>\n".$students_existed;
+                    $students_existed .= "</ul>\n";
+                    $this->session->set_flashdata("student_exists", $students_existed);
+                }
+
+                if($students_added != ""){
+                    $students_added = "<p>Students successfully added:</p>\n<ul>\n".$students_added;
+                    $students_added .= "</ul>\n";
+                    $this->session->set_flashdata("students_added", $students_added);
+                }
+
 
                 // Loading Views
                 $this->load->view('templates/header');
