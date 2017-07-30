@@ -171,7 +171,6 @@
             $data['active'] = "gradebook";
 
             $total_forms = intval($this->input->post("total_forms"));
-            echo $total_forms;
 
             // Form Rules
             if($total_forms != null && $total_forms > 1){
@@ -197,15 +196,24 @@
                 $this->load->view('gradebook/new_student', $data);
                 $this->load->view('templates/footer');
             }else{
-                echo "Submitted";
                 // Submit student data
                 for($i = 0; $i < $total_forms; $i++){
-                    $this->Students->create_student($i);
+
+                    if($this->Students->create_student($i) === FALSE){
+                        $this->session->set_flashdata("student_exists", "One or more student(s) already exist");
+                    }
+
                 }
 
                 // TODO: Change flash data to list all students that were added
                 $this->session->set_flashdata("students_added", "All students were added");
-                redirect('gradebook');
+                //redirect('gradebook');
+
+                // Loading Views
+                $this->load->view('templates/header');
+                $this->load->view('templates/nav', $data);
+                $this->load->view('gradebook/new_student', $data);
+                $this->load->view('templates/footer');
             }
 
         } // End of add_student

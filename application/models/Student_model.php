@@ -27,14 +27,10 @@
                 "section_id"    =>  $this->input->post("sections_".$form_num)
             );
 
-            echo print_r($data);
-
             // Check if record already exists first
-            $this->db->select("*");
-            $this->db->where($data);
-            $query = $this->db->get("students");
+            $query = $this->db->get_where("students", $data);
 
-            if($query != NULL){
+            if(empty($query->row_array())){
                 $this->db->insert("students", $data);
                 return TRUE;
             }
