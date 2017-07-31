@@ -144,6 +144,7 @@ div.form-holder div.student-info-group{
     border: 2px solid #AAA;
 }
 
+div.form-holder div.assign-group div input[type=date],
 div.form-holder div.student-info-group div select,
 div.form-holder div.student-info-group div input[type=text]{
     font-family: "Open Sans", sans-serif;
@@ -155,21 +156,52 @@ div.form-holder div.student-info-group div{
     margin: 0.3rem 0.5rem;
 }
 
+div.form-holder div.assign-group div.item,
+div.form-holder div.assign-group div h2,
+div.form-holder div.assign-group div ul,
+div.form-holder div.assign-group div button,
+div.form-holder div.assign-group div input[type=date],
+div.form-holder div.assign-group div input[type=hidden],
 div.form-holder div.student-info-group div.button-group button,
 div.form-holder div.student-info-group div select,
 div.form-holder div.student-info-group div input[type=text],
 div.form-holder div.student-info-group div label{
     display: table-cell;
-    vertical-align: middle;
     margin: 0.5rem;
+    padding-right: 1rem;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 1rem;
 }
 
+div.form-holder div.assign-group div h2{
+    font-weight: 600;
+}
+
+
 div.form-holder div.student-info-group div label{
-    margin-right: 1rem;
     font-weight: normal;
 }
 
+div.form-holder div.sub-category:hover,
+div.form-holder div.sub-category:hover span{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+div.form-holder div.sub-category span{
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+    color: #47D2E9;
+}
+
+div.form-holder div.sub-category span.ion{
+    font-size: 20px;
+}
+
 div.form-holder div.button-group input[type=submit],
+div.form-holder div.button-group input[type=reset],
 div.form-holder div.button-group input[type=button]{
     margin: 0 2rem 2rem 0;
 

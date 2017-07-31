@@ -113,7 +113,8 @@
                 }
 
                 $student_name = $grade['last_name'] . ", " . $grade['first_name'];
-                $score = $grade['score']."&nbsp;(".$grade['letter_grade'].")";
+                // If score is not set, just use a dash
+                $score = ($grade['score'] == NULL) ? "-" : $grade['score']."&nbsp;(".$grade['letter_grade'].")";
 
                 // Adding assignment-score pair to student's values
                 $students[$student_name][$assignment] = $score;
@@ -186,7 +187,6 @@
             }
 
             $data['sections'] = form_dropdown("sections_0", $options, $sections[0]['section_id'], $js);
-
 
             $data['active'] = "gradebook";
 
@@ -316,6 +316,61 @@
 
             echo $new_form;
         } // End of set_more_rules
+
+
+        /**
+         * add_assignment - Directs to New Assignment form, sets up
+         *      validation rules and if form is valid, attempts to create a
+         *      new assignment record. Assignment records will also create new
+         *      Grade records that will have a NULL score.
+         */
+        public function add_assignment(){
+            // Check login
+            if(!$this->session->userdata('logged_in')){
+                redirect("users/index");
+            }
+
+            // Active Nav Item
+            $data['active'] = "gradebook";
+
+            // Creating section dropdown
+            $sections = $this->Sections->get_sections();
+            $js = 'class="section-dropdown"';
+
+            $options = array();
+            foreach($sections as $sect){
+                $options[$sect['section_id']] = $sect['section_id'];
+            }
+
+            $data['sections'] = form_dropdown("sections", $options, $sections[0]['section_id'], $js);
+
+            // Form Validation Rules
+            $this->form_validation->set_rules("assign_name", "Name", "required");
+            $this->form_validation->set_rules("due_date", "Due Date", "required");
+            $this->form_validation->set_rules("total_points", "Total Pts.", "required");
+            $this->form_validation->set_rules("sections", "Section(s)", "required");
+            $this->form_validation->set_rules("category_name_0", "Category Name", "required");
+            $this->form_validation->set_rules("category_pts_0", "Category Points", "required");
+
+            if($this->form_validation->run() === FALSE){
+                // Loading Views
+                $this->load->view('templates/header');
+                $this->load->view('templates/nav', $data);
+                $this->load->view('gradebook/new_assignment', $data);
+                $this->load->view('templates/footer');
+            }else{
+                // TODO: Create new assignment record
+                // TODO: Create empty grade record for each student in each
+                //       selected section
+                // TODO: Parse Grade Break Down
+                // NOTE:
+                // {
+    	        //     main category: { subcategories },...
+                // }
+                redirect("gradebook");
+            }
+
+        } // End of add_assignment
 
 
         /**
