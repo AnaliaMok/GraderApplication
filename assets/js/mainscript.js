@@ -26,8 +26,14 @@ function init(){
     }
 
     if($(".section-dropdown") != null && $(".table-group") != null){
-        // Onclick event found in gradebook
+        // on-change events found in gradebook
+
+        // class section dropdown event
         $(".section-dropdown").change(changeSections);
+
+        // student name search dropdown
+        $("input[type=search]").change(toggleGradeRows);
+
     }
 
 } // End of init
@@ -311,3 +317,31 @@ function changeSections(){
         }
     });
 } // End of changeSections
+
+
+/**
+ * toggleGradeRows - onchange event that triggers when user types inside search
+ *      bar. Checks to see if any part of the student's name contains the given
+ *      input
+ */
+function toggleGradeRows(){
+
+    // Search Input
+    var search = $("input[type=search]").val();
+
+    // Table Rows
+    var records = $(".table-group ul");
+
+    for(var i = 1, length = records.length; i < length; i++){
+        var name = records[i].children[0].innerHTML;
+
+        if(name.includes(search) === false){
+            // If name doesn't match search, toggleOff
+            records[i].style.display = "none";
+        }else{
+            records[i].style.display = "table-row";
+        }
+
+    }
+
+} // End of toggleGradeRows
