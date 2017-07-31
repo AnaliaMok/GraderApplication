@@ -206,6 +206,7 @@ main#login-main div.form-holder{
     top: 30%;
 }
 
+#errors,
 main#login-main div.form-holder div#successes,
 main#login-main div.form-holder div#errors{
     width: 90%;
@@ -213,6 +214,7 @@ main#login-main div.form-holder div#errors{
     text-align: justify;
 }
 
+#errors p,
 main#login-main div#successes p,
 main#login-main div.form-holder div#errors p{
     display: list-item;

@@ -2,6 +2,11 @@
     <div class="content">
         <a href="<?php echo base_url(); ?>gradebook" class="blue-btn">&lt;&lt; Back to gradebook</a>
         <h2>New Student(s)</h2>
+
+        <div id="errors">
+            <?php echo validation_errors(); ?>
+        </div>
+
         <div class="form-holder">
             <?php echo form_open('gradebook/add_student'); ?>
                 <div class="student-info-group" id="form_0">
@@ -47,6 +52,7 @@
                     '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
                     $this->session->flashdata('student_exists').'</div>'; ?>
             <?php endif; ?>
+
         </div>
 
     </div><!-- End of content -->
