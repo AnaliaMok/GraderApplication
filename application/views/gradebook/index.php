@@ -1,7 +1,8 @@
 <main>
     <div class="content">
-        <!-- TODO: Output flashdata message -->
+
         <div class="input-section">
+            <!-- Class Section Dropdown -->
             <?php echo $sections; ?>
             <!-- Button Goes to "Add Student" page-->
             <a href="<?php echo base_url(); ?>gradebook/add_student" class="blue-btn">
@@ -17,19 +18,15 @@
         <div class="input-section">
             <div class="search-bar">
                 <span class="ion ion-android-search"></span>
-                <input type="search" name="search_student" placeholder="Search Student Names">
+                <input type="search" name="search_student" placeholder="Search Students">
             </div>
         </div>
 
-        <div class="table-group">
+        <!-- Grades -->
+        <h2 id="selected_section"><?php echo $selected; ?></h2>
+        <div class="table-group" style="margin-top: 1rem;">
             <?php echo $grade_table; ?>
         </div>
 
-        <!-- TODO: Change to a dropdown modal that disappears after a few seconds -->
-        <?php if($this->session->flashdata('students_added')): ?>
-            <?php echo '<div class="alert-message modal"><p>'.
-                $this->session->flashdata('students_added').'</p></div>'; ?>
-        <?php endif; ?>
-
-    </div>
+    </div><!-- End of content -->
 </main>

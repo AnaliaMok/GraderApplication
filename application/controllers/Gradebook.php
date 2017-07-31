@@ -34,19 +34,17 @@
                 redirect("users/index");
             }
 
-            // Gathering Data
-
             // Creating section dropdown
-            $data['sections'] = "<select>\n";
-
             $sections = $this->Sections->get_sections();
+            $js = 'class="section-dropdown"';
 
+            $options = array();
             foreach($sections as $sect){
-                $data['sections'] .=
-                    '<option value="'.$sect['section_id'].'">'.$sect['section_id']."</option>\n";
+                $options[$sect['section_id']] = $sect['section_id'];
             }
 
-            $data['sections'] .= "</select>\n";
+            $data['sections'] = form_dropdown("sections_0", $options, $sections[0]['section_id'], $js);
+            $data['selected'] = $sections[0]['section_id'];
 
             // Create main grade tables
             $this->generate_grade_table($data, $sections[0]['section_id']);
@@ -92,6 +90,8 @@
         /**
          * generate_grade_table - Creates and formats gradebook data
          *
+         * @param data - Data Array that will be passed to the view
+         * @param section_id - String, Represents currently selected section id
          * @return [type] [description]
          */
         public function generate_grade_table(&$data, $section_id){
@@ -146,6 +146,26 @@
 
         } // End of generate_grade_table
 
+
+        /**
+         * change_grade_table - Target of AJAX request made when user changes
+         *      the selected class section. Uses generate_grade_table to generate
+         *      grade table and echos the newly formed table
+         *
+         * @return null
+         */
+        public function change_grade_table(){
+
+            // Grabbing data
+            $section_id = $_POST['section_id'];
+            $data = array();
+
+            $this->generate_grade_table($data, $section_id);
+
+            // Send back grade table only
+            echo $data['grade_table'];
+
+        } // End of change_grade_table
 
         /**
          * add_student - Given a set of student forms, asks student model to

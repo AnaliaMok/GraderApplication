@@ -25,6 +25,11 @@ function init(){
         $("#add_another").click(addAnotherStudent);
     }
 
+    if($(".section-dropdown") != null && $(".table-group") != null){
+        // Onclick event found in gradebook
+        $(".section-dropdown").change(changeSections);
+    }
+
 } // End of init
 
 
@@ -278,3 +283,31 @@ function addAnotherStudent(){
     });
 
 } // End of addAnotherStudent
+
+
+/**
+ * changeSections - onchange event that occurs when user selects a
+ *      different class section to filter by. Sends an AJAX request to change
+ *      contents of grade table
+ */
+function changeSections(){
+
+    var sectionID = $(".section-dropdown").val();
+
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/gradebook/change_grade_table",
+        type: "post",
+        mimetype: "json",
+        data: { 'section_id': sectionID },
+        success: function(response){
+            // Change html inside table-group
+            $(".table-group").html(response);
+
+            // Change content of h2#selected_section
+            $("#selected_section").html(sectionID);
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+} // End of changeSections
