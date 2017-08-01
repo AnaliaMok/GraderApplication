@@ -394,6 +394,15 @@ function addCategory(){
     ptsInput.setAttribute("name", "category_pts_"+totalCategories);
     divInputContainerTwo.appendChild(ptsInput);
 
+    // Remove Button
+    var removeBtn = document.createElement("button");
+    removeBtn.appendChild(document.createTextNode("Remove"));
+    removeBtn.setAttribute("type", "button");
+    removeBtn.setAttribute("name", "remove");
+    removeBtn.className="blue-btn";
+
+    removeBtn = (document.createElement("label")).appendChild(removeBtn);
+
     // Increment Total Categories
     $("#total_categories").attr("value", ++totalCategories);
 
@@ -405,6 +414,7 @@ function addCategory(){
     divContainer.appendChild(label);
     divContainer.appendChild(divInputContainer);
     divContainer.appendChild(divInputContainerTwo);
+    divContainer.appendChild(removeBtn);
 
     // Add category block & sub-category button before new category button
     $("#new_category").before(divContainer);
