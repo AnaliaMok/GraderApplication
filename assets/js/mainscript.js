@@ -36,6 +36,16 @@ function init(){
 
     }
 
+    if($(".sub-category") != null){
+        // New Sub Category Button
+        $(".sub-category").click(addSubCategory);
+    }
+
+    if($(".category") != null){
+        // New Category Button
+        $(".category").click(addCategory);
+    }
+
 } // End of init
 
 
@@ -345,3 +355,67 @@ function toggleGradeRows(){
     }
 
 } // End of toggleGradeRows
+
+
+/**
+ * addCategory - Creates a new set of category inputs.
+ *      - Increments total categories count
+ */
+function addCategory(){
+
+    // Current Category Count
+    var totalCategories = parseInt($("#total_categories").val());
+
+    // Create New Category Block
+    var divContainer = document.createElement("div");
+    // class="category_totalCategories main"
+    divContainer.className = "category_"+totalCategories+" main";
+
+    var label = document.createElement("label");
+    label.appendChild(document.createTextNode("Category " + (totalCategories+1)));
+
+    // <div class="item">
+    var divInputContainer = document.createElement("div");
+    divInputContainer.className = "item";
+
+    // Category Name Input
+    var nameInput = document.createElement("input");
+    nameInput.setAttribute("type", "text");
+    nameInput.setAttribute("name", "category_name_"+totalCategories);
+    divInputContainer.appendChild(nameInput);
+
+    // <div class="item">
+    var divInputContainerTwo = document.createElement("div");
+    divInputContainerTwo.className = "item";
+
+    // Total Points Input
+    var ptsInput = document.createElement("input");
+    ptsInput.setAttribute("type", "text");
+    ptsInput.setAttribute("name", "category_pts_"+totalCategories);
+    divInputContainerTwo.appendChild(ptsInput);
+
+    // Increment Total Categories
+    $("#total_categories").attr("value", ++totalCategories);
+
+    // Grabbing & Copying Sub Category Button
+    var subCatBtn = $("#new_sub_category_0").clone();
+    subCatBtn.attr("id", "new_sub_category_"+(totalCategories-1));
+
+    // Appending All element to entire category
+    divContainer.appendChild(label);
+    divContainer.appendChild(divInputContainer);
+    divContainer.appendChild(divInputContainerTwo);
+
+    // Add category block & sub-category button before new category button
+    $("#new_category").before(divContainer);
+    $("#new_category").before(subCatBtn);
+
+
+
+} // End of addCategory
+
+
+function addSubCategory(){
+    // TODO
+    // Add sub-category block before button
+} // End of addSubCategory

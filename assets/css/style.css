@@ -183,19 +183,21 @@ div.form-holder div.student-info-group div label{
     font-weight: normal;
 }
 
-div.form-holder div.sub-category:hover,
+div.form-holder div.category:hover span,
 div.form-holder div.sub-category:hover span{
     text-decoration: underline;
     cursor: pointer;
 }
 
+div.form-holder div.category span,
 div.form-holder div.sub-category span{
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 6px;
     vertical-align: middle;
     color: #47D2E9;
 }
 
+div.form-holder div.category span.ion,
 div.form-holder div.sub-category span.ion{
     font-size: 20px;
 }
