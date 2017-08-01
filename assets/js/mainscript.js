@@ -423,6 +423,36 @@ function createCategory(index, type="main", subIdx=0){
     removeBtn.setAttribute("name", "remove");
     removeBtn.className="blue-btn";
 
+    removeBtn.onclick = function(){
+        // Delete remove button's parent div from DOM completely
+        // If parent div is a main div, remove it and it's sub-categories
+        var parentNode = this.parentNode;
+        var classList = parentNode.className.split(" ");
+        var categoryNum = classList[0].substr(classList[0].lastIndexOf("_")+1);
+
+        if(classList.indexOf("main") != -1){
+            var catGroup = document.getElementsByClassName("category_" + categoryNum);
+
+            for(var i = 0, length = catGroup.length; i < length; i++){
+                catGroup[0].remove();
+            }
+
+            // Remove new sub category button
+            $("#new_sub_category_"+categoryNum).remove();
+
+            // Decrement Total Categories
+            var totalCategories = parseInt($("#total_categories").val());
+            $("#total_categories").attr("value", --totalCategories);
+
+        }else{
+            // else, remove just sub-category block
+            parentNode.remove();
+            // TODO: re-number all sub-category elements in current category group
+            // TODO: Decrement counter for sub-category total
+        }
+
+    }
+
     removeBtn = (document.createElement("label")).appendChild(removeBtn);
 
     // Appending All element to entire category
@@ -479,7 +509,6 @@ function addSubCategory(){
 
     // Total Sub Categories
     var totalSubCategories = parseInt($("#total_sub_cat_" + index).val());
-    console.log($("#total_sub_cat_" + index).val());
 
     var divContainer = createCategory(index, "sub", totalSubCategories);
 
