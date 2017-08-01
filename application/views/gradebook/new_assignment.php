@@ -40,7 +40,7 @@
                     </div>
 
                     <!-- Break down table -->
-                    <div>
+                    <div id="table-header">
                         <label>Breakdown</label>
                         <label>Name</label>
                         <label>Total Pts.</label>
@@ -65,6 +65,7 @@
                             <span class="ion ion-plus-circled"></span>
                             <span>Add Sub-Category<span>
                         </div>
+                        <input type="hidden" name="total_sub_cat_0" id="total_sub_cat_0" value="0">
                     </div>
                     <div id="new_category">
                         <!-- New Category Button -->

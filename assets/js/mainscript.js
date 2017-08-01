@@ -13,10 +13,12 @@ function init(){
     if($(".table-body").length > 0){
         // if table-body exists
         // See if each table has to be modified
+        // NOTE: Will execute no matter what
         modifyTables();
     }
 
     if($("#list") != null){
+        // NOTE: Will execute no matter what
         getUpcomingList();
     }
 
@@ -53,7 +55,6 @@ function init(){
  * jumpPage - Simple method that takes a url and directs to the page
  * represented by that url
  * @param  String location - Full url
- * @return null
  */
 function jumpPage(location){
     window.location.href = location;
@@ -62,7 +63,6 @@ function jumpPage(location){
 
 /**
  * disappear - Removes the element current being displayed
- * @return null
  */
 function disappear(element){
     element.parentNode.style.display = "none";
@@ -358,21 +358,33 @@ function toggleGradeRows(){
 
 
 /**
- * addCategory - Creates a new set of category inputs.
- *      - Increments total categories count
+ * createCategory - Helper method to create a new category block
+ *
+ * @param {int} index - 0-based index of used for class, and names
+ * @param  {String} [type="main"] - Denotes what kind of category to make.
+ *                                By default, create a main category block
+ * @param {int} [subIdx=0] - Denotes the sub-category index to apply. By default,
+ *                         sub-index is 0.
+ * @return HTMLNode - Category Structure
  */
-function addCategory(){
-
-    // Current Category Count
-    var totalCategories = parseInt($("#total_categories").val());
+function createCategory(index, type="main", subIdx=0){
 
     // Create New Category Block
     var divContainer = document.createElement("div");
     // class="category_totalCategories main"
-    divContainer.className = "category_"+totalCategories+" main";
+    divContainer.className = "category_"+index+" ";
+    divContainer.className += (type === "main") ? type : "sub";
 
     var label = document.createElement("label");
-    label.appendChild(document.createTextNode("Category " + (totalCategories+1)));
+    var name = (type === "main") ? "Category " : "Sub-Category ";
+
+    if(type === "main"){
+        // Use given index as the Category name
+        label.appendChild(document.createTextNode(name + (index+1)));
+    }else{
+        // Use subIDx for Sub-Category name
+        label.appendChild(document.createTextNode(name + (subIdx+1)));
+    }
 
     // <div class="item">
     var divInputContainer = document.createElement("div");
@@ -381,7 +393,12 @@ function addCategory(){
     // Category Name Input
     var nameInput = document.createElement("input");
     nameInput.setAttribute("type", "text");
-    nameInput.setAttribute("name", "category_name_"+totalCategories);
+
+    var nameInputName = "category_name_"+index;
+
+    if(type === "sub"){ nameInputName = "sub_" + nameInputName};
+
+    nameInput.setAttribute("name", nameInputName);
     divInputContainer.appendChild(nameInput);
 
     // <div class="item">
@@ -391,7 +408,12 @@ function addCategory(){
     // Total Points Input
     var ptsInput = document.createElement("input");
     ptsInput.setAttribute("type", "text");
-    ptsInput.setAttribute("name", "category_pts_"+totalCategories);
+
+    var ptsInputName = "category_pts_"+index;
+
+    if(type === "sub"){ ptsInputName = "sub_" + ptsInputName};
+
+    ptsInput.setAttribute("name", ptsInputName);
     divInputContainerTwo.appendChild(ptsInput);
 
     // Remove Button
@@ -403,6 +425,27 @@ function addCategory(){
 
     removeBtn = (document.createElement("label")).appendChild(removeBtn);
 
+    // Appending All element to entire category
+    divContainer.appendChild(label);
+    divContainer.appendChild(divInputContainer);
+    divContainer.appendChild(divInputContainerTwo);
+    divContainer.appendChild(removeBtn);
+
+    return divContainer;
+} // End of createCategory
+
+
+/**
+ * addCategory - Creates a new set of category inputs.
+ *      - Increments total categories count
+ */
+function addCategory(){
+
+    // Current Category Count
+    var totalCategories = parseInt($("#total_categories").val());
+
+    var divContainer = createCategory(totalCategories);
+
     // Increment Total Categories
     $("#total_categories").attr("value", ++totalCategories);
 
@@ -410,22 +453,40 @@ function addCategory(){
     var subCatBtn = $("#new_sub_category_0").clone();
     subCatBtn.attr("id", "new_sub_category_"+(totalCategories-1));
 
-    // Appending All element to entire category
-    divContainer.appendChild(label);
-    divContainer.appendChild(divInputContainer);
-    divContainer.appendChild(divInputContainerTwo);
-    divContainer.appendChild(removeBtn);
+    // Hidden input counter for this category group
+    var subCount = subCatBtn.children()[2];
+    subCount.setAttribute("name", "total_sub_cat_"+(totalCategories-1));
+    subCount.setAttribute("id", "total_sub_cat_"+(totalCategories-1));
+    subCount.setAttribute("value", "0");
 
     // Add category block & sub-category button before new category button
     $("#new_category").before(divContainer);
     $("#new_category").before(subCatBtn);
 
-
-
+    // Assign onclick event to div.item
+    $(".sub-category").click(addSubCategory);
 } // End of addCategory
 
 
+/**
+ * addSubCategory - Adds a new sub-category block before the pressed button
+ */
 function addSubCategory(){
-    // TODO
     // Add sub-category block before button
+    var parentId = this.parentNode.id;
+    // category group index
+    var index = parseInt(parentId.substr(parentId.lastIndexOf("_")+1));
+
+    // Total Sub Categories
+    var totalSubCategories = parseInt($("#total_sub_cat_" + index).val());
+    console.log($("#total_sub_cat_" + index).val());
+
+    var divContainer = createCategory(index, "sub", totalSubCategories);
+
+    // Place category block before new sub button
+    $("#new_sub_category_"+index).before(divContainer);
+
+    // Increment Total Sub-categories count
+    $("#total_sub_cat_" + index).attr("value", (totalSubCategories+1).toString());
+
 } // End of addSubCategory

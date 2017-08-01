@@ -174,13 +174,12 @@ div.form-holder div.student-info-group div label{
     font-size: 1rem;
 }
 
-div.form-holder div.assign-group div h2{
-    font-weight: 600;
-}
-
-
 div.form-holder div.student-info-group div label{
     font-weight: normal;
+}
+
+div.form-holder div.assign-group div#table-header label{
+    font-weight: 600;
 }
 
 div.form-holder div.category:hover span,
