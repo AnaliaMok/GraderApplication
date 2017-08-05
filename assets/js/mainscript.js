@@ -465,17 +465,18 @@ function removeCategory(){
         var totalCategories = parseInt($("#total_categories").val());
         $("#total_categories").attr("value", --totalCategories);
 
+        // TODO: Renumber categories
+        renumberCategories();
     }else{
         // else, remove just sub-category block
         parentNode.remove();
+
+        // Decrement counter for sub-category total
+        var totalSubCategories = parseInt($("total_sub_cat_"+categoryNum).val());
+        $("total_sub_cat_"+categoryNum).setAttribute("value", totalSubCategories-1);
+
         // Re-number all sub-category elements in current category group
-
-        var subcats = $(".category_"+categoryNum);
-        // Grab only the subcategories
-        //subcats = subcats.getElementsByClassName("sub");
-
-
-        // TODO: Decrement counter for sub-category total
+        renumberCategories();
     }
 
 } // End of removeCategory
@@ -492,16 +493,68 @@ function removeCategory(){
 function renumberCategories(){
 
     var totalCategories = parseInt($("#total_categories").val());
+    var categoryNum = 0;
 
     for(var i = 0; i < totalCategories; i++){
-        // Renumber each group
-        var currGroup = $("category_"+i);
+        // Renumber each group based on current value of i
+        var currCategory = $(".category_"+categoryNum);
 
+        while(currCategory.length == 0){
+            categoryNum++;
+            currCategory = $(".category_"+categoryNum);
+        }
 
+        // Loop through each category & sub-category group
+        for(var j = 0, length = currCategory.length; j < length; j++){
+            var currGroup = currCategory[j];
+            var children = currGroup.children;
+            // NOTE: Structure of Category Groups are strictly the same
+            //
+            if((currGroup.className).indexOf("main") != -1){
+                // If currGroup is the main category group
 
-    }
+                currGroup.className = "category_" + i + " main";
+
+                // Label
+                children[0].innerHTML = "Category " + (i + 1);
+                // Name & Points Input
+                (children[1].getElementsByTagName("input")[0]).setAttribute("name", "category_name_"+i);
+                (children[2].getElementsByTagName("input")[0]).setAttribute("name", "category_pts_"+i);
+
+            }else if((currGroup.className).indexOf("sub") != -1){
+                currGroup.className = "category_" + i + " sub";
+
+                // Label
+                children[0].innerHTML = "Sub-Category " + j;
+                (children[1].getElementsByTagName("input")[0]).setAttribute("name", "sub_category_name_"+(j-1));
+                (children[2].getElementsByTagName("input")[0]).setAttribute("name", "sub_category_pts_"+(j-1));
+            }
+
+        } // End of inner loop
+
+        // Re-name new_sub_category button
+        var new_sub_btn = $(".new_sub_category_" + categoryNum);
+        if(new_sub_btn != null){
+            new_sub_btn.setAttribute("id", "new_sub_category_" + i);
+        }
+
+        categoryNum++;
+    } // End of outer loop
 
 } // End of renumberCategories
+
+
+/**
+ * renumberSubCategories - Helper Method to renumber the names of subcategory
+ *      groups based on a given category number. Used when only a subcategory
+ *      is removed.
+ *
+ * @param  {int} categoryNum - Category Number to target
+ * @return {[type]}             [description]
+ */
+function renumberSubCategories(categoryNum){
+
+} // End of renumberSubCategories
 
 
 /**
@@ -521,6 +574,7 @@ function addCategory(){
     // Grabbing & Copying Sub Category Button
     var subCatBtn = $("#new_sub_category_0").clone();
     subCatBtn.attr("id", "new_sub_category_"+(totalCategories-1));
+    subCatBtn.children()[1].onclick = addSubCategory;
 
     // Hidden input counter for this category group
     var subCount = subCatBtn.children()[2];
@@ -533,7 +587,9 @@ function addCategory(){
     $("#new_category").before(subCatBtn);
 
     // Assign onclick event to div.item
-    $(".sub-category").click(addSubCategory);
+    //$(".sub-category").click(addSubCategory);
+
+    return false;
 } // End of addCategory
 
 
@@ -557,4 +613,5 @@ function addSubCategory(){
     // Increment Total Sub-categories count
     $("#total_sub_cat_" + index).attr("value", (totalSubCategories+1).toString());
 
+    return false;
 } // End of addSubCategory
