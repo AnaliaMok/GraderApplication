@@ -396,7 +396,7 @@ function createCategory(index, type="main", subIdx=0){
 
     var nameInputName = "category_name_"+index;
 
-    if(type === "sub"){ nameInputName = "sub_" + nameInputName};
+    if(type === "sub"){ nameInputName = "sub_" + nameInputName; }
 
     nameInput.setAttribute("name", nameInputName);
     divInputContainer.appendChild(nameInput);
@@ -411,7 +411,7 @@ function createCategory(index, type="main", subIdx=0){
 
     var ptsInputName = "category_pts_"+index;
 
-    if(type === "sub"){ ptsInputName = "sub_" + ptsInputName};
+    if(type === "sub"){ ptsInputName = "sub_" + ptsInputName; }
 
     ptsInput.setAttribute("name", ptsInputName);
     divInputContainerTwo.appendChild(ptsInput);
@@ -423,35 +423,7 @@ function createCategory(index, type="main", subIdx=0){
     removeBtn.setAttribute("name", "remove");
     removeBtn.className="blue-btn";
 
-    removeBtn.onclick = function(){
-        // Delete remove button's parent div from DOM completely
-        // If parent div is a main div, remove it and it's sub-categories
-        var parentNode = this.parentNode;
-        var classList = parentNode.className.split(" ");
-        var categoryNum = classList[0].substr(classList[0].lastIndexOf("_")+1);
-
-        if(classList.indexOf("main") != -1){
-            var catGroup = document.getElementsByClassName("category_" + categoryNum);
-
-            for(var i = 0, length = catGroup.length; i < length; i++){
-                catGroup[0].remove();
-            }
-
-            // Remove new sub category button
-            $("#new_sub_category_"+categoryNum).remove();
-
-            // Decrement Total Categories
-            var totalCategories = parseInt($("#total_categories").val());
-            $("#total_categories").attr("value", --totalCategories);
-
-        }else{
-            // else, remove just sub-category block
-            parentNode.remove();
-            // TODO: re-number all sub-category elements in current category group
-            // TODO: Decrement counter for sub-category total
-        }
-
-    }
+    removeBtn.onclick = removeCategory;
 
     removeBtn = (document.createElement("label")).appendChild(removeBtn);
 
@@ -463,6 +435,73 @@ function createCategory(index, type="main", subIdx=0){
 
     return divContainer;
 } // End of createCategory
+
+
+/**
+ * removeCategory - Removes an entire category group or just a single
+ *      sub-category row. After DOM element is removed, all category groups and
+ *      their respective subcategories are re-numbered to make validation easier
+ *
+ * @return {[type]} [description]
+ */
+function removeCategory(){
+    // Delete remove button's parent div from DOM completely
+    // If parent div is a main div, remove it and it's sub-categories
+    var parentNode = this.parentNode;
+    var classList = parentNode.className.split(" ");
+    var categoryNum = classList[0].substr(classList[0].lastIndexOf("_")+1);
+
+    if(classList.indexOf("main") != -1){
+        var catGroup = document.getElementsByClassName("category_" + categoryNum);
+
+        for(var i = 0, length = catGroup.length; i < length; i++){
+            catGroup[0].remove();
+        }
+
+        // Remove new sub category button
+        $("#new_sub_category_"+categoryNum).remove();
+
+        // Decrement Total Categories
+        var totalCategories = parseInt($("#total_categories").val());
+        $("#total_categories").attr("value", --totalCategories);
+
+    }else{
+        // else, remove just sub-category block
+        parentNode.remove();
+        // Re-number all sub-category elements in current category group
+
+        var subcats = $(".category_"+categoryNum);
+        // Grab only the subcategories
+        //subcats = subcats.getElementsByClassName("sub");
+
+
+        // TODO: Decrement counter for sub-category total
+    }
+
+} // End of removeCategory
+
+
+/**
+ * renumberCategories - Scans all categories and its subgroups to renumber
+ *  the groups' names and ids.
+ *
+ * Pre-condition: Total Categories should be decremented already
+ *
+ * @return true on success; false otherwise
+ */
+function renumberCategories(){
+
+    var totalCategories = parseInt($("#total_categories").val());
+
+    for(var i = 0; i < totalCategories; i++){
+        // Renumber each group
+        var currGroup = $("category_"+i);
+
+
+
+    }
+
+} // End of renumberCategories
 
 
 /**
