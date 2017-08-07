@@ -8,7 +8,7 @@
         </div>
 
         <div class="form-holder">
-            <?php echo form_open("gradebook/new_assignment"); ?>
+            <?php echo form_open("gradebook/new_assignment", array("onsubmit" => "return sendAssignment();")); ?>
                 <div class="student-info-group assign-group">
                     <div>
                         <label>Name</label>
@@ -80,6 +80,9 @@
                     <input type="reset" value="Clear" class="blue-btn"/>
                     <input type="submit" value="Submit" class="blue-btn" />
                 </div>
+
+                <!-- Hidden Holder for Formatted Category String -->
+                <input type="hidden" name="category" />
 
                 <!-- Inner Category Counter -->
                 <input type="hidden" name="total_categories" id="total_categories" value="1">

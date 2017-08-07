@@ -349,8 +349,7 @@
             $this->form_validation->set_rules("due_date", "Due Date", "required");
             $this->form_validation->set_rules("total_points", "Total Pts.", "required");
             $this->form_validation->set_rules("sections", "Section(s)", "required");
-            $this->form_validation->set_rules("category_name_0", "Category Name", "required");
-            $this->form_validation->set_rules("category_pts_0", "Category Points", "required");
+            $this->form_validation->set_rules("category", "Categories", "required");
 
             if($this->form_validation->run() === FALSE){
                 // Loading Views
@@ -365,7 +364,7 @@
                 // TODO: Parse Grade Break Down
                 // NOTE:
                 // {
-    	        //     main category: { subcategories },...
+    	        //     main category: { subcategories: pts },...
                 // }
                 redirect("gradebook");
             }
