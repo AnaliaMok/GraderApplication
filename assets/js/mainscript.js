@@ -465,18 +465,18 @@ function removeCategory(){
         var totalCategories = parseInt($("#total_categories").val());
         $("#total_categories").attr("value", --totalCategories);
 
-        // TODO: Renumber categories
+        // Renumber categories
         renumberCategories();
     }else{
         // else, remove just sub-category block
         parentNode.remove();
 
         // Decrement counter for sub-category total
-        var totalSubCategories = parseInt($("total_sub_cat_"+categoryNum).val());
-        $("total_sub_cat_"+categoryNum).setAttribute("value", totalSubCategories-1);
+        var totalSubCategories = parseInt($("#total_sub_cat_"+categoryNum).val());
+        $("#total_sub_cat_"+categoryNum).attr("value", totalSubCategories-1);
 
         // Re-number all sub-category elements in current category group
-        renumberCategories();
+        renumberSubCategories(categoryNum);
     }
 
 } // End of removeCategory
@@ -509,7 +509,7 @@ function renumberCategories(){
             var currGroup = currCategory[j];
             var children = currGroup.children;
             // NOTE: Structure of Category Groups are strictly the same
-            //
+
             if((currGroup.className).indexOf("main") != -1){
                 // If currGroup is the main category group
 
@@ -549,10 +549,30 @@ function renumberCategories(){
  *      groups based on a given category number. Used when only a subcategory
  *      is removed.
  *
+ * Pre-condition: total subcategory count is already decremented
+ *
  * @param  {int} categoryNum - Category Number to target
- * @return {[type]}             [description]
  */
 function renumberSubCategories(categoryNum){
+
+    var totalSubCategories = parseInt($("#total_sub_cat_"+categoryNum).val());
+    var currCategory = $(".category_"+categoryNum);
+
+    // Remove first object: 1st obj is the main category
+    currCategory.splice(0, 1);
+
+    for(var i = 0; i < totalSubCategories; i++){
+
+        var curr = currCategory[i];
+        var children = curr.children;
+
+        // Label
+        children[0].innerHTML = "Sub-Category " + (i+1);
+
+        // NOTE: Not touching inputs. Sub-Categories for each category will be
+        // read in chunks of two to grab both name & points
+
+    }
 
 } // End of renumberSubCategories
 
