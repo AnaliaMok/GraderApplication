@@ -63,7 +63,7 @@
                         <!-- New Sub-Category Button -->
                         <div class="item sub-category">
                             <span class="ion ion-plus-circled"></span>
-                            <span>Add Sub-Category<span>
+                            <span>Add Sub-Category</span>
                         </div>
                         <input type="hidden" name="total_sub_cat_0" id="total_sub_cat_0" value="0">
                     </div>
@@ -71,7 +71,7 @@
                         <!-- New Category Button -->
                         <div class="item category">
                             <span class="ion ion-plus-circled"></span>
-                            <span>Add Category<span>
+                            <span>Add Category</span>
                         </div>
                     </div>
                 </div><!-- End of assign-group -->
