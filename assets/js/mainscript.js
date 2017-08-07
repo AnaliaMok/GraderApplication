@@ -51,6 +51,8 @@ function init(){
 } // End of init
 
 
+// Simple Helper Methods
+
 /**
  * jumpPage - Simple method that takes a url and directs to the page
  * represented by that url
@@ -61,12 +63,18 @@ function jumpPage(location){
 } // End of jumpPage
 
 
+// Dashboard Methods
+
+
 /**
  * disappear - Removes the element current being displayed
  */
 function disappear(element){
     element.parentNode.style.display = "none";
 } // End of disappear
+
+
+ // Table Methods
 
 
 /**
@@ -78,14 +86,14 @@ function disappear(element){
  */
 function modifyTables(){
 
-    var tables = $(".table-body");
-    var tableGroups = $('.table-group');
+    var tables = $(".table-body"),
+        tableGroups = $('.table-group');
 
     for(var i = 0; i < tables.length; i++){
 
-        var currTable = tables.get(i);
-        var currTableGroup = tableGroups.get(i);
-        var rows = $("ul", currTable);
+        var currTable = tables.get(i),
+            currTableGroup = tableGroups.get(i),
+            rows = $("ul", currTable);
 
         // Hide Rows 3 and onward
         if(rows.length > 3){
@@ -107,9 +115,7 @@ function modifyTables(){
             button.style.fontSize = "1em";
 
             // Adding Toggle Event to Button
-            button.onclick = function(){
-                remaining.toggle();
-            };
+            button.onclick = function(){ remaining.toggle(); };
 
             // Button Holder
             var newRow = document.createElement("div");
@@ -128,13 +134,18 @@ function modifyTables(){
 } // End of modifyTables
 
 
+// Assignment Methods
+
+
 /**
- * [getUpcomingList description]
- * @return {[type]} [description]
+ * getUpcomingList - Makes an AJAX request that retrieves any upcoming
+ *     assignments to grade within the month. Items are generated either with
+ *     or without a checkbox. Checkboxes are only available on the Calendar
+ *     page where users can "complete" a task
  */
 function getUpcomingList(){
 
-    var withCheckBoxes = (document.getElementById("home-upcoming") == null);
+    var withCheckBoxes = (document.getElementById("home-upcoming") === null);
 
     // Requesting to populate upcoming list
     $.ajax({
@@ -180,6 +191,9 @@ function completedAssignment(assignmentID){
 } // End of completedAssignment
 
 
+// Gradebook Methods
+
+
 /**
  * addAnotherStudent - Makes an AJAX request to the Gradebook
  *      controller to create another new student form
@@ -194,7 +208,7 @@ function addAnotherStudent(){
         mimetype: "json",
         data: { 'total_forms': totalForms },
         success: function(response){
-            // TODO: If successful, append a a set of
+            // If successful, append a a set of
             // Reset and delete buttons to latest form,
             // then append new form
             var currForm = "#form_" + (totalForms-1);
@@ -336,11 +350,9 @@ function changeSections(){
  */
 function toggleGradeRows(){
 
-    // Search Input
-    var search = $("input[type=search]").val();
-
-    // Table Rows
-    var records = $(".table-group ul");
+    // Search Input & table rows
+    var search = $("input[type=search]").val(),
+        records = $(".table-group ul");
 
     for(var i = 1, length = records.length; i < length; i++){
         var name = records[i].children[0].innerHTML;
@@ -357,6 +369,9 @@ function toggleGradeRows(){
 } // End of toggleGradeRows
 
 
+// New Assignment Page Methods
+
+
 /**
  * createCategory - Helper method to create a new category block
  *
@@ -367,7 +382,16 @@ function toggleGradeRows(){
  *                         sub-index is 0.
  * @return HTMLNode - Category Structure
  */
-function createCategory(index, type="main", subIdx=0){
+function createCategory(index, type, subIdx){
+
+    // Assigning default values
+    if(type === undefined){
+        type = "main";
+    }
+
+    if(subIdx === undefined){
+        subIdx = 0;
+    }
 
     // Create New Category Block
     var divContainer = document.createElement("div");
@@ -375,8 +399,8 @@ function createCategory(index, type="main", subIdx=0){
     divContainer.className = "category_"+index+" ";
     divContainer.className += (type === "main") ? type : "sub";
 
-    var label = document.createElement("label");
-    var name = (type === "main") ? "Category " : "Sub-Category ";
+    var label = document.createElement("label"),
+        name = (type === "main") ? "Category " : "Sub-Category ";
 
     if(type === "main"){
         // Use given index as the Category name
@@ -447,9 +471,9 @@ function createCategory(index, type="main", subIdx=0){
 function removeCategory(){
     // Delete remove button's parent div from DOM completely
     // If parent div is a main div, remove it and it's sub-categories
-    var parentNode = this.parentNode;
-    var classList = parentNode.className.split(" ");
-    var categoryNum = classList[0].substr(classList[0].lastIndexOf("_")+1);
+    var parentNode = this.parentNode,
+        classList = parentNode.className.split(" "),
+        categoryNum = classList[0].substr(classList[0].lastIndexOf("_")+1);
 
     if(classList.indexOf("main") != -1){
         var catGroup = document.getElementsByClassName("category_" + categoryNum);
@@ -492,22 +516,22 @@ function removeCategory(){
  */
 function renumberCategories(){
 
-    var totalCategories = parseInt($("#total_categories").val());
-    var categoryNum = 0;
+    var totalCategories = parseInt($("#total_categories").val()),
+        categoryNum = 0;
 
     for(var i = 0; i < totalCategories; i++){
         // Renumber each group based on current value of i
         var currCategory = $(".category_"+categoryNum);
 
-        while(currCategory.length == 0){
+        while(currCategory.length === 0){
             categoryNum++;
             currCategory = $(".category_"+categoryNum);
         }
 
         // Loop through each category & sub-category group
         for(var j = 0, length = currCategory.length; j < length; j++){
-            var currGroup = currCategory[j];
-            var children = currGroup.children;
+            var currGroup = currCategory[j],
+                children = currGroup.children;
             // NOTE: Structure of Category Groups are strictly the same
 
             if((currGroup.className).indexOf("main") != -1){
@@ -555,16 +579,16 @@ function renumberCategories(){
  */
 function renumberSubCategories(categoryNum){
 
-    var totalSubCategories = parseInt($("#total_sub_cat_"+categoryNum).val());
-    var currCategory = $(".category_"+categoryNum);
+    var totalSubCategories = parseInt($("#total_sub_cat_"+categoryNum).val()),
+        currCategory = $(".category_"+categoryNum);
 
     // Remove first object: 1st obj is the main category
     currCategory.splice(0, 1);
 
     for(var i = 0; i < totalSubCategories; i++){
 
-        var curr = currCategory[i];
-        var children = curr.children;
+        var curr = currCategory[i],
+            children = curr.children;
 
         // Label
         children[0].innerHTML = "Sub-Category " + (i+1);
@@ -586,6 +610,7 @@ function addCategory(){
     // Current Category Count
     var totalCategories = parseInt($("#total_categories").val());
 
+    // New category block
     var divContainer = createCategory(totalCategories);
 
     // Increment Total Categories
@@ -625,6 +650,7 @@ function addSubCategory(){
     // Total Sub Categories
     var totalSubCategories = parseInt($("#total_sub_cat_" + index).val());
 
+    // New Category Block
     var divContainer = createCategory(index, "sub", totalSubCategories);
 
     // Place category block before new sub button
