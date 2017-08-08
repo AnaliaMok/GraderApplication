@@ -61,9 +61,28 @@ var SectionDropdownNDisplay = (function(){
 
     /**
      * removeSection - Removes a list item from selected sections list
+     *      NOTE: 'this' will reference the remove button
+     * @return true on success, false otherwise
      */
     var removeSection = function(){
-        // TODO
+        // Remove this button's associated value from allSelections
+        var value = this.parentNode.innerText;
+        value = value.replace("Remove", "");
+
+        var idx = allSelections.indexOf(value);
+
+        if(idx != -1){
+
+            // Remove value from allSelections array
+            allSelections.splice(idx, 1);
+
+            // Remove the parent of 'this' remove button
+            this.parentNode.remove();
+
+            return true;
+        }
+
+        return false;
     };
 
 
