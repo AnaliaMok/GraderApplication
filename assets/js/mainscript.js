@@ -39,6 +39,16 @@ function init(){
 
     }
 
+    // New Assignment Page
+
+    if($("#section_add") != null){
+        // Initialize Section Module
+        SectionDropdownNDisplay.init();
+
+        // Add item to selected sections area
+        $("#section_add").click(SectionDropdownNDisplay.addSection);
+    }
+
     if($(".sub-category") != null){
         // New Sub Category Button
         $(".sub-category").click(addSubCategory);

@@ -23,6 +23,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="<?php echo base_url()?>assets/js/modules/assignment.js"></script>
+    <script src="<?php echo base_url()?>assets/js/modules/section_widget.js"></script>
     <script src="<?php echo base_url()?>assets/js/mainscript.js"></script>
 </head>
 <body>
