@@ -1,6 +1,16 @@
 <?php
     class Assignment_model extends CI_Model{
 
+        // NOTE:
+        // $data = array(
+        //     "name"          =>
+        //     "due_date"      =>
+        //     "total_pts"     =>
+        //     "breakdown"     =>
+        //     "started"       =>
+        //     "is_completed"  =>
+        // );
+
         public function __construct(){
             // Load Database
             $this->load->database();
@@ -48,21 +58,31 @@
         } // End of get_all_assignments
 
 
+        /**
+         * create_assignment - Creates new assignment record
+         * @return NULL
+         */
         public function create_assignment(){
-            // TODO: Remember query bindings for security
-        }
+
+            // Need to format due date for MySQL
+            $due_date = $this->input->post("due_date");
+            $due_date = DateTime::createFromFormat("m/d/Y", $due_date);
+            $due_date = date_format($due_date, "Y-m-d");
+
+            $data = array(
+                "name"      => $this->input->post("assign_name"),
+                "due_date"  => $due_date,
+                "total_pts" => $this->input->post("total_points"),
+                "breakdown" => $this->input->post("category")
+            );
+
+            $this->db->insert("assignments", $data);
+
+        } // End of create_assignment
 
 
         public function edit_assignment($assignment_id, $data=NULL, $is_completed=0){
 
-            // $data = array(
-            //     "name"          =>
-            //     "due_date"      =>
-            //     "total_pts"     =>
-            //     "breakdown"     =>
-            //     "started"       =>
-            //     "is_completed"  =>
-            // );
             if($data == NULL){
                 // If no data given, then this is a simple request to change the
                 // is_completed field

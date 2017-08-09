@@ -8,7 +8,7 @@
 
 
         /**
-         * get_students - Given a set of criteria, looks for a set of students
+         * get_students - Given a set of criteria, looks for a SET of students
          *      from db.
          * @return Array - Student records
          */

@@ -3,10 +3,6 @@
         <a href="<?php echo base_url(); ?>gradebook" class="blue-btn">&lt;&lt; Back to gradebook</a>
         <h2>New Assignment</h2>
 
-        <div id="errors">
-            <?php echo validation_errors(); ?>
-        </div>
-
         <div class="form-holder">
             <?php echo form_open("gradebook/add_assignment", array("onsubmit" => "return sendAssignment();")); ?>
                 <div class="student-info-group assign-group">
@@ -41,7 +37,7 @@
                     <div id="table-header">
                         <label>Breakdown</label>
                         <label>Name</label>
-                        <label>Total Pts.</label>
+                        <label>Point Value</label>
                     </div>
                     <!--
                         Class Assignment:
@@ -83,6 +79,7 @@
 
                 <!-- Where to display errors -->
                 <div id="errors-holder"></div>
+                <div id="errors"><?php echo validation_errors(); ?></div>
 
                 <div class="button-group">
                     <input type="reset" value="Clear" class="blue-btn"/>

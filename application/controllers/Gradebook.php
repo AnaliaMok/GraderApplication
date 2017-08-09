@@ -346,7 +346,8 @@
 
             // Form Validation Rules
             $this->form_validation->set_rules("assign_name", "Name", "required");
-            $this->form_validation->set_rules("due_date", "Due Date", "required");
+            $this->form_validation->set_rules("due_date", "Due Date", "required|callback_is_date_format");
+            $this->form_validation->set_message("is_date_format", "Please Enter a Date With the Proper Format: mm/dd/yyyy");
             $this->form_validation->set_rules("total_points", "Total Pts.", "required");
             $this->form_validation->set_rules("sections", "Section(s)", "required");
             $this->form_validation->set_rules("category", "Categories", "required");
@@ -359,15 +360,34 @@
                 $this->load->view('templates/footer');
             }else{
                 // TODO: Create new assignment record
+                $this->Assignments->create_assignment();
 
                 // TODO: Create empty grade record for each student in each
                 //       selected section
 
                 // TODO: Create flashdata message
+                $this->session->set_flashdata("assignment_created", "Assignment Successfully Created");
                 redirect("gradebook");
             }
 
         } // End of add_assignment
+
+
+        /**
+         * is_date_format - Checks to see if given date is in the proper date
+         * format
+         *
+         * @param String due_date
+         * @return boolean true if valid; false otherwise
+         */
+        public function is_date_format($due_date){
+
+            // Attempty to create a date
+            $date = DateTime::createFromFormat("m/d/Y", $due_date);
+
+            return $date != FALSE;
+
+        } // End of due_date
 
 
         /**

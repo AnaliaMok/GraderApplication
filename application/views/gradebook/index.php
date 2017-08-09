@@ -28,5 +28,12 @@
             <?php echo $grade_table; ?>
         </div>
 
+        <!-- TODO: Add flash data styling -->
+        <?php if($this->session->flashdata('assignment_created')): ?>
+        <?php echo '<div class="alert-message modal" id="success">'.
+            '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
+            $this->session->flashdata('assignment_created').'</div>'; ?>
+        <?php endif; ?>
+
     </div><!-- End of content -->
 </main>
