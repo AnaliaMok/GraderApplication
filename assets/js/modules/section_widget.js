@@ -2,7 +2,8 @@
  * File Name: section_widget.js
  * Description: Module that handles display and removal of
  * selected sections in the new_assignment page
- *
+ *      - Capable of remembering & managing multiple selections
+ *      - Displays current selections in a <ul>
  * @author: Analia Mok
  */
 
@@ -20,6 +21,7 @@ var SectionDropdownNDisplay = (function(){
         allSelections = [];
         selectedOutput = $("#selected_sections")[0];
     };
+
 
     /**
      * addSection - Adds Section to display underneath drop down and to json
@@ -92,10 +94,12 @@ var SectionDropdownNDisplay = (function(){
      *      .section-dropdown's value
      */
     var assignValue = function(){
-        // TODO
+        // Creating JSON literal & assigning as value of section-dropdown
+        var allSelectionsString = JSON.stringify(allSelections);
+        $(".section-dropdown").attr("value", allSelectionsString);
     };
 
-
+    // Method Name definitions
     return {
         init: init,
         addSection: addSection,

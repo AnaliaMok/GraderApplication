@@ -8,6 +8,10 @@
         }
 
 
+        /**
+         * get_section: Retrieves all section ids available
+         * @return Array - All section ids
+         */
         public function get_sections(){
             // Getting all sections ORDERED BY date created
             $this->db->select("section_id");

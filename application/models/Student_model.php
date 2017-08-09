@@ -7,9 +7,14 @@
         }
 
 
+        /**
+         * get_students - Given a set of criteria, looks for a set of students
+         *      from db.
+         * @return Array - Student records
+         */
         public function get_students(){
             // TODO
-        }
+        } // End of get_students
 
 
         /**

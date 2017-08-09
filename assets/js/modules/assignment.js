@@ -24,34 +24,6 @@
  } // End of createListItem
 
 
-/**
- * addSection - Adds Section to display underneath drop down and to json string
- *      in dropdown's value
- */
-function addSection(){
-    // Output ul
-    var selectedOutput = $("#selected_sections")[0],
-        selected = $(".section-dropdown").val(),
-        newItem = createListItem(selected);
-
-    // Adding new item to ul
-    selectedOutput.append(newItem);
-
-
-    // Remove Button
-    var removeBtn = document.createElement("button");
-    removeBtn.appendChild(document.createTextNode("Remove"));
-    removeBtn.setAttribute("type", "button");
-    removeBtn.setAttribute("name", "remove");
-    removeBtn.className="blue-btn";
-
-    removeBtn.onclick = removeSection;
-
-    removeBtn = (document.createElement("label")).appendChild(removeBtn);
-
-} // End of addSection
-
-
 // Category Methods
 
  /**
@@ -461,11 +433,11 @@ function sendAssignment(){
     // Converting breakdown object to a JSON string before assigning to hidden
     // input
     breakdown = JSON.stringify(breakdown);
-    console.log(breakdown);
     $("#category").attr("value", breakdown);
 
+    // Set value of section dropdown to all selections
+    SectionDropdownNDisplay.assignValue();
 
-    // TODO: Change to true
-    return false;
+    return true;
 
 } // End of sendAssignment

@@ -359,13 +359,11 @@
                 $this->load->view('templates/footer');
             }else{
                 // TODO: Create new assignment record
+
                 // TODO: Create empty grade record for each student in each
                 //       selected section
-                // TODO: Parse Grade Break Down
-                // NOTE:
-                // {
-    	        //     main category: { subcategories: pts },...
-                // }
+
+                // TODO: Create flashdata message
                 redirect("gradebook");
             }
 
