@@ -342,7 +342,7 @@
                 $options[$sect['section_id']] = $sect['section_id'];
             }
 
-            $data['sections'] = form_dropdown("sections", $options, $sections[0]['section_id'], $js);
+            $data['section_dropdown'] = form_dropdown("section_dropdown", $options, $sections[0]['section_id'], $js);
 
             // Form Validation Rules
             $this->form_validation->set_rules("assign_name", "Name", "required");
@@ -360,14 +360,22 @@
                 $this->load->view('templates/footer');
             }else{
                 // TODO: Create new assignment record
-                $this->Assignments->create_assignment();
+                //$this->Assignments->create_assignment();
 
-                // TODO: Create empty grade record for each student in each
-                //       selected section
+                // Convert Section String to Array
+                $sections = json_decode($this->input->post("sections"), true);
+
+                foreach($sections as $curr){
+                    $criteria = array('section_id' => $curr );
+                    // TODO: Create grade record for each student in each
+                    //       selected section. Keep breakdown as empty string
+                }
+
 
                 // TODO: Create flashdata message
                 $this->session->set_flashdata("assignment_created", "Assignment Successfully Created");
-                redirect("gradebook");
+                // TODO
+                //redirect("gradebook");
             }
 
         } // End of add_assignment

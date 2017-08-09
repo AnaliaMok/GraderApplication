@@ -10,9 +10,11 @@
         /**
          * get_students - Given a set of criteria, looks for a SET of students
          *      from db.
+         *
+         * @param Associative Array criteria: Fields to base select on
          * @return Array - Student records
          */
-        public function get_students(){
+        public function get_students($criteria){
             // TODO
         } // End of get_students
 

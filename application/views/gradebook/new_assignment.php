@@ -23,8 +23,9 @@
                     </div>
                     <div>
                         <label>Section(s)</label>
-                        <div class="item"><?php echo $sections; ?></div>
+                        <div class="item"><?php echo $section_dropdown; ?></div>
                         <label><button type="button" name="add" class="blue-btn" id="section_add">Add</button></label>
+                        <input type="hidden" name="sections" id="sections">
                     </div>
                     <div>
                         <div class="item">&nbsp;</div>

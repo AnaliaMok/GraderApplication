@@ -94,9 +94,14 @@ var SectionDropdownNDisplay = (function(){
      *      .section-dropdown's value
      */
     var assignValue = function(){
+        if(allSelections.length === 0){
+            // If nothing was selected, use current value of dropdown
+            var selected = $(".section-dropdown").val();
+            allSelections.push(selected);
+        }
         // Creating JSON literal & assigning as value of section-dropdown
         var allSelectionsString = JSON.stringify(allSelections);
-        $(".section-dropdown").attr("value", allSelectionsString);
+        $("#sections").attr("value", allSelectionsString);
     };
 
     // Method Name definitions
