@@ -421,7 +421,6 @@ div.std-table ul{
     padding: 1em 0 1em 1em;
     background-color: #FFF;
     border: 1px solid #95989A;
-    border-top: 0;
 }
 
 div.std-table ul:nth-child(even){
@@ -603,9 +602,10 @@ div.input-section{
 }
 
 div.input-section select{
-    font-family: "Open Sans", sans-serif;
     width: 50%;
+    margin-bottom: 1rem;
     padding: 0.5rem 1rem;
+    font-family: "Open Sans", sans-serif;
 }
 
 div.input-section input[type=search]{
@@ -659,6 +659,7 @@ div.search-bar input[type=search]{
     cursor: pointer;
 }
 
+.blue-btn .ion-edit,
 .blue-btn .ion-plus{
     font-size: 20px;
     margin-right: 0.5em;
@@ -787,6 +788,7 @@ div.alert-message .lnr-cross:hover{
 
     div.std-table div.table-body ul{
         border: 1px solid #95989A;
+        border-top: 0;
     }
 
     div.std-table ul li{
@@ -943,13 +945,14 @@ div.alert-message .lnr-cross:hover{
     .blue-btn{
         display: inline-block;
         width: auto;
-        /*margin-right: 1rem;*/
-        margin-left: 1rem;
+        margin-right: 1rem;
+        /*margin-left: 1rem;*/
     }
 
     div.input-section .search-bar,
     div.input-section select{
         width: auto;
+        margin-right: 1rem;
     }
 
 } /* End of tablet & desktop half-screen styling */
