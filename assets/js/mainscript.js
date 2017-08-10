@@ -15,7 +15,7 @@ function init(){
         // if table-body exists
         // See if each table has to be modified
         // NOTE: Will execute no matter what
-        modifyTables();
+        //modifyTables();
     }
 
     if($("#list") != null){

@@ -424,6 +424,14 @@ div.std-table ul{
     border-top: 0;
 }
 
+div.std-table ul:nth-child(even){
+    /*
+        Helps with differentiating rows FireFox doesn't
+        show border for some reason
+     */
+    background-color: #F7F7F7;
+}
+
 div.std-table ul li{
     display: inline;
 }

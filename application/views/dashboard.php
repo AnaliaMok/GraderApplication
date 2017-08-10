@@ -35,3 +35,8 @@
 
     </div><!-- End of content -->
 </main>
+
+<script type="text/javascript">
+    // TODO: Check if this works after time table implementation
+    modifyTables();
+</script>
