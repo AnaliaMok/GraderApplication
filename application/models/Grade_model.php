@@ -43,9 +43,9 @@
             elseif($points >= 60 && $points < 69){ return 'D'; }
             elseif($points >= 69 && $points < 72){ return 'C-'; }
             elseif($points >= 72 && $points < 75){ return 'C'; }
-            elseif($points >= 75 && $points < 79){ return 'C-'; }
-            elseif($points >= 79 && $points < 82){ return 'C+'; }
-            elseif($points >= 82 && $points < 85){ return 'B-'; }
+            elseif($points >= 75 && $points < 79){ return 'C+'; }
+            elseif($points >= 79 && $points < 82){ return 'B-'; }
+            elseif($points >= 82 && $points < 85){ return 'B'; }
             elseif($points >= 85 && $points < 89){ return 'B+'; }
             elseif($points >= 89 && $points < 92){ return 'A-'; }
             elseif($points >= 92){ return 'A'; }
@@ -54,10 +54,22 @@
 
 
         /**
-         * [add_grade description]
+         * add_grade - Creates a grade record for a specific student and an
+         *      existing assignment
+         *
+         * @param Associative Array criteria - Data to insert
+         *        NOTE: Keys must be exactly the same as table column names
          */
-        public function add_grade(){
-            // TODO
+        public function add_grade($criteria){
+
+            $data = array(
+                'student_id'    => $criteria['student_id'],
+                'assignment_id' => $criteria['assignment_id'],
+                'breakdown'     => $criteria['breakdown']
+            );
+
+            $this->db->insert('grades', $data);
+
         } // End of add_grade
 
 

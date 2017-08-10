@@ -371,6 +371,9 @@ function sendAssignment(){
         // Set mainName to empty object
         breakdown[mainName] = {};
 
+        // Assign First Key to be the total points
+        breakdown[mainName]['Total'] = mainPts;
+
         var totalSubPoints = 0;
         for(var j = 1; j <= totalSubCategories; j++){
             var currSubCat = currCategory[j],
