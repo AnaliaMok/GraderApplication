@@ -17,6 +17,10 @@
         public function get_students($criteria){
 
             $this->db->where($criteria);
+
+            // Alphabetize student last names
+            $this->db->order_by("last_name", "INC");
+
             $query = $this->db->get("students");
             return $query->result_array();
 

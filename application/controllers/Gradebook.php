@@ -96,28 +96,49 @@
          */
         public function generate_grade_table(&$data, $section_id){
 
-            // Grabbing Records
-            $grades = $this->Grades->get_grades($section_id);
+            // Grabbing Students & Grades
+            $student_records = $this->Students->get_students(array("section_id" => $section_id));
+            //$grades = $this->Grades->get_all_grades($section_id);
 
             $heading = array("Last, First");
+            $assignments = array();
             $students = array();
 
-            // Organizing grades to students
-            foreach ($grades as $grade) {
+            // Organizing Grades
+            foreach($student_records as $student){
 
-                $assignment = "".$grade['name'];
+                // Format Student Name
+                $student_name = $student['last_name'].", ".$student['first_name'];
+                // Place student's student id with associated array
+                $students[$student_name]['student_id'] = $student['student_id'];
 
-                if(in_array($assignment, $heading) === FALSE){
-                    // If grade name has not been added yet, add to heading
-                    array_push($heading, $assignment);
+                // SQL Select Criteria
+                $criteria = array(
+                    'student_id'    => $student['student_id'],
+                    'section_id'    => $section_id
+                );
+
+                // Find grade(s)
+                $grades = $this->Grades->get_grades($criteria);
+                foreach($grades as $grade){
+                    $assign_name = $grade['name'];
+
+                    if(in_array($assign_name, $heading) === FALSE){
+                        // If grade name has not been added yet, add to heading
+                        // and assignments array
+                        array_push($heading, $assign_name);
+                        // array_push($assignments, $assign_name);
+                        $assignments[$assign_name]['breakdown'] = $grade['breakdown'];
+                        $assignments[$assign_name]['assignment_id'] = $grade['assignment_id'];
+                    }
+
+                    // TODO: Wrap in anchor tag or add js event
+                    // If score is not set, just use a dash
+                    $score = ($grade['score'] == NULL) ? "-" : $grade['score']."&nbsp;(".$grade['letter_grade'].")";
+                    $students[$student_name][$assign_name] = $score;
+
                 }
 
-                $student_name = $grade['last_name'] . ", " . $grade['first_name'];
-                // If score is not set, just use a dash
-                $score = ($grade['score'] == NULL) ? "-" : $grade['score']."&nbsp;(".$grade['letter_grade'].")";
-
-                // Adding assignment-score pair to student's values
-                $students[$student_name][$assignment] = $score;
             }
 
             // Constructing Table
@@ -125,15 +146,33 @@
             $grade_table .= $this->generate_heading($heading);
             $grade_table .= self::START_TABS.'<div class="table-body">'."\n";
 
-            // Forming Rows
-            foreach ($students as $student => $assigns) {
-                $grade_table .= self::START_TABS."\t<ul>\n";
-                $grade_table .= self::START_TABS."\t\t".'<li>'.$student."</li>\n";
 
-                foreach($assigns as $name => $score){
+            // Forming Rows
+            foreach ($students as $name => $student) {
+                $grade_table .= self::START_TABS."\t<ul>\n";
+                $grade_table .= self::START_TABS."\t\t".'<li>'.$name."</li>\n";
+
+                // TODO: Alternate Approach: Iterate through array of found
+                // assignments; if present in students array, add; otherwise
+                // create a new grade and then create new "cells"
+                foreach($assignments as $name => $assign){
+
                     // TODO: wrap in anchor tag to open edit grade modal
                     $grade_table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
-                    $grade_table .= self::START_TABS."\t\t".'<li data-title="'.$name.':">'.$score."</li>\n";
+
+                    if($student[$name] === NULL){
+                        // If student doesn't have an entry for current
+                        // assignment, create new grade entry for this student
+                        $new_grade = array(
+                            'student_id'    => $student['student_id'],
+                            'assignment_id' => $assignments[$name]['assignment_id'],
+                            'breakdown'     => $assignments[$name]['breakdown']
+                        );
+                        
+                    }
+
+                    // Create score cell
+                    $grade_table .= self::START_TABS."\t\t".'<li data-title="'.$name.':">'.$student[$name]."</li>\n";
                 }
 
                 $grade_table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
