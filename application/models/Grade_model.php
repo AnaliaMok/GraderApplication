@@ -7,10 +7,15 @@
         }
 
 
-        public function get_grades($section_id){
+        /**
+         * get_all_grades - Retrieves all grades based on the given section_id
+         * @param  String $section_id - Sections id to base search on
+         * @return Associative Array containing all found records
+         */
+        public function get_all_grades($section_id){
             // Current gets all grades
 
-            $this->db->select('grades.score, grades.letter_grade, assignments.name,
+            $this->db->select('grades.score, grades.letter_grade, grades.student_id, assignments.name,
                 students.last_name, students.first_name');
             $this->db->from('grades');
 
@@ -23,6 +28,32 @@
             $query = $this->db->get();
 
             return $query->result_array();
+        } // End of get_all_grades
+
+
+        /**
+         * get_grades - Retrieves a certain set of grade records based on a given
+         * array of search criteria
+         * @param  Associative Array $criteria - Fields and equivalencies to search
+         *                                      by
+         * @return Associative Array - The result array of query
+         */
+        public function get_grades($criteria){
+
+            $this->db->select('grades.score, grades.letter_grade,
+                grades.student_id, assignments.name, students.section_id, students.student_id');
+            $this->db->from('grades');
+            $this->db->join("assignments",
+                "grades.assignment_id = assignments.assignment_id", "inner");
+            $this->db->join("students",
+                "grades.student_id = students.student_id", "inner");
+
+            $this->db->where('students.section_id', $criteria['section_id']);
+            //$this->db->where('grades.student_id', $criteria['student_id']);
+            $query = $this->db->get();
+
+            return $query->result_array();
+
         } // End of get_grades
 
 
