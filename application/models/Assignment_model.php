@@ -60,9 +60,12 @@
 
         /**
          * create_assignment - Creates new assignment record
-         * @return NULL
+         * @return int - id of newly created assignment
          */
         public function create_assignment(){
+
+            // Assignment name
+            $name = $this->input->post("assign_name");
 
             // Need to format due date for MySQL
             $due_date = $this->input->post("due_date");
@@ -70,13 +73,18 @@
             $due_date = date_format($due_date, "Y-m-d");
 
             $data = array(
-                "name"      => $this->input->post("assign_name"),
+                "name"      => $name,
                 "due_date"  => $due_date,
                 "total_pts" => $this->input->post("total_points"),
                 "breakdown" => $this->input->post("category")
             );
 
             $this->db->insert("assignments", $data);
+
+            // Retrieve id of just created assignment
+            $query = $this->db->get_where("assignments", array("name" => $name), 1);
+            $assignment = $query->result_array();
+            return $assignment[0]["assignment_id"];
 
         } // End of create_assignment
 

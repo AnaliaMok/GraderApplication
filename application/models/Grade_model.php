@@ -27,11 +27,38 @@
 
 
         /**
+         * grade_to_letter - Helper method to convert a point value
+         * to a letter grade
+         *
+         * @param int point Grade Point Value
+         * @return String letter grade equivalent
+         */
+        private function grade_to_letter($point){
+
+            // $letters = ['A','A-','B+','B','B-','C+','C','C-','D','F'];
+
+            // NOTE: The grade point to letter conversion is not on nice
+            // interval so have to deal with this setup for now.
+            if($points < 60){ return 'F'; }
+            elseif($points >= 60 && $points < 69){ return 'D'; }
+            elseif($points >= 69 && $points < 72){ return 'C-'; }
+            elseif($points >= 72 && $points < 75){ return 'C'; }
+            elseif($points >= 75 && $points < 79){ return 'C-'; }
+            elseif($points >= 79 && $points < 82){ return 'C+'; }
+            elseif($points >= 82 && $points < 85){ return 'B-'; }
+            elseif($points >= 85 && $points < 89){ return 'B+'; }
+            elseif($points >= 89 && $points < 92){ return 'A-'; }
+            elseif($points >= 92){ return 'A'; }
+
+        } // End of grade_to_letter
+
+
+        /**
          * [add_grade description]
          */
         public function add_grade(){
             // TODO
-        }
+        } // End of add_grade
 
 
         /**

@@ -359,21 +359,27 @@
                 $this->load->view('gradebook/new_assignment', $data);
                 $this->load->view('templates/footer');
             }else{
-                // TODO: Create new assignment record
-                //$this->Assignments->create_assignment();
+                // Create new assignment record
+                //$assign_id = $this->Assignments->create_assignment();
 
                 // Convert Section String to Array
                 $sections = json_decode($this->input->post("sections"), true);
 
                 foreach($sections as $curr){
                     $criteria = array('section_id' => $curr );
+                    $students = $this->Students->get_students($criteria);
+
                     // TODO: Create grade record for each student in each
-                    //       selected section. Keep breakdown as empty string
+                    // selected section. Keep breakdown as empty string
+                    foreach($students as $student){
+
+                    }
                 }
 
 
                 // TODO: Create flashdata message
-                $this->session->set_flashdata("assignment_created", "Assignment Successfully Created");
+                $this->session->set_flashdata("assignment_created",
+                    "Assignment Successfully Created");
                 // TODO
                 //redirect("gradebook");
             }

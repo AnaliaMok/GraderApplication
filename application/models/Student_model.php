@@ -15,7 +15,11 @@
          * @return Array - Student records
          */
         public function get_students($criteria){
-            // TODO
+
+            $this->db->where($criteria);
+            $query = $this->db->get("students");
+            return $query->result_array();
+
         } // End of get_students
 
 
