@@ -1,3 +1,400 @@
+commit c3f3e134892b0e9dec4932b69d1b256225914a59
+Merge: b0d780d 7e3adf9
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 16:36:08 2017 -0400
+
+    Merge branch 'gradetableversiontwo'
+
+commit 7e3adf985149ad46ade5b6f50bd9aaf1fb85bc73
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 16:34:58 2017 -0400
+
+    New grade table implementation works
+
+commit 152a1efd5677b3fceefd0f920db67897c5e352c2
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 15:51:33 2017 -0400
+
+    Properly grabbing all students of a section and corresponing grades
+
+commit b0d780d72f31d11e88ea2777d7c62ed8ea9339ca
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 13:06:27 2017 -0400
+
+    Edited grade table styling
+
+commit 210fc03dfad40e4d6dafab9046b64b0549464bbd
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 11:54:08 2017 -0400
+
+    Got rid of testing grades. Added alternating row styling for table. Removed global modifyTable call
+
+commit 7a2ce04476d46fb93c03455e1e39a29d31990826
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 11:36:56 2017 -0400
+
+    Can now create assignments. All students from selected sections get empty grade record
+
+commit 4170d4941081c66c14f54678f740ff7dd66b4783
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 10 10:35:02 2017 -0400
+
+    Processing students. Preparing to add grade records to all students of selected sections. Created helper for grade conversion.
+
+commit bc0bd5429e9bfb98e12f5c4c41026724074189d2
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 9 14:49:11 2017 -0400
+
+    Fixed issue with receiving section array
+
+commit cfb96ae96bcf800d2eb1842d78969b16505befea
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 9 14:22:23 2017 -0400
+
+    Assignment record successfully validated and added to db
+
+commit 9cd43f213612e427c7abae1ee75828706f4aed45
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 9 13:13:12 2017 -0400
+
+    Edited documentation headers in css file. Added documentation to Section & Student models
+
+commit d17121826666fa669ab793ab0dc3a2268909f819
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 8 18:06:30 2017 -0400
+
+    Can now remove selected item from ul
+
+commit 247708efe66d0b175fb1cdd217c70bce6ff25bc2
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 8 17:52:31 2017 -0400
+
+    Completed breakdown to json string. Started Section dropdown module
+
+commit 446d40fc2becf924c70db32c85ce818796991759
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Aug 7 15:53:01 2017 -0400
+
+    Mostly finished grading breakdown formatting & error handling
+
+commit 134681d42be8f6f63e716cb47f4f335a95c5b838
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Aug 7 13:35:30 2017 -0400
+
+    Moved new_assignment methods to separate file. Fixed renumbering bug with new_sub_cat btn
+
+commit cf3ff60ea1fc6a9b0585be8079e4bf80d1ca3940
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Aug 7 12:01:59 2017 -0400
+
+    Refactored js code. Minimized uses of var
+
+commit 84263b6b28115280bae9e6cfdaa54cbf126e352c
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Aug 7 11:01:25 2017 -0400
+
+    Sub-categories renumbered after deletion
+
+commit ac9a750a9ff2c3c728b782cfa7d13a57068c44c7
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 5 12:33:31 2017 -0400
+
+    Fixed multiple firing of add subcategory event
+
+commit 62902be6f8496eec700e84d05a8b9625549cfd82
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 5 10:11:49 2017 -0400
+
+    Encapsulated remove category function. Started renumberCategory function
+
+commit 6bd26a7ba9f42174ed052cfac443f2a4215f2c17
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 1 18:35:34 2017 -0400
+
+    Can delete category groups and sub-category rows. Still need to re-number elements
+
+commit aa63bacaab16679c0d5165e27ac65cdda73159c7
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 1 17:29:05 2017 -0400
+
+    Sub categories can now be added
+
+commit ee54290e3ac9901baa2edfe277e393d250ea69ec
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 1 15:12:35 2017 -0400
+
+    Remove button generated with new categories
+
+commit 9801c56a0065c75464506a1974a587a712fc3282
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 1 15:05:47 2017 -0400
+
+    Can add new category form block
+
+commit 33898bc65376f43ccbc1b4940b61e5390acb35ff
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 31 18:30:47 2017 -0400
+
+    Fixed odd table cell behavior
+
+commit 06a1bc5bd2af6bd1fd4b09f1e421962ed4538c39
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 31 12:13:11 2017 -0400
+
+    Added validation error display to new student form. Laying out new assignment form
+
+commit a1c5aa5113dec99e2235f34b40f193d5998f54c9
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 31 11:37:24 2017 -0400
+
+    Student search bar works now
+
+commit e994a75a6d16aa0a0d258c8a305e35297e21fd41
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 31 10:33:16 2017 -0400
+
+    Section dropdown now changes grade table contents
+
+commit 7de15f3d72929bf5ecd82bb2e529eb2017b5d6cc
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 30 14:56:58 2017 -0400
+
+    Got rid of quick add feature on gradebook page
+
+commit 7cdc979aba854fedba9ada0495f52d858b43f784
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 30 13:04:05 2017 -0400
+
+    Styled Flash data & added js to remove
+
+commit 2b97b709d24d9052d3507875a1a3c3c631001e53
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 30 12:34:20 2017 -0400
+
+    Flash messages are now displayed for added and pre-existing students
+
+commit bda21b717a2b07ac35b3f797adefea2cca4d4e33
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 30 11:24:02 2017 -0400
+
+    Duplicate entries are now checked for
+
+commit eb184c5fdb5e760aa5f68917f471ddf9a6ec9c47
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 30 11:07:16 2017 -0400
+
+    Can now add one or more students at once
+
+commit f73c19e708b74cfd9d9902cf27bc456283532885
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 29 17:43:37 2017 -0400
+
+    can now delete individual forms. All forms are re-numbered after one is deleted
+
+commit 66fe97beba6bc3a6e8e59eb24e8f1e15116558e6
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 29 16:33:11 2017 -0400
+
+    Individual forms can be reset
+
+commit 485aa2569ec2417d4308e54efe320aa85ce04cd1
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 29 13:52:08 2017 -0400
+
+    Now adding button groups inside oldest form
+
+commit da170fd77584c93639e0d7cf57227b68875cff4c
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 29 13:12:46 2017 -0400
+
+    Now generating more student forms with AJAX
+
+commit 706a31a0c90b3e1c05e249dca0295eeafc389ec8
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 29 09:50:04 2017 -0400
+
+    Added simplepages files and are connected via the nav
+
+commit eeb6fd383bd80f4fe466d764a069b4eede54e7a6
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jul 26 10:44:29 2017 -0400
+
+    Fixed first technology bullet point
+
+commit 5affeb87e65a5e6e131a44a69ef31279e3b9f2a1
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Jul 26 10:43:32 2017 -0400
+
+    Edited ReadMe file
+
+commit 24362f3a00a3557c353af9e474fa250399bb0a5e
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Jul 11 15:13:35 2017 -0400
+
+    Started Add Student forms
+
+commit 72bb7a76a20ad7608d20efe7abeff8fa9d39be57
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 10 19:15:01 2017 -0400
+
+    Adjusted input item styling. Now selecting students based on section ID
+
+commit c779b8049abea67c8fcb341009dc78b72eceb863
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 10 17:15:59 2017 -0400
+
+    input sections styled. Outputting grades table
+
+commit d2463ecea175e8bdff24fddbe2286af0296e0697
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 10 12:10:18 2017 -0400
+
+    Outlined Sections and Grades models. Now displaying sections dropdown
+
+commit 978f6b6a44cd1406d2e7ee5a3c9b594efe795c58
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 10 09:52:53 2017 -0400
+
+    Added Gradebook controllers and views. Added id echos for active nav element
+
+commit 31dc81adb09e72972cb5c8da422cad2a4c1a0567
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 17:35:37 2017 -0400
+
+    Incomplete and complete assignments tables generated & styling
+
+commit 24c7715ac321aa1a1652f5ebac6e3f5571e8f9a6
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 14:20:38 2017 -0400
+
+    Added icons to login screen
+
+commit c14cfa69cfb8f065ca782e522d3f268f10b02f65
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 13:32:23 2017 -0400
+
+    Top block of nav now uses user's username characters
+
+commit 6d2fb62ee4011e0784ef6a40ea01198da2eede58
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 13:19:18 2017 -0400
+
+    All currently accessible pages check if a user is logged in before display
+
+commit 9f127c4cff9b86068b47a1e6662e3c5d9ccaa27e
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 13:11:46 2017 -0400
+
+    Users can now successfully login and log out
+
+commit c78f896e2bf1535b6392cc26f1863f03e3ad4e50
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 11:31:55 2017 -0400
+
+    Styled error messages. Added base_url to script link in header
+
+commit d4efc1bb5ef07412297dae2853ee6607e2687870
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Jul 7 10:53:33 2017 -0400
+
+    Styled login & registration pages. Added links to go back and forth between pages
+
+commit 5bd7fcfbcd5584492284368bd68cda550051497e
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jul 6 15:03:00 2017 -0400
+
+    Started User System. Registration Complete
+
+commit 9279862255702ce10d2ec6691c1c4f7295f42333
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jul 6 12:00:59 2017 -0400
+
+    Styled upcoming list on dashboard
+
+commit 662b6bd99f42a9afa74773dcdedcf3322575df8b
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jul 6 11:46:11 2017 -0400
+
+    Started sidebar on dashboard page. Now upcoming list items can be generated with and without the checkboxes
+
+commit 8781372d4b8bbc9dcca82ae234b73ec376556dcc
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jul 6 11:05:08 2017 -0400
+
+    Now calendar events disappear after list item is completed. Now showing a now upcoming assignments message
+
+commit 15cea5cff10e8feeab9156da51d9b27e40da7099
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Jul 6 10:41:29 2017 -0400
+
+    Upcoming items checkbox works
+
+commit c25a502821e94d25b565976cdc3f2c4a6b4ce768
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 3 15:16:59 2017 -0400
+
+    Upcoming list items now generated with ajax request
+
+commit bd9268bdfc004c94058e31a82b1e60a1d208bd51
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Mon Jul 3 14:13:45 2017 -0400
+
+    Now passing events to calendar
+
+commit 9967ead01ade35d7ec5cde55540b2203fe7755e0
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 18:50:18 2017 -0400
+
+    Generated upcoming assignments list. Styled for both desktop and mobile
+
+commit 7b7a68b469fd4b94c895192e69f20eedc115d89b
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 15:22:58 2017 -0400
+
+    Styled most of full-sized calendaer & upcoming side bar
+
+commit 0d129d266798b28e67beebf5ba2cd07d1784380b
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 13:25:30 2017 -0400
+
+    Mini calendar created. HTML styled
+
+commit 4042b7e12644284d0fa47cd3464d27afe0c30626
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 12:09:20 2017 -0400
+
+    Started generation of finished & unfinished tables. Changed data manipulation to be passed in by reference
+
+commit d6d7f4b6e7220defc66c826490f665a787662735
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 10:56:45 2017 -0400
+
+    Added date range filtering on timestamp query
+
+commit 6fcf6b53bb3f323a476dea4980085cc5bbd673f4
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 10:27:43 2017 -0400
+
+    Encapsulated table heading generation
+
+commit 43d0ea680456b56e6e9b2cb89b997aafbfd57540
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 10:06:10 2017 -0400
+
+    Added next two table groups. Adjusted js to work with multiple tables
+
+commit 69a9e25e815753dfa44e6c68590bb40249a22a32
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Jul 2 09:53:28 2017 -0400
+
+    Fixed jQuery and added DHTML styles
+
+commit b8c075ce9606bb5ab44ccb49d92cf038ba75d235
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Jul 1 19:39:52 2017 -0400
+
+    Started jQuery/js interaction. Issues with slideToggle
+
 commit 2065d78d02cd978115935be432b1a09412282afb
 Author: Analia Mok <axm2580@g.rit.edu>
 Date:   Sat Jul 1 17:01:18 2017 -0400

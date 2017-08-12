@@ -1,6 +1,6 @@
 <main>
     <div class="content">
-        <a href="<?php echo base_url(); ?>gradebook" class="blue-btn">&lt;&lt; Back to gradebook</a>
+        <a href="<?php echo base_url(); ?>gradebook" class="blue-btn" style="margin-left:2rem;">&lt;&lt; Back to gradebook</a>
         <h2>New Student(s)</h2>
 
         <div id="errors">

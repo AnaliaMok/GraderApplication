@@ -85,6 +85,14 @@ function disappear(element){
 } // End of disappear
 
 
+/**
+ * disappearModal - Hide modal on page
+ */
+function disappearModal(){
+    document.getElementsByClassName("modal")[0].style.display = "none";
+}
+
+
  // Table Methods
 
 

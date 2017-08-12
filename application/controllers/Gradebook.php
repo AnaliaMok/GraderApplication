@@ -152,7 +152,7 @@
                 $grade_table .= self::START_TABS."\t<ul>\n";
                 $grade_table .= self::START_TABS."\t\t".'<li>'.$name."</li>\n";
 
-                // TODO: Alternate Approach: Iterate through array of found
+                // Iterate through array of found
                 // assignments; if present in students array, add; otherwise
                 // create a new grade and then create new "cells"
                 foreach($assignments as $name => $assign){
@@ -168,7 +168,7 @@
                             'assignment_id' => $assignments[$name]['assignment_id'],
                             'breakdown'     => $assignments[$name]['breakdown']
                         );
-                        
+
                     }
 
                     // Create score cell

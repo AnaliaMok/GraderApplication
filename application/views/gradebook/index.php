@@ -36,7 +36,7 @@
 
         <!-- Grades -->
         <h2 id="selected_section"><?php echo $selected; ?></h2>
-        <div class="table-group" style="margin-top: 1rem; margin-bottom: 2rem;">
+        <div class="table-group" id="grade-table" style="margin-top: 1rem; margin-bottom: 2rem;">
             <?php echo $grade_table; ?>
         </div>
 
@@ -46,6 +46,15 @@
             '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
             $this->session->flashdata('assignment_created').'</div>'; ?>
         <?php endif; ?>
+
+        <div class="modal">
+            <div class="modal-content">
+                <h2>
+                    <span id="title">John Doe - Edit Student</span>
+                    <span class="lnr lnr-cross" onclick="disappearModal();"></span>
+                </h2>
+            </div>
+        </div>
 
     </div><!-- End of content -->
 </main>
