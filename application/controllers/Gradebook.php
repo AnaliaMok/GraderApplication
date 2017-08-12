@@ -36,7 +36,7 @@
 
             // Creating section dropdown
             $sections = $this->Sections->get_sections();
-            $js = 'class="section-dropdown"';
+            $js = 'class="section-dropdown" id="section-dropdown"';
 
             $options = array();
             foreach($sections as $sect){
@@ -150,7 +150,7 @@
             // Forming Rows
             foreach ($students as $name => $student) {
                 $grade_table .= self::START_TABS."\t<ul>\n";
-                $grade_table .= self::START_TABS."\t\t".'<li>'.$name."</li>\n";
+                $grade_table .= self::START_TABS."\t\t".'<li onclick="openStudentModal(this);">'.$name."</li>\n";
 
                 // Iterate through array of found
                 // assignments; if present in students array, add; otherwise

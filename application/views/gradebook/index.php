@@ -47,12 +47,36 @@
             $this->session->flashdata('assignment_created').'</div>'; ?>
         <?php endif; ?>
 
-        <div class="modal">
+        <div class="modal" id="student-modal">
             <div class="modal-content">
                 <h2>
-                    <span id="title">John Doe - Edit Student</span>
+                    <span id="title"></span>
                     <span class="lnr lnr-cross" onclick="disappearModal();"></span>
                 </h2>
+                <div class="form-holder">
+                    <?php echo form_open('gradebook/edit_student'); ?>
+                        <div class="student-info-group">
+                            <div>
+                                <label>First Name</label>
+                                <input type="text" name="first_name_0" id="first_name" />
+                            </div>
+
+                            <div>
+                                <label>Last Name</label>
+                                <input type="text" name="last_name_0" id="last_name" />
+                            </div>
+
+                            <div>
+                                <label>Section ID</label>
+                                <?php echo $sections; ?>
+                            </div>
+                        </div>
+
+                        <input type="submit" class="blue-btn" value="Submit">
+
+                    <?php echo form_close(); ?>
+
+                </div><!-- End of form holder -->
             </div>
         </div>
 

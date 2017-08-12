@@ -723,7 +723,7 @@ div.alert-message .lnr-cross:hover{
 
 div.modal{
     /* TODO: Uncomment later */
-    /*display: none;*/
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -755,6 +755,8 @@ div.modal-content span.lnr-cross{
     top: 1rem;
     right: 1rem;
     color: #FFF;
+
+    cursor: pointer;
 }
 
 

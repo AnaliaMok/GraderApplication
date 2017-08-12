@@ -28,11 +28,11 @@ function init(){
         $("#add_another").click(addAnotherStudent);
     }
 
-    if($(".section-dropdown") != null && $(".table-group") != null){
+    if($("#section-dropdown") != null && $(".table-group") != null){
         // on-change events found in gradebook
 
         // class section dropdown event
-        $(".section-dropdown").change(changeSections);
+        $("#section-dropdown").change(changeSections);
 
         // student name search dropdown
         $("input[type=search]").change(toggleGradeRows);
@@ -83,14 +83,6 @@ function jumpPage(location){
 function disappear(element){
     element.parentNode.style.display = "none";
 } // End of disappear
-
-
-/**
- * disappearModal - Hide modal on page
- */
-function disappearModal(){
-    document.getElementsByClassName("modal")[0].style.display = "none";
-}
 
 
  // Table Methods
@@ -386,3 +378,49 @@ function toggleGradeRows(){
     }
 
 } // End of toggleGradeRows
+
+
+/**
+ * openStudentModal - Displays & populates modal for editing student
+ *      information. All information required to populate inputs are present on
+ *      page.
+ *
+ * @param student - li object holding clicked student
+ */
+function openStudentModal(student){
+
+    var modal = document.getElementById("student-modal");
+    var modalContent = document.getElementsByClassName("modal-content")[0];
+    var section = document.getElementById("selected_section").value;
+
+    // Formatting last name & first name
+    var name = student.innerText;
+    name = name.split(" ");
+
+    var firstName = name[1];
+    var lastName = name[0].substr(0, name[0].length-1);
+
+
+    // Pre-populating Inputs & Modal Title
+    document.getElementById("first_name").setAttribute("value", firstName);
+    document.getElementById("last_name").setAttribute("value", lastName);
+    modal.getElementsByClassName("section-dropdown")[0].value = section;
+
+    var header = document.getElementById("title");
+    header.innerText = "";
+    header.appendChild(
+        document.createTextNode(firstName + " " + lastName + " - Edit Student")
+    );
+
+    // Now display modal
+    modal.style.display = "block";
+
+} // End of openStudentModal
+
+
+/**
+ * disappearModal - Hide modal on page
+ */
+function disappearModal(){
+    document.getElementsByClassName("modal")[0].style.display = "none";
+}
