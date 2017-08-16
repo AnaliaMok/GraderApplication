@@ -7,11 +7,6 @@
                 <span class="ion ion-plus"></span>
                 <span>Add Student(s)</span>
             </a>
-            <!-- TODO: Button Goes to "Edit Student" page-->
-            <a href="<?php echo base_url(); ?>gradebook/edit_student" class="blue-btn">
-                <span class="ion ion-edit"></span>
-                <span>Edit Student</span>
-            </a>
             <!-- Button Goes to "Add Assignment" page-->
             <a href="<?php echo base_url(); ?>gradebook/add_assignment" class="blue-btn">
                 <span class="ion ion-plus"></span>
@@ -36,6 +31,7 @@
 
         <!-- Grades -->
         <h2 id="selected_section"><?php echo $selected; ?></h2>
+        <div id="errors"><?php echo validation_errors(); ?></div>
         <div class="table-group" id="grade-table" style="margin-top: 1rem; margin-bottom: 2rem;">
             <?php echo $grade_table; ?>
         </div>
@@ -58,22 +54,22 @@
                         <div class="student-info-group">
                             <div>
                                 <label>First Name</label>
-                                <input type="text" name="first_name_0" id="first_name" />
+                                <input type="text" name="first_name" id="first_name" />
                             </div>
 
                             <div>
                                 <label>Last Name</label>
-                                <input type="text" name="last_name_0" id="last_name" />
+                                <input type="text" name="last_name" id="last_name" />
                             </div>
 
                             <div>
                                 <label>Section ID</label>
-                                <?php echo $sections; ?>
+                                <?php echo $modal_sections; ?>
                             </div>
                         </div>
 
                         <!-- Holder of current student's id -->
-                        <input type="hidden" id="student_id">
+                        <input type="hidden" name="student_id" id="student_id">
                         <input type="submit" class="blue-btn" value="Submit">
 
                     <?php echo form_close(); ?>

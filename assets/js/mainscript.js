@@ -435,8 +435,6 @@ function openStudentModal(student){
     };
 
     var studentId = findStudentId(data);
-    // var hiddenInput = document.getElementById("student_id");
-    // hiddenInput.value = studentId;
 
     // Pre-populating Inputs & Modal Title
     document.getElementById("first_name").setAttribute("value", firstName);
@@ -460,13 +458,4 @@ function openStudentModal(student){
  */
 function disappearModal(){
     document.getElementsByClassName("modal")[0].style.display = "none";
-}
-
-
-/**
- * submitStudentModal - Sends AJAX request to update current student modal
- * @return {[type]} [description]
- */
-function submitStudentModal(){
-
 }

@@ -54,9 +54,17 @@
         } // End of create_student
 
 
-        public function edit_student(){
-            // TODO
-        }
+        /**
+         * edit_student - Updates a student record
+         * @return TRUE on success; FALSE otherwise
+         */
+        public function edit_student($data, $student_id){
+
+            $this->db->where("student_id", $student_id);
+            $this->db->update("students", $data);
+            return TRUE;
+
+        } // End of edit_student
 
 
         public function delete_student(){
