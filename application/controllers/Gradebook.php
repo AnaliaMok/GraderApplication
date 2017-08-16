@@ -177,8 +177,11 @@
 
                     }
 
-                    // Create score cell
-                    $grade_table .= self::START_TABS."\t\t".'<li data-title="'.$name.':">'.$student[$name]."</li>\n";
+                    // Create score cell with data-title = assignment name &
+                    // onclick event to open grade modal
+                    $grade_table .= self::START_TABS."\t\t".
+                        '<li data-title="'.$name.':" onclick="openGradeModal(this);">'
+                        .$student[$name]."</li>\n";
                 }
 
                 $grade_table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";

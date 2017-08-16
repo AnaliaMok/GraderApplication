@@ -17,7 +17,12 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat%7COpen+Sans%7CRaleway" rel="stylesheet">
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/style.css'; ?>">
-    <!-- JavaScript&JQuery Includes -->
+
+    <!-- CKEditor Include -->
+    <script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js">
+
+    </script>
+    <!-- JavaScript & JQuery Includes -->
     <script
         src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="

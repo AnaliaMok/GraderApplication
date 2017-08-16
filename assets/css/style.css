@@ -858,6 +858,8 @@ div.modal-content span.lnr-cross{
     div.std-table ul li{
         display: table-cell;
         padding: 0.5em 1em;
+
+        cursor: pointer;
     }
 
     div.std-table ul li::before{

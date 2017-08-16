@@ -441,9 +441,9 @@ function openStudentModal(student){
     document.getElementById("last_name").setAttribute("value", lastName);
     modal.getElementsByClassName("section-dropdown")[0].value = section;
 
-    var header = document.getElementById("title");
+    var header = modal.querySelectorAll("#title")[0];
     header.innerText = "";
-    header.appendChild(
+    header.append(
         document.createTextNode(firstName + " " + lastName + " - Edit Student")
     );
 
@@ -454,8 +454,24 @@ function openStudentModal(student){
 
 
 /**
- * disappearModal - Hide modal on page
+ * openGradeModal - Opens and inserts form inputs for grading an assignment.
+ *      Also is in charge of replacing the textarea block with CKEditor
+ * @param  {Node} assignment - li holding current grade for student
  */
-function disappearModal(){
-    document.getElementsByClassName("modal")[0].style.display = "none";
+function openGradeModal(assignment){
+    var modal = document.getElementById("grade-modal");
+    var modalContent = document.getElementsByClassName("modal-content")[1];
+
+    // Now display modal
+    modal.style.display = "block";
+} // End of openGradeModal
+
+
+/**
+ * disappearModal - Hide modal on page
+ *
+ * @param id - String - modal id
+ */
+function disappearModal(id){
+    document.getElementById(id).style.display = "none";
 }

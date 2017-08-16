@@ -47,7 +47,7 @@
             <div class="modal-content">
                 <h2>
                     <span id="title"></span>
-                    <span class="lnr lnr-cross" onclick="disappearModal();"></span>
+                    <span class="lnr lnr-cross" onclick="disappearModal('student-modal');"></span>
                 </h2>
                 <div class="form-holder">
                     <?php echo form_open('gradebook/edit_student'); ?>
@@ -76,6 +76,26 @@
 
                 </div><!-- End of form holder -->
             </div>
-        </div>
+        </div><!-- End of student modal -->
+
+        <div class="modal" id="grade-modal">
+            <div class="modal-content">
+                <h2>
+                    <span id="title"></span>
+                    <span class="lnr lnr-cross" onclick="disappearModal('grade-modal');"></span>
+                </h2>
+                <div class="form-holder">
+                    <?php echo form_open('gradebook/add_grade'); ?>
+                        <div class="student-info-group">
+                            <!-- TODO -->
+                        </div>
+
+                        <input type="submit" class="blue-btn" value="Submit">
+
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div><!-- End of grade-modal -->
+
     </div><!-- End of content -->
 </main>
