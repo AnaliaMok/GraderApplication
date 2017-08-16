@@ -88,6 +88,7 @@
                     <?php echo form_open('gradebook/add_grade'); ?>
                         <div class="student-info-group">
                             <!-- TODO -->
+                            <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
                         </div>
 
                         <input type="submit" class="blue-btn" value="Submit">

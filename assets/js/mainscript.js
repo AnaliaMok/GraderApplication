@@ -462,6 +462,23 @@ function openGradeModal(assignment){
     var modal = document.getElementById("grade-modal");
     var modalContent = document.getElementsByClassName("modal-content")[1];
 
+    // TODO: Determine whether grade needs to be entered or just edited
+    // TODO: Need to pre-populate fields if just editing
+
+    // TODO: Replace textarea with CKEditor
+    CKEDITOR.replace("comments");
+
+    // Modal Title
+    var header = modal.querySelectorAll("#title")[0];
+    var assignmentName = assignment.attributes[0].value;
+    assignmentName = assignmentName.substr(0, assignmentName.length-1);
+    header.innerText = "";
+
+    // TODO: Need to grab parentNode then it's children to find preceding cell
+    header.append(
+        document.createTextNode("John Doe - " + assignmentName)
+    );
+
     // Now display modal
     modal.style.display = "block";
 } // End of openGradeModal
@@ -474,4 +491,11 @@ function openGradeModal(assignment){
  */
 function disappearModal(id){
     document.getElementById(id).style.display = "none";
+
+    if($("#cke_comments") != null){
+        var instance = CKEDITOR.instances["comments"];
+        if(instance){
+            instance.destroy();
+        }
+    }
 }
