@@ -740,6 +740,10 @@ div.modal-content{
     width: 80%;
     height: 60%;
     background-color: #FFF;
+
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .16);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, .16);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .16);
 }
 
 div.modal-content h2{

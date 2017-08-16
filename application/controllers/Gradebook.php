@@ -169,6 +169,11 @@
                             'breakdown'     => $assignments[$name]['breakdown']
                         );
 
+                        $this->Grades->add_grade($new_grade);
+
+                        // Then assign empty grade holder
+                        $student[$name] = "-";
+
                     }
 
                     // Create score cell
@@ -462,6 +467,30 @@
             }
 
         } // End of add_grade
+
+
+        /**
+         * find_student_id - Given JSON data past through POST variable,
+         *     searches for student record and returns the id associated with
+         *     that record.
+         *
+         * @return int student_id
+         */
+        public function find_student_id(){
+            $criteria = array(
+                'first_name'    => $_POST['first_name'],
+                'last_name'     => $_POST['last_name'],
+                'section_id'    => $_POST['section_id']
+            );
+
+            $student = $this->Students->get_students($criteria);
+            if(count($student) === 1){
+                echo $student[0]['student_id'];
+            }else{
+                return NULL;
+            }
+
+        } // End of find_student_id
 
     } // End of Gradebook Class
 ?>

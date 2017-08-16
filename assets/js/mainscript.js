@@ -381,6 +381,33 @@ function toggleGradeRows(){
 
 
 /**
+ * findStudentId - Makes AJAX request and searches for student id
+ * @return {Object} dataVars - JS object to send with AJAX request
+ */
+function findStudentId(dataVars){
+
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/gradebook/find_student_id",
+        type: "post",
+        mimetype: "json",
+        data: dataVars,
+        success: function(response){
+            // Just return response value
+            if(response === ""){
+                console.error("ERROR: No value found");
+            }
+
+            $("#student_id").attr("value", parseInt(response));
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+
+} // End of findStudentId
+
+
+/**
  * openStudentModal - Displays & populates modal for editing student
  *      information. All information required to populate inputs are present on
  *      page.
@@ -391,7 +418,7 @@ function openStudentModal(student){
 
     var modal = document.getElementById("student-modal");
     var modalContent = document.getElementsByClassName("modal-content")[0];
-    var section = document.getElementById("selected_section").value;
+    var section = document.getElementById("section-dropdown").value;
 
     // Formatting last name & first name
     var name = student.innerText;
@@ -400,6 +427,16 @@ function openStudentModal(student){
     var firstName = name[1];
     var lastName = name[0].substr(0, name[0].length-1);
 
+    // Make AJAX request for finding student id & Create Hidden input
+    var data = {
+        "first_name": firstName,
+        "last_name": lastName,
+        "section_id": section
+    };
+
+    var studentId = findStudentId(data);
+    // var hiddenInput = document.getElementById("student_id");
+    // hiddenInput.value = studentId;
 
     // Pre-populating Inputs & Modal Title
     document.getElementById("first_name").setAttribute("value", firstName);
@@ -423,4 +460,13 @@ function openStudentModal(student){
  */
 function disappearModal(){
     document.getElementsByClassName("modal")[0].style.display = "none";
+}
+
+
+/**
+ * submitStudentModal - Sends AJAX request to update current student modal
+ * @return {[type]} [description]
+ */
+function submitStudentModal(){
+
 }

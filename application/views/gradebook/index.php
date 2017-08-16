@@ -72,6 +72,8 @@
                             </div>
                         </div>
 
+                        <!-- Holder of current student's id -->
+                        <input type="hidden" id="student_id">
                         <input type="submit" class="blue-btn" value="Submit">
 
                     <?php echo form_close(); ?>
@@ -79,6 +81,5 @@
                 </div><!-- End of form holder -->
             </div>
         </div>
-
     </div><!-- End of content -->
 </main>
