@@ -498,19 +498,12 @@
          * edit_student - Updates a given student's information
          */
         public function edit_student(){
-            $data = array(
-                "first_name"    => $this->input->post("first_name"),
-                "last_name"     => $this->input->post("last_name"),
-                "sections"      => $this->input->post("sections")
-            );
-
-            $this->form_validation->set_data($data);
 
             // Set Rules
-            $this->form_validation->set_rules("first_name", "required");
-            $this->form_validation->set_rules("last_name", "required");
-            $this->form_validation->set_rules("sections", "required");
-            $this->form_validation->set_rules("student_id", "required");
+            $this->form_validation->set_rules("first_name", "First Name", "required");
+            $this->form_validation->set_rules("last_name", "Last Name", "required");
+            $this->form_validation->set_rules("sections", "Sections", "required");
+            $this->form_validation->set_rules("student_id", "Student ID", "required");
 
             // Set Messages
             // $this->form_validation->set_message("first_name", "First Name Field is Required");
@@ -518,26 +511,20 @@
             // $this->form_validation->set_message("sections", "Section Field is Required");
             // $this->form_validation->set_message("student_id", "Student ID Field is Required");
 
-
-
-            if($this->form_validation->run() === TRUE){
+            if($this->form_validation->run() !== FALSE){
 
                 // Format associative array for edit_student model method
-                // $data = array(
-                //     "first_name"    => $this->input->post("first_name"),
-                //     "last_name"     => $this->input->post("last_name"),
-                //     "sections"      => $this->input->post("sections")
-                // );
+                $data = array(
+                    "first_name"    => $this->input->post("first_name"),
+                    "last_name"     => $this->input->post("last_name"),
+                    "section_id"    => $this->input->post("sections")
+                );
 
-                //$this->Students->edit_student($data, $this->input->post("student_id"));
-                echo "SUCCESS";
-            }else{
-                echo "ERROR";
+                $this->Students->edit_student($data, $this->input->post("student_id"));
             }
 
-
             // Redirect back to gradebook regardless
-            // redirect("gradebook");
+            redirect("gradebook");
 
         } // End of edit_student
 
