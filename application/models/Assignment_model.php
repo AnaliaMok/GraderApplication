@@ -18,6 +18,20 @@
 
 
         /**
+         * get_simple_assignment - Simple Method to get an assignment record
+         *      based on simple criteria
+         *
+         * @param Associative Array criteria - Search fields to search by
+         * @return Associative Array containing all found records
+         */
+        public function get_simple_assignment($criteria){
+            $query = $this->db->get_where("assignments", $criteria);
+
+            return $query->result_array();
+        } // End of get_simple_assignment
+
+
+        /**
          * get_assignments - Returns a month's worth of assignments
          *
          * @param curr_month Date

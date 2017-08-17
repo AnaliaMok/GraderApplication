@@ -382,9 +382,12 @@ function toggleGradeRows(){
 
 /**
  * findStudentId - Makes AJAX request and searches for student id
+ *
+ * @param dataVar - Object holding search criteria for finding student record
+ * @param target - Node ID
  * @return {Object} dataVars - JS object to send with AJAX request
  */
-function findStudentId(dataVars){
+function findStudentId(dataVars, target){
 
     $.ajax({
         url: "http://localhost/GraderApplication/index.php/gradebook/find_student_id",
@@ -397,7 +400,7 @@ function findStudentId(dataVars){
                 console.error("ERROR: No value found");
             }
 
-            $("#student_id").attr("value", parseInt(response));
+            $("#"+target).attr("value", parseInt(response));
         },
         error: function(response){
             console.log("ERROR: " + response);
@@ -434,7 +437,7 @@ function openStudentModal(student){
         "section_id": section
     };
 
-    var studentId = findStudentId(data);
+    var studentId = findStudentId(data, "student_id");
 
     // Pre-populating Inputs & Modal Title
     document.getElementById("first_name").setAttribute("value", firstName);
@@ -450,7 +453,34 @@ function openStudentModal(student){
     // Now display modal
     modal.style.display = "block";
 
+    // Hide Overflow
+    $("body").css("overflow", "hidden");
+
 } // End of openStudentModal
+
+
+/**
+ * getGrade - Makes AJAX request to get grade breakdown based on
+ * an assignment name
+ * @param  {String} assignmentName - Name of assignment to search for
+ * @return {String} JSON String
+ */
+function getGrade(assignmentName){
+
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/gradebook/find_student_id",
+        type: "post",
+        mimetype: "json",
+        data: {assignmentName: assignmentName},
+        success: function(response){
+            return response;
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+
+} // End of getGrade
 
 
 /**
@@ -461,17 +491,51 @@ function openStudentModal(student){
 function openGradeModal(assignment){
     var modal = document.getElementById("grade-modal");
     var modalContent = document.getElementsByClassName("modal-content")[1];
+    var section = document.getElementById("section-dropdown").value;
+    var assignmentName = assignment.attributes[0].value;
+    assignmentName = assignmentName.substr(0, assignmentName.length-1);
+
+    // Make request for getting assignment
+    var parentNode = assignment.parentNode;
+    var studentName = parentNode.children[0].innerText;
+    studentName = studentName.split(" ");
+
+    var firstName = studentName[1];
+    var lastName = studentName[0].substr(0, studentName[0].length-1);
+
+    // Data Object holding fields required to search for student id, assignment id
+    var data = {
+        "first_name": firstName,
+        "last_name": lastName,
+        "section_id": section,
+        "assignment_name": assignmentName
+    };
+
+    $.ajax({
+        url: "http://localhost/GraderApplication/index.php/gradebook/get_grade_breakdown",
+        type: "post",
+        mimetype: "json",
+        data: data,
+        success: function(response){
+            console.log("SUCCESS");
+            console.log(response);
+            // TODO: Set grade breakdown variable
+        },
+        error: function(response){
+            console.log("ERROR: " + response);
+        }
+    });
+
 
     // TODO: Determine whether grade needs to be entered or just edited
     // TODO: Need to pre-populate fields if just editing
 
-    // TODO: Replace textarea with CKEditor
+
+    // Replace textarea with CKEditor
     CKEDITOR.replace("comments");
 
     // Modal Title
     var header = modal.querySelectorAll("#title")[0];
-    var assignmentName = assignment.attributes[0].value;
-    assignmentName = assignmentName.substr(0, assignmentName.length-1);
     header.innerText = "";
 
     // TODO: Need to grab parentNode then it's children to find preceding cell
@@ -481,6 +545,9 @@ function openGradeModal(assignment){
 
     // Now display modal
     modal.style.display = "block";
+
+    // Hide Overflow
+    $("body").css("overflow", "hidden");
 } // End of openGradeModal
 
 
@@ -498,4 +565,7 @@ function disappearModal(id){
             instance.destroy();
         }
     }
-}
+
+    // Hide Overflow
+    $("body").css("overflow", "auto");
+} // End of disappearModal

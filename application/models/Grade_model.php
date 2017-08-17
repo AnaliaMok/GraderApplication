@@ -8,6 +8,20 @@
 
 
         /**
+         * get_simple_grade - Simple Method to get a grade record based on simple
+         *      criteria
+         *
+         * @param Associative Array criteria - Search fields to search by
+         * @return Associative Array containing all found records
+         */
+        public function get_simple_grade($criteria){
+            $query = $this->db->get_where("grades", $criteria);
+
+            return $query->result_array();
+        } // End of get_simple_grade
+
+
+        /**
          * get_all_grades - Retrieves all grades based on the given section_id
          * @param  String $section_id - Sections id to base search on
          * @return Associative Array containing all found records

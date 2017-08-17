@@ -460,6 +460,39 @@
 
 
         /**
+         * get_grade_breakdown - Target of AJAX request to retrieve grade
+         *          breakdown
+         *
+         * @return JSON Object
+         */
+        public function get_grade_breakdown(){
+            $first_name = $_POST['first_name'];
+            $last_name = $_POST['last_name'];
+            $section_id = $_POST['section_id'];
+            $assignment_name = $_POST['assignment_name'];
+
+            $assignment = $this->Assignments->get_simple_assignment(array("name" => $assignment_name));
+            $student = $this->Students->get_students(array(
+                "first_name"    => $first_name,
+                "last_name"     => $last_name,
+                "section_id"    => $section_id
+            ));
+
+            $grade = $this->Grades->get_simple_grade(array(
+                "student_id"        => $student[0]['student_id'],
+                "assignment_id"     => $assignment[0]['assignment_id']
+            ));
+
+            if(count($grade) > 0){
+                echo $grade[0]['breakdown'];
+            }else{
+                echo "Nothing found";
+            }
+
+        } // End of get_grade_breakdown
+
+
+        /**
          * add_grade: TODO
          */
         public function add_grade(){
