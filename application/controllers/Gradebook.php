@@ -484,7 +484,7 @@
             ));
 
             if(count($grade) > 0){
-                echo $grade[0]['breakdown'];
+                echo json_encode($grade);
             }else{
                 echo "Nothing found";
             }

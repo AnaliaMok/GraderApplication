@@ -518,7 +518,7 @@ function openGradeModal(assignment){
         data: data,
         success: function(response){
             console.log("SUCCESS");
-            console.log(response);
+            console.log(JSON.parse(response));
             // TODO: Set grade breakdown variable
         },
         error: function(response){
