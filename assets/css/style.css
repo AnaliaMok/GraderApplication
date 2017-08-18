@@ -224,6 +224,19 @@ div.form-column h3{
     font-family: Montserrat, sans-serif;
 }
 
+div.form-column ul{
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+div.form-column ul li{
+    margin: 0.25rem 0;
+}
+
+div.form-column ul li > ul{
+    padding-left: 1.5rem;
+}
 
 div.form-column input[type=text]{
     width: 3rem;
@@ -754,9 +767,12 @@ div.modal{
 }
 
 div.modal-content{
-    margin: 5% auto;
+    margin: 2% auto;
+    padding-bottom: 1.5rem;
     width: 80%;
-    height: 60%;
+    height: 80%;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: #FFF;
 
     -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .16);

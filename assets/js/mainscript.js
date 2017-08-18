@@ -535,6 +535,12 @@ function openGradeModal(assignment){
 
             var totalPoints = 0;
             var breakdownHolder = document.getElementById("breakdown");
+
+            // First Empty breakdownHolder's children
+            while(breakdownHolder.hasChildNodes()){
+                breakdownHolder.removeChild(breakdownHolder.lastChild);
+            }
+
             Object.keys(breakdown).forEach(function(key){
                 // console.log(key);
                 var newMainLi = document.createElement("li");
@@ -557,16 +563,42 @@ function openGradeModal(assignment){
 
                 // Adding total points to sum
                 totalPoints += parseInt(subCategory["Total"]);
-                // Looping through subcategories
+
+                // Looping through subcategories & creating a new sublist
+                var subList = document.createElement("ul");
                 Object.keys(subCategory).forEach(function(keyTwo){
+
+                    // Skip Total Key
+                    if(keyTwo == "Total"){ return; }
+
                     // console.log("\t" + keyTwo + " : " + subCategory[keyTwo]);
+                    var newListItem = document.createElement("li");
+                    newListItem.appendChild(document.createTextNode(keyTwo + ": "));
+
+                    // New li's text
+                    var newText = document.createElement("input");
+                    newText.setAttribute("type", "text");
+                    newText.setAttribute("name", keyTwo);
+
+                    newListItem.appendChild(newText);
+                    newListItem.appendChild(document.createTextNode(" / " + subCategory[keyTwo]));
+
+                    // Appending new li to subList
+                    subList.appendChild(newListItem);
+
                 });
 
+                // Appending new sublist to a li and then appending whole to breakdownHolder
+                if(subList.children.length !== 0){
+                    newMainLi = document.createElement("li");
+                    newMainLi.appendChild(subList);
+                    breakdownHolder.appendChild(newMainLi);
+                }
+                
             }); // End of outer loop
 
             // Inserting total points of grade to total points holder
-            document.getElementById("total").appendChild(document.createTextNode(totalPoints));
-
+            document.getElementById("total").innerText = totalPoints;
             // TODO: Set grade breakdown variable
         },
         error: function(response){

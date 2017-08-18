@@ -104,7 +104,7 @@
                             <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
                         </div>
 
-                        <input type="submit" class="blue-btn" value="Submit">
+                        <input type="submit" class="blue-btn" value="Submit" style="margin-bottom: 1.5rem;">
 
                     <?php echo form_close(); ?>
                 </div>
