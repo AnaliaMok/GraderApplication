@@ -518,18 +518,61 @@ function openGradeModal(assignment){
         data: data,
         success: function(response){
             console.log("SUCCESS");
-            console.log(JSON.parse(response));
+            var grade = (JSON.parse(response))[0];
+            var breakdown = JSON.parse(grade.breakdown);
+
+            // If grade's score is null, leave input#score empty
+            if(grade.score !== null){
+                document.getElementById("score").value = parseInt(grade.score);
+            }
+
+            // If comments are null, leave textarea empty
+            if(grade.comments != null){
+                CKEDITOR.instances["comments"].setData(grade.comments);
+            }
+
+            // Looping through each property (Main Category)
+
+            var totalPoints = 0;
+            var breakdownHolder = document.getElementById("breakdown");
+            Object.keys(breakdown).forEach(function(key){
+                // console.log(key);
+                var newMainLi = document.createElement("li");
+
+                // First Append Name of Main Category
+                newMainLi.appendChild(document.createTextNode(key + ": "));
+
+                var newText = document.createElement("input");
+                newText.setAttribute("type", "text");
+                newText.setAttribute("name", key);
+
+                // TODO: If score is not null, parse the value of current key based on a slash
+                newMainLi.appendChild(newText);
+
+                var subCategory = breakdown[key];
+
+                // Adding Total Points of Category to li
+                newMainLi.appendChild(document.createTextNode(" / " + subCategory["Total"]));
+                breakdownHolder.appendChild(newMainLi);
+
+                // Adding total points to sum
+                totalPoints += parseInt(subCategory["Total"]);
+                // Looping through subcategories
+                Object.keys(subCategory).forEach(function(keyTwo){
+                    // console.log("\t" + keyTwo + " : " + subCategory[keyTwo]);
+                });
+
+            }); // End of outer loop
+
+            // Inserting total points of grade to total points holder
+            document.getElementById("total").appendChild(document.createTextNode(totalPoints));
+
             // TODO: Set grade breakdown variable
         },
         error: function(response){
             console.log("ERROR: " + response);
         }
     });
-
-
-    // TODO: Determine whether grade needs to be entered or just edited
-    // TODO: Need to pre-populate fields if just editing
-
 
     // Replace textarea with CKEditor
     CKEDITOR.replace("comments");
@@ -540,7 +583,7 @@ function openGradeModal(assignment){
 
     // TODO: Need to grab parentNode then it's children to find preceding cell
     header.append(
-        document.createTextNode("John Doe - " + assignmentName)
+        document.createTextNode(firstName + " " + lastName + " - " + assignmentName)
     );
 
     // Now display modal

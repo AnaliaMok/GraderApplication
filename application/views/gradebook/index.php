@@ -86,7 +86,19 @@
                 </h2>
                 <div class="form-holder">
                     <?php echo form_open('gradebook/add_grade'); ?>
-                        <div class="student-info-group">
+                        <div class="form-column">
+                            <!-- Total Score Input -->
+                            <h3>Grade:</h3>
+                            <span>
+                                <input type="text" id="score">&nbsp;/&nbsp;
+                                <span id="total"></span>
+                            </span>
+
+                            <!-- Grading Breakdown -->
+                            <h3>Breakdown:</h3>
+                            <ul id="breakdown"></ul>
+                        </div>
+                        <div class="form-column">
                             <!-- TODO -->
                             <h3>Comments</h3>
                             <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
