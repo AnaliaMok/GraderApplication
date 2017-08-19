@@ -360,7 +360,7 @@ main#login-main div#button-group input[type=submit]{
 
 main#login-main div#button-group button{ margin-right: 1rem; }
 
-/* Errors Container */
+/************************** Errors Container **************************/
 div#errors-holder{
     margin-bottom: 1.5rem;
 }

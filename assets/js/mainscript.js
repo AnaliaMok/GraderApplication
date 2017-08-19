@@ -521,6 +521,10 @@ function openGradeModal(assignment){
             var grade = (JSON.parse(response))[0];
             var breakdown = JSON.parse(grade.breakdown);
 
+            // Assign Student Id and Assignment Id
+            document.getElementsByName("g_student_id")[0].value = grade.student_id;
+            document.getElementsByName("g_assignment_id")[0].value = grade.assignment_id;
+
             // Assign Hidden Breakdown Input to grade breakdown
             document.getElementById("breakdownHolder").value = grade.breakdown;
 
@@ -633,9 +637,14 @@ function openGradeModal(assignment){
  * @return true if valid; false otherwise
  */
 function prepareGradeBreakdown(){
-    // TODO: Get Comments Data
-    // TODO: Get Total Score
-    // TODO: Grab breakdown and format into JSON object
+
+    // Get Total Score for checking
+    var totalScore = (document.getElementsByName("score")[0]).value;
+
+    if(value === ""){
+        // TODO: Create error message
+        return false;
+    }
 
     // Hidden Input Breakdown
     // Going to replace point values with actual Score inputs

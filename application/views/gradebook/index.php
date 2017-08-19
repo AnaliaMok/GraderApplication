@@ -43,6 +43,11 @@
             $this->session->flashdata('assignment_created').'</div>'; ?>
         <?php endif; ?>
 
+        <!-- Where to display errors -->
+        <div id="errors-holder"></div>
+
+        <!-- MODALS -->
+
         <div class="modal" id="student-modal">
             <div class="modal-content">
                 <h2>
@@ -92,7 +97,7 @@
                             <!-- Total Score Input -->
                             <h3>Grade:</h3>
                             <span>
-                                <input type="text" id="score">&nbsp;/&nbsp;
+                                <input type="text" name="score" id="score">&nbsp;/&nbsp;
                                 <span id="total"></span>
                             </span>
 
@@ -110,8 +115,12 @@
                             <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
                         </div>
 
+                        <!-- Hidden Inputs -->
+                        <input type="hidden" name="g_student_id">
+                        <input type="hidden" name="g_assignment_id">
+
                         <!-- TODO: Implement Submit Function -->
-                        <input type="submit" class="blue-btn" value="Save" style="margin-bottom: 1.5rem;">
+                        <input type="submit" class="blue-btn" value="Save" style="width:90%; margin-bottom: 1.5rem;">
 
                     <?php echo form_close(); ?>
                 </div>
