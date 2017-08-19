@@ -517,7 +517,7 @@ function openGradeModal(assignment){
         mimetype: "json",
         data: data,
         success: function(response){
-            console.log("SUCCESS");
+            // console.log("SUCCESS");
             var grade = (JSON.parse(response))[0];
             var breakdown = JSON.parse(grade.breakdown);
 
@@ -531,6 +531,8 @@ function openGradeModal(assignment){
             // If grade's score is null, leave input#score empty
             if(grade.score !== null){
                 document.getElementById("score").value = parseInt(grade.score);
+            }else{
+                document.getElementById("score").value = "";
             }
 
             // If comments are null, leave textarea empty
@@ -737,6 +739,10 @@ function disappearModal(id){
         if(instance){
             instance.destroy();
         }
+
+        // Also Empty Errors Holder Ul
+        $("#errors-holder ul").html("");
+
     }
 
     // Hide Overflow
