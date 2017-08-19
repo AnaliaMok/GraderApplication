@@ -996,11 +996,6 @@ div.modal-content span.lnr-cross{
         overflow-y: scroll;
     }
 
-    ::-webkit-scrollbar {
-        width: 0px;  /* remove scrollbar space */
-        background: transparent;  /* optional: just make scrollbar invisible */
-    }
-
     div.upcoming-container h2{
         text-align: left;
         background-color: #3F3F3F;

@@ -85,7 +85,9 @@
                     <span class="lnr lnr-cross" onclick="disappearModal('grade-modal');"></span>
                 </h2>
                 <div class="form-holder">
-                    <?php echo form_open('gradebook/add_grade'); ?>
+                    <?php echo form_open('gradebook/add_grade',
+                        array("onsubmit" => "return prepareGradeBreakdown();")); ?>
+
                         <div class="form-column">
                             <!-- Total Score Input -->
                             <h3>Grade:</h3>
@@ -97,6 +99,10 @@
                             <!-- Grading Breakdown -->
                             <h3>Breakdown:</h3>
                             <ul id="breakdown"></ul>
+
+                            <!-- Hidden Input To Store Formatted Breakdown after
+                                submitting -->
+                            <input type="hidden" name="breakdown" id="breakdownHolder">
                         </div>
                         <div class="form-column">
                             <!-- TODO -->
@@ -104,7 +110,8 @@
                             <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
                         </div>
 
-                        <input type="submit" class="blue-btn" value="Submit" style="margin-bottom: 1.5rem;">
+                        <!-- TODO: Implement Submit Function -->
+                        <input type="submit" class="blue-btn" value="Save" style="margin-bottom: 1.5rem;">
 
                     <?php echo form_close(); ?>
                 </div>

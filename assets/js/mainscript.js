@@ -521,6 +521,9 @@ function openGradeModal(assignment){
             var grade = (JSON.parse(response))[0];
             var breakdown = JSON.parse(grade.breakdown);
 
+            // Assign Hidden Breakdown Input to grade breakdown
+            document.getElementById("breakdownHolder").value = grade.breakdown;
+
             // If grade's score is null, leave input#score empty
             if(grade.score !== null){
                 document.getElementById("score").value = parseInt(grade.score);
@@ -594,7 +597,7 @@ function openGradeModal(assignment){
                     newMainLi.appendChild(subList);
                     breakdownHolder.appendChild(newMainLi);
                 }
-                
+
             }); // End of outer loop
 
             // Inserting total points of grade to total points holder
@@ -612,8 +615,6 @@ function openGradeModal(assignment){
     // Modal Title
     var header = modal.querySelectorAll("#title")[0];
     header.innerText = "";
-
-    // TODO: Need to grab parentNode then it's children to find preceding cell
     header.append(
         document.createTextNode(firstName + " " + lastName + " - " + assignmentName)
     );
@@ -624,6 +625,58 @@ function openGradeModal(assignment){
     // Hide Overflow
     $("body").css("overflow", "hidden");
 } // End of openGradeModal
+
+
+/**
+ * prepareGradeBreakdown - Prepares grade breakdown before form data is sent to
+ *      server side
+ * @return true if valid; false otherwise
+ */
+function prepareGradeBreakdown(){
+    // TODO: Get Comments Data
+    // TODO: Get Total Score
+    // TODO: Grab breakdown and format into JSON object
+
+    // Hidden Input Breakdown
+    // Going to replace point values with actual Score inputs
+    // NOTE: DO NOT TOUCH TOTAL VALUES
+    var breakdownGuide = document.getElementById("breakdownHolder").value;
+    breakdownGuide = JSON.parse(breakdownGuide);
+
+    // Loop through guideline to find input with name corresponding
+    // to category name
+
+    // Checker to make sure grabbed total points is greater than or equal to
+    // accumulated points
+    var pointsCounter = 0;
+    Object.keys(breakdownGuide).forEach(function(mainCatKey){
+
+        var mainCatValue = (document.getElementsByName(mainCatKey)[0]).value;
+        breakdownGuide[mainCatKey]["Total"] = mainCatValue;
+        var subCategory = breakdownGuide[mainCatKey];
+
+        // Looping through subcategories
+        Object.keys(subCategory).forEach(function(subCatKey){
+
+            // Skip Total Key
+            if(subCatKey === "Total"){ return; }
+
+            var subCatValue = (document.getElementsByName(subCatKey)[0]).value;
+
+            breakdownGuide[mainCatKey][subCatKey] = subCatValue;
+
+        });
+
+
+    });
+
+    // Re-assign Breakdown Guide to Hidden input
+    document.getElementById("breakdownHolder").value = JSON.stringify(breakdownGuide);
+    console.log(document.getElementById("breakdownHolder").value);
+    // TODO: Change to true
+    return false;
+
+} // End of prepareGradeBreakdown
 
 
 /**
