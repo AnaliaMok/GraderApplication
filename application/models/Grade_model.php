@@ -29,7 +29,7 @@
         public function get_all_grades($section_id){
             // Current gets all grades
 
-            $this->db->select('grades.score, grades.letter_grade, grades.student_id, assignments.name,
+            $this->db->select('grades.score, grades.letter_grade, grades.student_id, assignments.name, assignments.due_date,
                 students.last_name, students.first_name');
             $this->db->from('grades');
 

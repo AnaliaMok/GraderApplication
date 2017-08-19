@@ -43,9 +43,6 @@
             $this->session->flashdata('assignment_created').'</div>'; ?>
         <?php endif; ?>
 
-        <!-- Where to display errors -->
-        <div id="errors-holder"></div>
-
         <!-- MODALS -->
 
         <div class="modal" id="student-modal">
@@ -113,14 +110,15 @@
                             <!-- TODO -->
                             <h3>Comments</h3>
                             <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
+                            <!-- Where to display errors -->
+                            <div id="errors-holder"><ul></ul></div>
+                            <!-- TODO: Implement Submit Function -->
+                            <input type="submit" class="blue-btn" value="Save" style="width:100%; margin-bottom: 1.5rem;">
                         </div>
 
                         <!-- Hidden Inputs -->
                         <input type="hidden" name="g_student_id">
                         <input type="hidden" name="g_assignment_id">
-
-                        <!-- TODO: Implement Submit Function -->
-                        <input type="submit" class="blue-btn" value="Save" style="width:90%; margin-bottom: 1.5rem;">
 
                     <?php echo form_close(); ?>
                 </div>

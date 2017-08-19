@@ -640,9 +640,13 @@ function prepareGradeBreakdown(){
 
     // Get Total Score for checking
     var totalScore = (document.getElementsByName("score")[0]).value;
+    var errorsHolder = document.getElementById("errors-holder");
+    var errorsList = errorsHolder.querySelectorAll("ul")[0];
+    errorsList.innerHTML = "";
 
-    if(value === ""){
-        // TODO: Create error message
+    if(totalScore === ""){
+        // Create error message
+        errorsList.append(createListItem("Total Score input was empty"));
         return false;
     }
 
@@ -660,21 +664,53 @@ function prepareGradeBreakdown(){
     var pointsCounter = 0;
     Object.keys(breakdownGuide).forEach(function(mainCatKey){
 
-        var mainCatValue = (document.getElementsByName(mainCatKey)[0]).value;
-        breakdownGuide[mainCatKey]["Total"] = mainCatValue;
-        var subCategory = breakdownGuide[mainCatKey];
+        var mainInput = document.getElementsByName(mainCatKey)[0];
+        var mainCatValue = mainInput.value;
 
+        // Border Styles for text inputs
+        var errorStyle = "1px solid #E74C3C";
+        var defaultStyle = "1px solid #000";
+
+        if(mainCatValue === ""){
+            // Error for Empty Input
+            mainInput.style.border = errorStyle;
+            errorsList.append(createListItem(mainCatKey + " was empty"));
+            return false;
+        }else{
+            mainInput.style.border = defaultStyle;
+        }
+
+        mainCatValue = parseInt(mainCatValue);
+        breakdownGuide[mainCatKey]["Total"] = mainCatValue;
+        pointsCounter += mainCatValue;
+        var subCategory = breakdownGuide[mainCatKey];
+        var subPoints = 0;
         // Looping through subcategories
         Object.keys(subCategory).forEach(function(subCatKey){
 
             // Skip Total Key
             if(subCatKey === "Total"){ return; }
 
-            var subCatValue = (document.getElementsByName(subCatKey)[0]).value;
+            var subInput = document.getElementsByName(subCatKey)[0];
+            var subCatValue = subInput.value;
+
+            if(subCatValue === ""){
+                // ERROR: No value given
+                subInput.style.border = errorStyle;
+                errorsList.append(createListItem(subCatKey + " was empty"));
+                return false;
+            }else{
+                subInput.style.border = defaultStyle;
+            }
 
             breakdownGuide[mainCatKey][subCatKey] = subCatValue;
-
+            subPoints += parseInt(subCatValue);
         });
+
+        if(subPoints < 0 || subPoints > mainCatValue){
+            // TODO: Add error message for wrong sum
+            return false;
+        }
 
 
     });

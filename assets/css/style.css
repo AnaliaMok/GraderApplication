@@ -220,6 +220,14 @@ div.form-column{
     font-family: "Open Sans", sans-serif;
 }
 
+div.form-column div#errors-holder{
+    margin-top: 1rem;
+}
+
+div.form-column div#errors-holder ul{
+    border: 0;
+}
+
 div.form-column h3{
     font-family: Montserrat, sans-serif;
 }
