@@ -493,17 +493,34 @@
 
 
         /**
-         * add_grade: TODO
+         * add_grade: Target of new grade form.
          */
-        public function add_grade(){
-            // TODO
+        public function update_grade(){
 
             // Check login
             if(!$this->session->userdata('logged_in')){
                 redirect("users/index");
             }
 
-        } // End of add_grade
+            // Preparing data array for creating a new grade record
+            $data = array(
+                'student_id'    => $this->input->post("g_student_id"),
+                'assignment_id' => $this->input->post("g_assignment_id"),
+                'score'         => $this->input->post("score"),
+                'comments'      => $this->input->post("comments"),
+                'breakdown'     => $this->input->post("breakdown")
+            );
+
+            // Now create new grade record
+            $this->Grades->edit_grade($data);
+
+            // TODO: Set flashdata
+            $grade_updated = "<p>Grade successfully added:</p>\n<ul>\n".$grade_updated;
+            $grade_updated .= "</ul>\n";
+            $this->session->set_flashdata("grade_updated", $grade_updated);
+
+            redirect("gradebook");
+        } // End of update_grade
 
 
         /**

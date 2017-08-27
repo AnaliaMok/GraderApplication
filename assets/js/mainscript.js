@@ -719,9 +719,9 @@ function prepareGradeBreakdown(){
 
     // Re-assign Breakdown Guide to Hidden input
     document.getElementById("breakdownHolder").value = JSON.stringify(breakdownGuide);
-    console.log(document.getElementById("breakdownHolder").value);
-    // TODO: Change to true
-    return false;
+
+    // TODO: Change to true & implement server side
+    return true;
 
 } // End of prepareGradeBreakdown
 

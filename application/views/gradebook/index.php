@@ -43,6 +43,13 @@
             $this->session->flashdata('assignment_created').'</div>'; ?>
         <?php endif; ?>
 
+        <!-- TODO: Add flash data styling -->
+        <?php if($this->session->flashdata('grade_updated')): ?>
+        <?php echo '<div class="alert-message modal" id="success">'.
+            '<span class="lnr lnr-cross" onclick="disappear(this);"></span>'.
+            $this->session->flashdata('grade_updated').'</div>'; ?>
+        <?php endif; ?>
+
         <!-- MODALS -->
 
         <div class="modal" id="student-modal">
@@ -87,7 +94,7 @@
                     <span class="lnr lnr-cross" onclick="disappearModal('grade-modal');"></span>
                 </h2>
                 <div class="form-holder">
-                    <?php echo form_open('gradebook/add_grade',
+                    <?php echo form_open('gradebook/update_grade',
                         array("onsubmit" => "return prepareGradeBreakdown();")); ?>
 
                         <div class="form-column">

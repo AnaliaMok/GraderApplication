@@ -1,3 +1,93 @@
+commit ffd69a63635a31520769a6dfb18493dd183d0f7d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 19 15:08:46 2017 -0400
+
+    Forgot to empty modal after closing but not saving
+
+commit 815feff14e4c56f729a0f2ca2c4021cf30b2ae68
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 19 15:05:04 2017 -0400
+
+    Now displaying error messages & added error styling
+
+commit badeb6389f8aa5461b9db5da54ed3942d5c7051d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 19 12:29:12 2017 -0400
+
+    Now hiding student & assignment id in form before submission
+
+commit 90e4174fc12e14ca81e6c15fc1cd05d5c23aa524
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 19 11:50:53 2017 -0400
+
+    Grade Breakdown can now be formatted and placed inside a hidden input
+
+commit 42220de1c5da5bbf510980d4fcf0f9b6185410ad
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Aug 18 13:47:39 2017 -0400
+
+    All form inputs for Grade Modal are generated
+
+commit 8fe00bcf2cf0e3b53c2f49e6b2a3850c3d265523
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Aug 18 13:09:34 2017 -0400
+
+    Added form column styling. Can now display main categories of grade modal
+
+commit ecce54d7484f8c813dd28f31795e0bbf2e246832
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 17 13:41:46 2017 -0400
+
+    Now retrieving entire Grade Record
+
+commit d2c8863aeb0033e76ca96721b52739efc5369ec7
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 17 13:38:55 2017 -0400
+
+    Can now request a specific grade's breakdown
+
+commit ad11d7b08b07d931b0eb940aba6c9cd5265eaba5
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 16 15:20:40 2017 -0400
+
+    can now replace ad remove CKEditor instances
+
+commit 276ce133773fecb1c847a4a0cf4647b363d10cbd
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 16 14:56:46 2017 -0400
+
+    Swapped in querySelectorAll for modal header. Added CKEditor Basic Package to project
+
+commit bbf7d9de9ca39808f2134e7eceba28dba6ca54ee
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 16 13:17:13 2017 -0400
+
+    Can now edit student information
+
+commit e922461cdc32235703944d73bd7dbba3f24fe535
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 16 13:01:36 2017 -0400
+
+    Did setup for editing student record. Currently form doesn't validate when it should
+
+commit 99b5d86b5d9e930490b67a6d29d9d166442be811
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 16 11:39:09 2017 -0400
+
+    Added student_id as hidden input in student modal
+
+commit 89a915540f83aac52319b7a71a043c663f3d7137
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 12 12:45:01 2017 -0400
+
+    Student edit modal styled & pre-populated
+
+commit 2bba04e2856a01813f7ee46b73a01571eedfe4dc
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Aug 12 11:59:52 2017 -0400
+
+    Started modal. Styling and close function added
+
 commit c3f3e134892b0e9dec4932b69d1b256225914a59
 Merge: b0d780d 7e3adf9
 Author: Analia Mok <axm2580@g.rit.edu>

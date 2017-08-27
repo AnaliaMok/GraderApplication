@@ -79,7 +79,7 @@
          * @param int point Grade Point Value
          * @return String letter grade equivalent
          */
-        private function grade_to_letter($point){
+        private function grade_to_letter($points){
 
             // $letters = ['A','A-','B+','B','B-','C+','C','C-','D','F'];
 
@@ -108,23 +108,39 @@
          */
         public function add_grade($criteria){
 
-            $data = array(
-                'student_id'    => $criteria['student_id'],
-                'assignment_id' => $criteria['assignment_id'],
-                'breakdown'     => $criteria['breakdown']
-            );
+            // $data = array(
+            //     'student_id'    => $criteria['student_id'],
+            //     'assignment_id' => $criteria['assignment_id'],
+            //     'breakdown'     => $criteria['breakdown']
+            // );
 
-            $this->db->insert('grades', $data);
+            $this->db->insert('grades', $criteria);
 
         } // End of add_grade
 
 
         /**
-         * [edit_grade description]
-         * @return [type] [description]
+         * edit_grade - Given an array of new data and a grade_id, updates a
+         *      grade record
+         *
+         * @param Associative Array data - Holds new data to update array with
+         * @return NULL
          */
-        public function edit_grade(){
-            // TODO
+        public function edit_grade($data){
+
+            $grade_search_data = array(
+                "student_id"    => $data['student_id'],
+                "assignment_id" => $data['assignment_id']
+            );
+
+            $grade_id = $this->get_simple_grade($grade_search_data)[0]['grade_id'];
+
+            $letter_grade = $this->grade_to_letter((int)$data['score']);
+            $data['letter_grade'] = $letter_grade;
+
+            $this->db->where('grade_id', $grade_id);
+            $this->db->update('grades', $data);
+
         } // End of edit_grade
 
     } // End of Grade_model
