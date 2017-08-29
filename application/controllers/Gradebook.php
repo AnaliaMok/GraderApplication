@@ -461,7 +461,7 @@
 
         /**
          * get_grade_breakdown - Target of AJAX request to retrieve grade
-         *          breakdown
+         *          breakdown from both the Grades Table & Assignment Table
          *
          * @return JSON Object
          */
@@ -483,6 +483,10 @@
                 "assignment_id"     => $assignment[0]['assignment_id']
             ));
 
+
+            // Adding assignment breakdown to grade object
+            $grade[0]['assignment'] = $assignment[0]['breakdown'];
+            
             if(count($grade) > 0){
                 echo json_encode($grade);
             }else{

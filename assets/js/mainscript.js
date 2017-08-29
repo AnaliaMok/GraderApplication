@@ -519,7 +519,10 @@ function openGradeModal(assignment){
         success: function(response){
             // console.log("SUCCESS");
             var grade = (JSON.parse(response))[0];
-            var breakdown = JSON.parse(grade.breakdown);
+            var gradedBreakdown = JSON.parse(grade.breakdown);
+
+            // Outlined breakdown
+            var breakdown = JSON.parse(grade.assignment);
 
             // Assign Student Id and Assignment Id
             document.getElementsByName("g_student_id")[0].value = grade.student_id;
@@ -537,8 +540,14 @@ function openGradeModal(assignment){
 
             // If comments is not null, prepopulate textarea before converting
             // with CKEditor
-            if(grade.comments != null){
-                document.getElementById("comments").innerHTML = grade.comments;
+            var textarea = document.getElementById("comments");
+            // Reset
+            textarea.innerHTML = "";
+            textarea.value = "";
+
+            if(grade.comments !== null){
+                textarea.innerHTML = grade.comments;
+                textarea.value = grade.comments;
             }
 
             // Replace textarea with CKEditor
@@ -551,6 +560,7 @@ function openGradeModal(assignment){
 
             // First Empty breakdownHolder's children
             while(breakdownHolder.hasChildNodes()){
+                //document.remove(breakdownHolder.lastChild);
                 breakdownHolder.removeChild(breakdownHolder.lastChild);
             }
 
@@ -568,7 +578,7 @@ function openGradeModal(assignment){
                 // TODO: If score is not null, parse the value of current key based on a slash
                 if(grade.score !== null){
                     // Using filled in grade score as reference
-                    newText.setAttribute("value", breakdown[key]["Total"]);
+                    newText.setAttribute("value", gradedBreakdown[key]["Total"]);
                 }
                 newMainLi.appendChild(newText);
 
@@ -596,6 +606,11 @@ function openGradeModal(assignment){
                     var newText = document.createElement("input");
                     newText.setAttribute("type", "text");
                     newText.setAttribute("name", keyTwo);
+
+                    // If score is not null, then place graded value into newText
+                    if(grade.score !== null){
+                        newText.setAttribute("value", gradedBreakdown[key][keyTwo]);
+                    }
 
                     newListItem.appendChild(newText);
                     newListItem.appendChild(document.createTextNode(" / " + subCategory[keyTwo]));
