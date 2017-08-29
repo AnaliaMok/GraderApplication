@@ -1,3 +1,9 @@
+commit c6f7655ef29b2fd0d04ca7f9da12e6e0e762da36
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sun Aug 27 16:02:03 2017 -0400
+
+    Grade records can now be updated. Updated records not showing on grade table
+
 commit ffd69a63635a31520769a6dfb18493dd183d0f7d
 Author: Analia Mok <axm2580@g.rit.edu>
 Date:   Sat Aug 19 15:08:46 2017 -0400

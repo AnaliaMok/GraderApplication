@@ -535,10 +535,14 @@ function openGradeModal(assignment){
                 document.getElementById("score").value = "";
             }
 
-            // If comments are null, leave textarea empty
+            // If comments is not null, prepopulate textarea before converting
+            // with CKEditor
             if(grade.comments != null){
-                CKEDITOR.instances["comments"].setData(grade.comments);
+                document.getElementById("comments").innerHTML = grade.comments;
             }
+
+            // Replace textarea with CKEditor
+            CKEDITOR.replace("comments");
 
             // Looping through each property (Main Category)
 
@@ -562,6 +566,10 @@ function openGradeModal(assignment){
                 newText.setAttribute("name", key);
 
                 // TODO: If score is not null, parse the value of current key based on a slash
+                if(grade.score !== null){
+                    // Using filled in grade score as reference
+                    newText.setAttribute("value", breakdown[key]["Total"]);
+                }
                 newMainLi.appendChild(newText);
 
                 var subCategory = breakdown[key];
@@ -608,15 +616,13 @@ function openGradeModal(assignment){
 
             // Inserting total points of grade to total points holder
             document.getElementById("total").innerText = totalPoints;
-            // TODO: Set grade breakdown variable
+
         },
         error: function(response){
             console.log("ERROR: " + response);
         }
     });
 
-    // Replace textarea with CKEditor
-    CKEDITOR.replace("comments");
 
     // Modal Title
     var header = modal.querySelectorAll("#title")[0];
