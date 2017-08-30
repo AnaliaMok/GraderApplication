@@ -64,7 +64,7 @@
                 "grades.student_id = students.student_id", "inner");
 
             $this->db->where('students.section_id', $criteria['section_id']);
-            //$this->db->where('grades.student_id', $criteria['student_id']);
+            $this->db->where('grades.student_id', $criteria['student_id']);
             $query = $this->db->get();
 
             return $query->result_array();

@@ -121,6 +121,7 @@
 
                 // Find grade(s)
                 $grades = $this->Grades->get_grades($criteria);
+
                 foreach($grades as $grade){
                     $assign_name = $grade['name'];
 
@@ -133,15 +134,22 @@
                         $assignments[$assign_name]['assignment_id'] = $grade['assignment_id'];
                     }
 
-                    // TODO: Wrap in anchor tag or add js event
                     // If score is not set, just use a dash
-                    $score = ($grade['score'] == NULL) ? "-" : $grade['score']."&nbsp;(".$grade['letter_grade'].")";
-                    $students[$student_name][$assign_name] = $score;
 
+                    $score = "-";
+
+                    if($grade['score'] !== "" && $grade['score'] !== NULL){
+                        $score = $grade['score']."&nbsp;(".$grade['letter_grade'].")";
+                        //echo print_r($grade);
+                        //echo("Pass");
+                    }
+
+                    $students[$student_name][$assign_name] = $score;
                 }
 
             }
 
+            // die(print_r($students["Alvarez, Lucas"]));
             // Constructing Table
             $grade_table = '<div class="std-table">'."\n";
             $grade_table .= $this->generate_heading($heading);
@@ -156,32 +164,34 @@
                 // Iterate through array of found
                 // assignments; if present in students array, add; otherwise
                 // create a new grade and then create new "cells"
-                foreach($assignments as $name => $assign){
+                foreach($assignments as $assign_name => $assign){
 
                     // TODO: wrap in anchor tag to open edit grade modal
                     $grade_table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
-                    if($student[$name] === NULL){
+                    if($student[$assign_name] === NULL){
                         // If student doesn't have an entry for current
                         // assignment, create new grade entry for this student
                         $new_grade = array(
                             'student_id'    => $student['student_id'],
-                            'assignment_id' => $assignments[$name]['assignment_id'],
-                            'breakdown'     => $assignments[$name]['breakdown']
+                            'assignment_id' => $assignments[$assign_name]['assignment_id'],
+                            'breakdown'     => $assignments[$assign_name]['breakdown']
                         );
 
                         $this->Grades->add_grade($new_grade);
 
                         // Then assign empty grade holder
-                        $student[$name] = "-";
+                        $student[$assign_name] = "-";
 
                     }
 
                     // Create score cell with data-title = assignment name &
                     // onclick event to open grade modal
+                    // die(print_r($student)."\t".$assign_name);
+                    // die(print_r($student[$assign_name]));
                     $grade_table .= self::START_TABS."\t\t".
-                        '<li data-title="'.$name.':" onclick="openGradeModal(this);">'
-                        .$student[$name]."</li>\n";
+                        '<li data-title="'.$assign_name.':" onclick="openGradeModal(this);">'
+                        .$student[$assign_name]."</li>\n";
                 }
 
                 $grade_table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
@@ -486,7 +496,7 @@
 
             // Adding assignment breakdown to grade object
             $grade[0]['assignment'] = $assignment[0]['breakdown'];
-            
+
             if(count($grade) > 0){
                 echo json_encode($grade);
             }else{
