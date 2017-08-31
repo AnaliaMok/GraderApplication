@@ -1,0 +1,42 @@
+///
+/// Description: File to record features left to develop
+/// and bugs that still need to be fixed
+///
+
+[Styling]
+- Login screen inputs need to re-worked so icons and text inputs don't get
+misaligned.
+- NAV logout button will overlap other icons if height of browser is shrinked.
+
+[Core Features]
+- Exporting function:
+    - Need to be able to create a simple text document for displaying scores,
+    grade breakdowns and comments. Needs to be easy to copy text so that it can
+    be pasted into myCourses' feedback area
+    - Need to be able to make an easily readable spreadsheet to possibly send
+    to a professor
+    - Will be using Handson table
+- Settings page
+    - Might be removed
+    - Potential Items:
+        - Theme changing: Might need to introduce a pre-processor
+        - Pinned course sections
+- Timestamp table
+    - Display this week's time stamps (on both the dashboard home page & timestamp
+        specific page)
+    - Be able to add/edit/delete a timestamp
+    - (Should be already implemented but not sure) Calculating total time spent
+    grading
+- Creating/Editing/Deleting a Section
+    - Currently section id's aren't unique enough. Might need to add term suffix
+
+[Potential Optimizations]
+- For Code Cleanliness
+    - overhaul current javascript to use module pattern
+    - Look for possible simplification of CSS (Consider based on whether or not
+    themes will be a feature)
+    - Models could be adjusted to not have several getter methods
+    - For gradebook/index, consider making a widget/component for the modals
+        - Might want to inject them from a separate file so that it's not
+        mixed with index file.
+- Display of grade table could be optimized to not use 2 sets of nested loops

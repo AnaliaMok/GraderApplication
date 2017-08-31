@@ -140,8 +140,6 @@
 
                     if($grade['score'] !== "" && $grade['score'] !== NULL){
                         $score = $grade['score']."&nbsp;(".$grade['letter_grade'].")";
-                        //echo print_r($grade);
-                        //echo("Pass");
                     }
 
                     $students[$student_name][$assign_name] = $score;
@@ -149,7 +147,6 @@
 
             }
 
-            // die(print_r($students["Alvarez, Lucas"]));
             // Constructing Table
             $grade_table = '<div class="std-table">'."\n";
             $grade_table .= $this->generate_heading($heading);
@@ -187,8 +184,6 @@
 
                     // Create score cell with data-title = assignment name &
                     // onclick event to open grade modal
-                    // die(print_r($student)."\t".$assign_name);
-                    // die(print_r($student[$assign_name]));
                     $grade_table .= self::START_TABS."\t\t".
                         '<li data-title="'.$assign_name.':" onclick="openGradeModal(this);">'
                         .$student[$assign_name]."</li>\n";
@@ -528,7 +523,7 @@
             // Now create new grade record
             $this->Grades->edit_grade($data);
 
-            // TODO: Set flashdata
+            // TODO: Set flashdata: Might not need ul
             $grade_updated = "<p>Grade successfully added:</p>\n<ul>\n".$grade_updated;
             $grade_updated .= "</ul>\n";
             $this->session->set_flashdata("grade_updated", $grade_updated);

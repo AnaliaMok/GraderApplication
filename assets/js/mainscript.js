@@ -764,6 +764,8 @@ function disappearModal(id){
         // Also Empty Errors Holder Ul
         $("#errors-holder ul").html("");
 
+        // TODO: Consider emptying grade modal here. User can see flash of emptying
+        // when opening new grade modal
     }
 
     // Hide Overflow
