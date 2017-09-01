@@ -142,18 +142,23 @@
 
                         // Checkboxes
                         $table .= self::START_TABS."\t\t".'<li data-title="Grades: ">'
-                            .form_checkbox(array('name' => 'grade', 'id' => "grade"))
+                            .form_checkbox(array('name' => 'grade', 'id' => "grade", "value" => $curr_name))
                             ."</li>\n";
                         $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
                         $table .= self::START_TABS."\t\t".'<li data-title="Comments: ">'
-                            .form_checkbox(array('name' => 'comments', 'id' => "comments"))
+                            .form_checkbox(array('name' => 'comments', 'id' => "comments", "value" => $curr_name))
                             ."</li>\n";
                         $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
                         // Add to Queue Button
                         $table .= self::START_TABS."\t\t".'<li data-title="">'
-                            .form_button("add", "Add to Queue", array("id" => "add", "class" => "blue-btn"))
+                            .form_button("add", "Add to Queue",
+                                array(
+                                    "id" => "add",
+                                    "class" => "blue-btn",
+                                    "data-section" => $sect['section_id']
+                                ))
                             ."</li>\n";
 
                         // Closing ul tag

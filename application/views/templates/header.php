@@ -18,6 +18,11 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?php echo base_url().'assets/css/style.css'; ?>">
 
+    <!-- Handsontable Embed -->
+    <script src="<?php echo base_url()?>assets/js/bower_components/handsontable/dist/handsontable.full.js"></script>
+    <link rel="stylesheet" media="screen"
+        href="<?php echo base_url()?>assets/js/bower_components/handsontable/dist/handsontable.full.css">
+
     <!-- CKEditor Include -->
     <script src="<?php echo base_url(); ?>assets/ckeditor/ckeditor.js">
 

@@ -59,6 +59,11 @@ function init(){
         $(".category").click(addCategory);
     }
 
+    if($("#add") != null){
+        // Initialize Export Module
+        ExportWidget.init();
+    }
+
 } // End of init
 
 
