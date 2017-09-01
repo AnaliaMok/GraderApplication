@@ -719,6 +719,13 @@ div.search-bar input[type=search]{
     vertical-align: middle;
 }
 
+/* Blue Button help inside table */
+button#add{
+    font-size: 1rem;
+    margin: 0;
+    padding: 0.1rem;
+}
+
 /************************ Reusable Alert Messages ************************/
 div.alert-message{
     width: 80%;
@@ -1050,6 +1057,13 @@ div.modal-content span.lnr-cross{
         width: auto;
         margin-right: 1rem;
         /*margin-left: 1rem;*/
+    }
+
+    /* Blue Button help inside table */
+    button#add{
+        font-size: 1em;
+        margin: 0;
+        padding: 0.3rem 0.5rem;
     }
 
     div.input-section .search-bar,

@@ -110,8 +110,11 @@
          */
         private function generate_table(&$data, $assignments, $sections){
 
+            // Loading Form Helper
+            $this->load->helper("form");
+
             // Defining Heading - Contains empty cell for 'add to queue' btn
-            $heading = array("Assignments", "Section", "Grades", "Comments", "Both", "");
+            $heading = array("Assignments", "Section", "Grades", "Comments", "");
 
             // Constructing Table
             $table = '<div class="std-table">'."\n";
@@ -124,10 +127,37 @@
             foreach ($assignments as $assign) {
 
                 $curr_id = $assign['assignment_id'];
+                $curr_name = $assign['name'];
                 foreach($sections as $sect){
 
                     if($this->does_grade_exist($curr_id, $sect['section_id'])){
                         // TODO: If grade exists, create new row
+                        $table .= self::START_TABS."\t<ul>\n";
+
+                        $table .= self::START_TABS."\t\t".'<li data-title="Assignment: ">'.$curr_name."</li>\n";
+                        $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+
+                        $table .= self::START_TABS."\t\t".'<li data-title="Section: ">'.$sect['section_id']."</li>\n";
+                        $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+
+                        // Checkboxes
+                        $table .= self::START_TABS."\t\t".'<li data-title="Grades: ">'
+                            .form_checkbox(array('name' => 'grade', 'id' => "grade"))
+                            ."</li>\n";
+                        $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+
+                        $table .= self::START_TABS."\t\t".'<li data-title="Comments: ">'
+                            .form_checkbox(array('name' => 'comments', 'id' => "comments"))
+                            ."</li>\n";
+                        $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
+
+                        // Add to Queue Button
+                        $table .= self::START_TABS."\t\t".'<li data-title="">'
+                            .form_button("add", "Add to Queue", array("id" => "add", "class" => "blue-btn"))
+                            ."</li>\n";
+
+                        // Closing ul tag
+                        $table .= self::START_TABS."\t</ul>"."<!-- End of row -->\n";
                     }
 
                 } // End of inner loop
