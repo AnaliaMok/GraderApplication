@@ -457,8 +457,7 @@
         public function is_date_format($due_date){
 
             // Attempty to create a date
-            $date = DateTime::createFromFormat("m/d/Y", $due_date);
-
+            $date = DateTime::createFromFormat("Y-m-d", $due_date);
             return $date != FALSE;
 
         } // End of due_date
