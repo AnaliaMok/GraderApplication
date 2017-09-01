@@ -28,32 +28,34 @@
 
             // Creating section dropdown
             $sections = $this->Sections->get_sections();
-            $js = 'class="section-dropdown" id="section-dropdown"';
+            $js = 'class="section-dropdown" id="g-section-dropdown"';
 
             $options = array();
+            $options['all'] = 'All Sections';
             foreach($sections as $sect){
                 $options[$sect['section_id']] = $sect['section_id'];
             }
 
             // Name: sections; Default: 1st Section ID in result array
             // class & id: section-dropdown
-            $data['sections'] = form_dropdown("sections", $options, $sections[0]['section_id'], $js);
+            $data['sections'] = form_dropdown("sections", $options, $options['all'], $js);
 
             // Creating Assignments Dropdown
             $assignments = $this->Assignments->get_all_assignments();
-            $js = 'id="assignment-dropdown"';
+            $js = 'id="g-assignment-dropdown"';
 
             $a_options = array();
+            $a_options['all'] = 'All Assignments';
             foreach($assignments as $assignment){
                 $a_options[$assignment['name']] = $assignment['name'];
             }
 
             // Name: Assignments; Default: 1st Assignment in result array
             // id: assignment-dropdown
-            $data['assignments'] = form_dropdown("assignments", $a_options, $assignments[0]['name'], $js);
+            $data['assignments'] = form_dropdown("assignments", $a_options, $a_options['all'], $js);
 
             // Create Export Table
-            $this->generate_table($data);
+            $this->generate_table($data, $assignments, $sections);
 
             // Variable for nav
             $data['active'] = "export";
@@ -103,16 +105,35 @@
          *
          * @param  Associative Array $data - Data Array that will pass vars to
          *                           the view.
+         * @param Array $assignments - list of all assignments
+         * @param Array $sections - List of all sections
          */
-        private function generate_table(&$data){
+        private function generate_table(&$data, $assignments, $sections){
 
             // Defining Heading - Contains empty cell for 'add to queue' btn
-            $heading = array("Assignment", "Section", "Grades", "Comments", "Both", "");
+            $heading = array("Assignments", "Section", "Grades", "Comments", "Both", "");
 
             // Constructing Table
             $table = '<div class="std-table">'."\n";
             $table .= $this->generate_heading($heading);
             $table .= self::START_TABS.'<div class="table-body">'."\n";
+
+            // For each assignment,
+            //      check if a grade records exists with both
+            //      its assignment_id and for each section_id
+            foreach ($assignments as $assign) {
+
+                $curr_id = $assign['assignment_id'];
+                foreach($sections as $sect){
+
+                    if($this->does_grade_exist($curr_id, $sect['section_id'])){
+                        // TODO: If grade exists, create new row
+                    }
+
+                } // End of inner loop
+
+            } // End of outer loop
+
 
             // Closing Tags
             $table .= self::START_TABS."</div><!-- End of table-body -->\n";
@@ -120,6 +141,19 @@
 
             $data['table'] = $table;
         } // End of generate_table
+
+
+        /**
+         * does_grade_exist - Calls on correponsing Grade method to query for
+         *      grade records with the given assignment id and students with the
+         *      given section_id.
+         * @param  int $assignment_id
+         * @param  String $section_id
+         * @return 1 is grade exist; 0 otherwise
+         */
+        private function does_grade_exist($assignment_id, $section_id){
+            return $this->Grades->does_grade_exist($assignment_id, $section_id);
+        } // End of does_grade_exist
 
 
         /**

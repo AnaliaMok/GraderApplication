@@ -19,6 +19,8 @@
             <?php echo $table; ?>
         </div>
 
-        <div class="upcoming-container"></div>
+        <div class="upcoming-container">
+            <h2>Download Queue</h2>
+        </div>
     </div><!-- End of content -->
 </main>

@@ -143,6 +143,33 @@
 
         } // End of edit_grade
 
+
+        /**
+         * does_grade_exist - Based on an $assignment_id and $section_id,
+         *
+         * @param  int $assignment_id - Assignment record id
+         * @param  String $section_id - Section record id
+         * @return 1 if grade exists; 0 otherwise
+         */
+        public function does_grade_exist($assignment_id, $section_id){
+
+            $this->db->select("grades.grade_id");
+            $this->db->from("grades");
+
+            $this->db->join("assignments", "assignments.assignment_id = grades.assignment_id");
+            $this->db->join("students", "students.student_id = grades.student_id");
+
+            $this->db->where(
+                "assignments.assignment_id = ".$assignment_id. " AND ".
+                "students.section_id = '". $section_id. "'"
+            );
+
+            $query = $this->db->get();
+
+            return (count($query->result_array()) >= 1);
+
+        } // End of does_grade_exist
+
     } // End of Grade_model
 
 ?>
