@@ -9,6 +9,7 @@ misaligned.
 - NAV logout button will overlap other icons if height of browser is shrinked.
 
 [Core Features]
+- Linking Dashboard to Specific Gradebook
 - Exporting function:
     - Need to be able to create a simple text document for displaying scores,
     grade breakdowns and comments. Needs to be easy to copy text so that it can

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Clean URLs to SimplePages
-$route['export'] = 'simplepages/export';
+$route['export'] = 'export/view';
 $route['backup'] = 'simplepages/backup';
 $route['settings'] = 'simplepages/settings';
 $route['timestamps'] = 'simplepages/timestamps';

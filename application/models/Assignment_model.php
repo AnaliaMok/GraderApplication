@@ -47,17 +47,20 @@
             $last_day_of_mth = date("Y-m-d", strtotime($curr_year."-".$curr_month."-".$date->format("t")));
 
             $this->db->select($fields);
-            $this->db->group_start()
-                     ->where("due_date >=", $first_day_of_mth)
-                     ->group_start()
-                        ->where("due_date <=", $last_day_of_mth)
-                     ->group_end()
-                    ->group_end();
+            $where = "due_date >= DATE '".$first_day_of_mth."' AND due_date <= DATE '".$last_day_of_mth. "'";
+            // $this->db->group_start()
+            //          ->where("due_date >=", $first_day_of_mth)
+            //          ->group_start()
+            //             ->where("due_date <=", $last_day_of_mth)
+            //          ->group_end()
+            //         ->group_end();
+            $this->db->where($where);
 
             if($all){
                 // if all is true, get all assignments from this month, not just
                 // incomplete items
-                $query = $this->db->get_where("assignments", "started IS NOT NULL");
+                // $query = $this->db->get_where("assignments", "started IS NOT NULL");
+                $query = $this->db->get("assignments");
             }else{
                 // Otherwise, get this month's incomplete items
                 $query = $this->db->get_where("assignments", "is_completed=$all");
@@ -67,8 +70,16 @@
         } // End of get_assignments
 
 
-        public function get_all_assignments($section_id){
-            // TODO
+        /**
+         * get_all_assignments - Just returns all assignment records
+         * TODO: Need to generalize with rest of getter methods
+         * @param  integer $section_id [description]
+         * @return [type]              [description]
+         */
+        public function get_all_assignments($section_id=0){
+            $this->db->order_by("due_date", "DESC");
+            $query = $this->db->get("assignments");
+            return $query->result_array();
         } // End of get_all_assignments
 
 
@@ -83,8 +94,8 @@
 
             // Need to format due date for MySQL
             $due_date = $this->input->post("due_date");
-            $due_date = DateTime::createFromFormat("m/d/Y", $due_date);
-            $due_date = date_format($due_date, "Y-m-d");
+            // $due_date = DateTime::createFromFormat("m/d/Y", $due_date);
+            // $due_date = date_format($due_date, "Y-m-d");
 
             $data = array(
                 "name"      => $name,
