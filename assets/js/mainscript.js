@@ -559,10 +559,10 @@ function openGradeModal(assignment){
             var breakdownHolder = document.getElementById("breakdown");
 
             // First Empty breakdownHolder's children
-            while(breakdownHolder.hasChildNodes()){
-                //document.remove(breakdownHolder.lastChild);
-                breakdownHolder.removeChild(breakdownHolder.lastChild);
-            }
+            // while(breakdownHolder.hasChildNodes()){
+            //     //document.remove(breakdownHolder.lastChild);
+            //     breakdownHolder.removeChild(breakdownHolder.lastChild);
+            // }
 
             Object.keys(breakdown).forEach(function(key){
                 // console.log(key);
@@ -766,6 +766,13 @@ function disappearModal(id){
 
         // TODO: Consider emptying grade modal here. User can see flash of emptying
         // when opening new grade modal
+        var breakdownHolder = document.getElementById("breakdown");
+
+        // First Empty breakdownHolder's children
+        while(breakdownHolder.hasChildNodes()){
+            //document.remove(breakdownHolder.lastChild);
+            breakdownHolder.removeChild(breakdownHolder.lastChild);
+        }
     }
 
     // Hide Overflow

@@ -166,7 +166,7 @@
                     // TODO: wrap in anchor tag to open edit grade modal
                     $grade_table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
-                    if($student[$assign_name] === NULL){
+                    if(isset($student[$assign_name]) === FALSE){
                         // If student doesn't have an entry for current
                         // assignment, create new grade entry for this student
                         $new_grade = array(
@@ -263,7 +263,7 @@
             }
 
             if($this->form_validation->run() === FALSE){
-                // Loading Views
+                // Loading Views - To new_student page
                 $this->load->view('templates/header');
                 $this->load->view('templates/nav', $data);
                 $this->load->view('gradebook/new_student', $data);
@@ -305,11 +305,12 @@
                 }
 
 
-                // Loading Views
-                $this->load->view('templates/header');
-                $this->load->view('templates/nav', $data);
-                $this->load->view('gradebook/new_student', $data);
-                $this->load->view('templates/footer');
+                // Loading Views - Back to gradebook main page
+                // $this->load->view('templates/header');
+                // $this->load->view('templates/nav', $data);
+                // $this->load->view('gradebook/index', $data);
+                // $this->load->view('templates/footer');
+                redirect("gradebook");
             }
 
         } // End of add_student
