@@ -30,45 +30,58 @@ var ExportWidget = (function(){
         for(var i = 0, length = gradeCheckBoxes.length; i < length; i++){
             gradeCheckBoxes[i].onclick = function(){
                 if(this.checked){
-                    storeOption();
+                    storeOption(this);
                 }else{
-                    removeOption();
+                    removeOption(this);
                 }
             };
         }
 
-        Object.keys(commentCheckBoxes).forEach(function(ccb){
-            ccb.onclick = function(){
+        for(i = 0, length = commentCheckBoxes.length; i < length; i++){
+            commentCheckBoxes[i].onclick = function(){
                 if(this.checked){
-                    storeOption();
+                    storeOption(this);
                 }else{
-                    removeOption();
+                    removeOption(this);
                 }
             };
-        });
+        }
 
-        Object.keys(addToQueueBtns).forEach(function(atqb){
-            atqb.onclick = function(){
-                // TODO
-            };
-        });
-
+        for(i = 0, length = addToQueueBtns.length; i < length; i++){
+            addToQueueBtns[i].onclick = addToQueue;
+        }
 
     };
 
     // Method triggered by a checkbox. Adds an option to the json string stored
     // inside the corresponding addToQueue btn's value attr.
-    var storeOption = function(){
-        // TODO
-        console.log("store");
+    var storeOption = function(item){
+
+        var parentUl = item.parentNode.parentNode,
+            addBtnLi = parentUl.children[parentUl.children.length - 1],
+            addBtn = addBtnLi.children[0],
+            currValue = JSON.parse(addBtn.value);
+
+        currValue.push(item.id);
+        addBtn.value = JSON.stringify(currValue);
+
+        console.log("store: " + addBtn.value);
     };
 
 
     // Method triggered by a checkbox. Removes an option to the json string stored
     // inside the corresponding addToQueue btn's value attr.
-    var removeOption = function(){
-        // TODO
-        console.log("remove");
+    var removeOption = function(item){
+        var parentUl = item.parentNode.parentNode,
+            addBtnLi = parentUl.children[parentUl.children.length - 1],
+            addBtn = addBtnLi.children[0],
+            currValue = JSON.parse(addBtn.value),
+            idx = currValue.indexOf(item.id);
+
+        currValue.splice(idx, 1);
+        addBtn.value = JSON.stringify(currValue);
+
+        console.log("remove: " + addBtn.value);
     };
 
 

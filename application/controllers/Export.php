@@ -157,7 +157,8 @@
                                 array(
                                     "id" => "add",
                                     "class" => "blue-btn",
-                                    "data-section" => $sect['section_id']
+                                    "data-section" => $sect['section_id'],
+                                    "value" => "[]"
                                 ))
                             ."</li>\n";
 
