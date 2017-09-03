@@ -252,7 +252,7 @@
                 } // End of graded_breakdown loop
 
                 // Writing Comments
-                $content .= "Comments:\n";
+                $content .= "\nComments:\n";
                 // Stripping tags except for paragraph tags
                 $content .= strip_tags($curr_grade['comments'])."\n\n";
 
