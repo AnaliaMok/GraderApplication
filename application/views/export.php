@@ -24,10 +24,10 @@
             <!-- Holder for Download Items -->
             <div id="queue">
                 <!-- TODO: Remove -->
-                <div class="items">
+                <!--<div class="items">
                     <div class="remove"><span class="ion ion-close-round"></span></div>
                     <div class="info">
-                        <span><strong>Assignment:</strong> HW 1</span>
+                        <span><strong>Assignment:</strong> Project Two</span>
                         <span><strong>Section:</strong> CSCI-141-01</span>
                     </div>
                     <div class="icon-holder">
@@ -37,7 +37,7 @@
                     </div>
                 </div><!-- End of first item -->
 
-                <div class="items">
+                <!--<div class="items">
                     <div class="remove"><span class="ion ion-close-round"></span></div>
                     <div class="info">
                         <span><strong>Assignment:</strong> HW 1</span>

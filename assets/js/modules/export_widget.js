@@ -92,6 +92,71 @@ var ExportWidget = (function(){
 
 
     /**
+     * createItem - Creates the DOM Element that will represent a download
+     *      item in the queue
+     * @param  {String}  assignmentName
+     * @param  {String}  section - Section ID
+     * @param  {Boolean} isComments - By defeault, is true. When true, will use
+     *                             the android-list icon. Will use the excel
+     *                             sheet image otherwise.
+     * @return {Node} the DOM element representing the list item
+     */
+    var createItem = function(assignmentName, section, isComments){
+
+        // isComments has DEFAULT of 0
+        if(isComments === undefined){ isComments = true; }
+
+        var container = document.createElement("div");
+        container.className = "items";
+
+        // Remove button and cross icon
+        var removeBtn = document.createElement("div"),
+            cross = document.createElement("span");
+
+        removeBtn.className = "remove";
+        cross.className = "ion ion-close-round";
+
+        // Connecting parent to children
+        removeBtn.appendChild(cross);
+
+        var infoContainer = document.createElement("div"),
+            assignmentInfo = document.createElement("span"),
+            sectionInfo = document.createElement("span");
+
+        infoContainer.className = "info";
+        assignmentInfo.innerHTML = "<strong>Assignment: </strong> " + assignmentName;
+        sectionInfo.innerHTML = "<strong>Section: </strong> " + section;
+
+        // Connecting parents to children
+        infoContainer.appendChild(assignmentInfo);
+        infoContainer.appendChild(sectionInfo);
+
+        // Icon determination & creation
+        var iconHolder = document.createElement("div");
+        iconHolder.className = "icon-holder";
+
+        if(isComments){
+            var icon = document.createElement("span");
+            icon.className = "ion ion-android-list";
+            iconHolder.appendChild(icon);
+        }else{
+            var image = document.createElement('img');
+            image.setAttribute("src",
+                "http://localhost/GraderApplication/assets/icons/ms-excel-icon-gray.svg");
+            image.setAttribute("alt", "excel icon");
+            iconHolder.appendChild(image);
+        }
+
+        // Connecting components to container
+        container.appendChild(removeBtn);
+        container.appendChild(infoContainer);
+        container.appendChild(iconHolder);
+
+        return container;
+    };
+
+
+    /**
      * addToQueue - Creates new download items in the visible download queue and
      * updates the downloadQueue
      * NOTE: Context of 'this' is the addToQueue button
@@ -103,12 +168,13 @@ var ExportWidget = (function(){
             section = this.getAttribute("data-section");
 
         if(options.length > 0){
-            console.log("Assignment: " + assignment + " Section: " + section);
-
             // Foreach option, create a new item and add a new object to the
             // queue
-            for(var i = 0, length = options.length; i < length; i++){
+            var queue = document.getElementById("queue");
 
+            for(var i = 0, length = options.length; i < length; i++){
+                queue.appendChild(createItem(assignment, section, (options[i] === "comments")));
+                // TODO: Add to downloadQueue
             }
 
         }else{
@@ -131,10 +197,10 @@ var ExportWidget = (function(){
 
 
     /**
-     * downloadQueue - Prepares request for creating text files & spreadsheets
+     * download - Prepares request for creating text files & spreadsheets
      * @return {[type]} [description]
      */
-    var downloadQueue = function(){
+    var download = function(){
         // TODO: Sends AJAX request to create text files and or spreadsheets
     };
 
@@ -149,7 +215,7 @@ var ExportWidget = (function(){
         removeOption: removeOption,
         addToQueue: addToQueue,
         removeFromQueue: removeFromQueue,
-        downloadQueue: downloadQueue
+        download: download
     };
 
 })();

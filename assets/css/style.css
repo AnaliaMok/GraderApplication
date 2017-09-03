@@ -654,9 +654,10 @@ div.items div{
 }
 
 div.items div.remove{
-    padding: 1.5rem 0.5rem;
+    padding: 1.7rem 0.5rem;
     width: 10%;
-    height: 100%;
+    /*min-height: 3rem;*/
+    max-height: 4rem;
     background-color: #E74C3C;
     text-align: center;
     cursor: pointer;
@@ -668,12 +669,16 @@ div.items div.remove span{
     color: #FFF;
 }
 
-div.items div.icon-holder{ width: 10%: }
+div.items div.icon-holder{
+    width: 10%;
+}
 
 div.items div.info{
-    width: 60%;
+    width: 65%;
     padding-left: 0.5rem;
 }
+
+div.items div.info span{ display: block; }
 
 /* Excel sheet icon */
 div.items div.icon-holder img{
