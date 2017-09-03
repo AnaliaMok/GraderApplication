@@ -60,7 +60,7 @@ function init(){
     }
 
     if($("#add") != null){
-        // Initialize Export Module
+        // Initialize Export Widget
         ExportWidget.init();
     }
 

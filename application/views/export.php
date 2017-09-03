@@ -22,33 +22,7 @@
         <div class="upcoming-container">
             <h2>Download Queue</h2>
             <!-- Holder for Download Items -->
-            <div id="queue">
-                <!-- TODO: Remove -->
-                <!--<div class="items">
-                    <div class="remove"><span class="ion ion-close-round"></span></div>
-                    <div class="info">
-                        <span><strong>Assignment:</strong> Project Two</span>
-                        <span><strong>Section:</strong> CSCI-141-01</span>
-                    </div>
-                    <div class="icon-holder">
-                        <img
-                            src="<?php echo base_url();?>assets/icons/ms-excel-icon-gray.svg"
-                            alt="excel icon">
-                    </div>
-                </div><!-- End of first item -->
-
-                <!--<div class="items">
-                    <div class="remove"><span class="ion ion-close-round"></span></div>
-                    <div class="info">
-                        <span><strong>Assignment:</strong> HW 1</span>
-                        <span><strong>Section:</strong> CSCI-141-01</span>
-                    </div>
-                    <div class="icon-holder">
-                        <span class="ion ion-android-list"></span>
-                    </div>
-                </div><!-- End of second item -->
-
-            </div>
+            <div id="queue"></div>
             <button type="button" name="download" class="blue-btn">Download</button>
         </div>
     </div><!-- End of content -->

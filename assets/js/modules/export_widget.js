@@ -114,6 +114,7 @@ var ExportWidget = (function(){
             cross = document.createElement("span");
 
         removeBtn.className = "remove";
+        removeBtn.onclick = removeFromQueue;
         cross.className = "ion ion-close-round";
 
         // Connecting parent to children
@@ -173,12 +174,24 @@ var ExportWidget = (function(){
             var queue = document.getElementById("queue");
 
             for(var i = 0, length = options.length; i < length; i++){
-                queue.appendChild(createItem(assignment, section, (options[i] === "comments")));
-                // TODO: Add to downloadQueue
+                var newItem = createItem(assignment, section, (options[i] === "comments"));
+
+                // Add to downloadQueue
+                var newKey = {
+                    "assignment":   assignment,
+                    "section":      section,
+                    "type":         options[i]
+                };
+
+                newKey = JSON.stringify(newKey);
+                newItem.setAttribute("key", newKey);
+
+                queue.appendChild(newItem);
+                downloadQueue.push(newKey);
             }
 
         }else{
-            // Warning: Can't add anything
+            // Make Warning: Can't add anything
             console.log("No options selected");
         }
 
@@ -188,11 +201,17 @@ var ExportWidget = (function(){
     /**
      * removeFromQueue - Removes item from visible queue and the internal
      * download queue
-     * @param  {int} itemIdx - Index of removable item from download queue
      * @return null
      */
-    var removeFromQueue = function(itemIdx){
-        // TODO
+    var removeFromQueue = function(){
+        var parent = this.parentNode,
+            key = parent.getAttribute("key");
+
+        // Removing key from internal queue
+        downloadQueue.splice(downloadQueue.indexOf(key), 1);
+
+        parent.remove();
+
     };
 
 
