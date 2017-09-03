@@ -142,12 +142,12 @@
 
                         // Checkboxes
                         $table .= self::START_TABS."\t\t".'<li data-title="Grades: ">'
-                            .form_checkbox(array('name' => 'grade', 'id' => "grade", "value" => $curr_name))
+                            .form_checkbox(array('name' => 'grade', 'id' => "grade"))
                             ."</li>\n";
                         $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
                         $table .= self::START_TABS."\t\t".'<li data-title="Comments: ">'
-                            .form_checkbox(array('name' => 'comments', 'id' => "comments", "value" => $curr_name))
+                            .form_checkbox(array('name' => 'comments', 'id' => "comments"))
                             ."</li>\n";
                         $table .= self::START_TABS."\t\t".'<li class="empty-cell">'."</li>\n";
 
@@ -157,6 +157,7 @@
                                 array(
                                     "id" => "add",
                                     "class" => "blue-btn",
+                                    "data-assignment" => $curr_name,
                                     "data-section" => $sect['section_id'],
                                     "value" => "[]"
                                 ))

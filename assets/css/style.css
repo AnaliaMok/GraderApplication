@@ -638,6 +638,56 @@ div.upcoming-list-item input[type=checkbox]{
     top: 32.7%;
 }
 
+/************************** Download Queue Items **************************/
+div#queue div.items{
+    position: relative;
+    width: 90%;
+    margin: 1rem auto;
+    background-color: #FFF;
+}
+
+div.items div{
+    display: inline-block;
+    margin: 0;
+    padding: 0.5rem 0;
+    vertical-align: middle;
+}
+
+div.items div.remove{
+    padding: 1.5rem 0.5rem;
+    width: 10%;
+    height: 100%;
+    background-color: #E74C3C;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.items div.remove span{
+    display: inline-block;
+    vertical-align: middle;
+    color: #FFF;
+}
+
+div.items div.icon-holder{ width: 10%: }
+
+div.items div.info{
+    width: 60%;
+    padding-left: 0.5rem;
+}
+
+/* Excel sheet icon */
+div.items div.icon-holder img{
+    width: 2rem;
+    height: auto;
+}
+
+/* Android-list icon */
+div.items div.icon-holder span{
+    font-size: 40px;
+    color: #D5D5D5;
+}
+
+
 /* Nothing to find messages */
 span#nothing-message{
     display: block;
@@ -1059,11 +1109,18 @@ div.modal-content span.lnr-cross{
         /*margin-left: 1rem;*/
     }
 
-    /* Blue Button help inside table */
+    /* Blue Button held inside table */
     button#add{
         font-size: 1em;
         margin: 0;
         padding: 0.3rem 0.5rem;
+    }
+
+    /* Blue Button inside upcoming container in export page */
+    div.upcoming-container button{
+        display: block;
+        width: 90%;
+        margin: 0 auto;
     }
 
     div.input-section .search-bar,

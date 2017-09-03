@@ -9,7 +9,7 @@
 var ExportWidget = (function(){
 
     // Download queue holder (not actually a Queue)
-    var queue;
+    var downloadQueue;
 
     // Common HTML Elements
     var gradeCheckBoxes,
@@ -20,7 +20,7 @@ var ExportWidget = (function(){
     var init = function(){
 
         // Initialize Fields
-        queue = [];
+        downloadQueue = [];
 
         // Assign Events to Common widgets
         gradeCheckBoxes = document.getElementsByName("grade");
@@ -51,10 +51,15 @@ var ExportWidget = (function(){
             addToQueueBtns[i].onclick = addToQueue;
         }
 
-    };
+    }; // End of init
 
-    // Method triggered by a checkbox. Adds an option to the json string stored
-    // inside the corresponding addToQueue btn's value attr.
+
+    /**
+     * storeOption - Method triggered by a checkbox. Adds an option to the json
+     * string stored inside the corresponding addToQueue btn's value attr.
+     * @param  {Node} item - Clicked Checkbox
+     * @return null
+     */
     var storeOption = function(item){
 
         var parentUl = item.parentNode.parentNode,
@@ -65,12 +70,15 @@ var ExportWidget = (function(){
         currValue.push(item.id);
         addBtn.value = JSON.stringify(currValue);
 
-        console.log("store: " + addBtn.value);
     };
 
 
-    // Method triggered by a checkbox. Removes an option to the json string stored
-    // inside the corresponding addToQueue btn's value attr.
+    /**
+     * removeOption - Method triggered by a checkbox. Removes an option to the
+     * json string stored inside the corresponding addToQueue btn's value attr.
+     * @param  {Node} item - Clicked checkbox
+     * @return null
+     */
     var removeOption = function(item){
         var parentUl = item.parentNode.parentNode,
             addBtnLi = parentUl.children[parentUl.children.length - 1],
@@ -80,22 +88,52 @@ var ExportWidget = (function(){
 
         currValue.splice(idx, 1);
         addBtn.value = JSON.stringify(currValue);
-
-        console.log("remove: " + addBtn.value);
     };
 
 
+    /**
+     * addToQueue - Creates new download items in the visible download queue and
+     * updates the downloadQueue
+     * NOTE: Context of 'this' is the addToQueue button
+     * @return null
+     */
     var addToQueue = function(){
-        // TODO
-        // NOTE: Maybe store a json string inside corresponding addToQueue btn
-        // and use that to keep track of checkboxes
+        var options = JSON.parse(this.value),
+            assignment = this.getAttribute("data-assignment"),
+            section = this.getAttribute("data-section");
+
+        if(options.length > 0){
+            console.log("Assignment: " + assignment + " Section: " + section);
+
+            // Foreach option, create a new item and add a new object to the
+            // queue
+            for(var i = 0, length = options.length; i < length; i++){
+
+            }
+
+        }else{
+            // Warning: Can't add anything
+            console.log("No options selected");
+        }
+
     };
 
 
+    /**
+     * removeFromQueue - Removes item from visible queue and the internal
+     * download queue
+     * @param  {int} itemIdx - Index of removable item from download queue
+     * @return null
+     */
     var removeFromQueue = function(itemIdx){
         // TODO
     };
 
+
+    /**
+     * downloadQueue - Prepares request for creating text files & spreadsheets
+     * @return {[type]} [description]
+     */
     var downloadQueue = function(){
         // TODO: Sends AJAX request to create text files and or spreadsheets
     };
