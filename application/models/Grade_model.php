@@ -55,8 +55,8 @@
         public function get_grades($criteria){
 
             $this->db->select('grades.score, grades.letter_grade,
-                grades.student_id, assignments.assignment_id, assignments.name,
-                assignments.breakdown, students.section_id, students.student_id');
+                grades.student_id, grades.breakdown, assignments.assignment_id,
+                assignments.name, students.section_id, students.student_id');
             $this->db->from('grades');
             $this->db->join("assignments",
                 "grades.assignment_id = assignments.assignment_id", "inner");

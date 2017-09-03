@@ -194,30 +194,73 @@
 
 
         /**
+         * create_textfile - Generates the text file of a given sections grade
+         *      breakdowns
+         * @param String section_id - Section for given grades
+         * @param Associative Array assignment - Assignment Record
+         * @param Array grades - All grades for the given section & assignment
+         * @return [type] [description]
+         */
+        private function create_textfile($section_id, $assignment, $grades){
+
+            $this->load->helper("file");
+
+            // Create file
+            $file = "output/assignment-".$section_id.".txt";
+
+            // Write header for file
+            $border = str_repeat("=", 50)."\n";
+            if(write_file($file, $border, "w")){echo "File Written!";}
+            write_file($file, "Assignment:\t".$assignment['name']."\n");
+            write_file($file, "Section:\t".$section_id."\n");
+            write_file($file, $border);
+
+            // Foreach grade, find the student's name, loop through grade breakdown
+            // and write to file
+            $assignment_breakdown = $assignment['breakdown'];
+            for($i = 0, $length = count($grades); $i < $length; $i++){
+                die(print_r($grades[$i]));
+                $graded_breakdown = $grades[$i]['breakdown'];
+
+                //Find Student
+                $student = $this->Students->get_students(array("student_id" => $grades[i]['student_id']))[0];
+                $name = "\n".$student['last_name']." ".$student['first_name']."\n";
+
+            }
+
+
+        } // End of create_textfile
+
+
+        /**
          * create_files - Generates all requested files and downloads all in a
          *      zip folder. Redirects back to export page
          * @return [type] [description]
          */
         public function create_files(){
+            // Loading helpers and libraries for creating files
+            $this->load->library("zip");
+
             $download_queue = json_decode($this->input->post("download_queue"));
 
             for($i = 0, $length = count($download_queue); $i < $length; $i++){
                 $curr_request = json_decode($download_queue[$i]);
+                $section_id = $curr_request->section;
 
                 // Getting assignment record
                 $assignment = $this->Assignments->get_simple_assignment(array("name" => $curr_request->assignment))[0];
 
                 // Getting Grades
                 $grades = $this->Grades->get_grades(array(
-                    "section_id"    => $curr_request->section,
+                    "section_id"    => $section_id,
                     'assignment_id' => $assignment['assignment_id']
                 ));
 
                 // TODO: Create Files based on type
-                if(type === "grade"){
+                if($curr_request->type === "grade"){
                     // TODO: Create spreadsheet
-                }elseif(type === "comments"){
-                    // TODO: Create Text File
+                }elseif($curr_request->type === "comments"){
+                    $this->create_textfile($section_id, $assignment, $grades);
                 }else{
                     // TODO: Error
                 }

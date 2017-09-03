@@ -28,5 +28,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-workspace
 *.sublime-project
 
-# Ignore all files in data folder
+# Ignore all files in data folder & output folder
 data/*
+output/*
