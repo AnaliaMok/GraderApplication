@@ -208,26 +208,58 @@
             // Create file
             $file = "output/assignment-".$section_id.".txt";
 
-            // Write header for file
+            // Create header for file
             $border = str_repeat("=", 50)."\n";
-            if(write_file($file, $border, "w")){echo "File Written!";}
-            write_file($file, "Assignment:\t".$assignment['name']."\n");
-            write_file($file, "Section:\t".$section_id."\n");
-            write_file($file, $border);
+            $content = "";
+            $content .= $border;
+            $content .= "Assignment:\t".$assignment['name']."\n";
+            $content .= "Section:\t".$section_id."\n";
+            $content .= $border;
 
             // Foreach grade, find the student's name, loop through grade breakdown
             // and write to file
-            $assignment_breakdown = $assignment['breakdown'];
+            $assignment_breakdown = json_decode($assignment['breakdown']);
+            //echo print_r($assignment_breakdown);
             for($i = 0, $length = count($grades); $i < $length; $i++){
-                die(print_r($grades[$i]));
-                $graded_breakdown = $grades[$i]['breakdown'];
-
+                $curr_grade = $grades[$i];
+                $graded_breakdown = json_decode($curr_grade['breakdown']);
+                //die(print_r($graded_breakdown));
                 //Find Student
-                $student = $this->Students->get_students(array("student_id" => $grades[i]['student_id']))[0];
-                $name = "\n".$student['last_name']." ".$student['first_name']."\n";
+                $student = $this->Students->get_students(array("student_id" => $curr_grade['student_id']))[0];
+                $name = "\n".$student['last_name'].", ".$student['first_name']."\n";
+
+                $content .= $name;
+                $content .= "Score:\t".$curr_grade['score']."\n";
+                $content .= "Breakdown:\t\n\n";
+
+                // Process Breakdown & Add to Content
+                foreach($graded_breakdown as $key => $value){
+
+                    $content .= $key.": ";
+
+                    // Loop through subcategories
+                    foreach($value as $sub_key => $sub_value){
+                        if($sub_key === "Total"){
+                            // Write Total points on current line
+                            $content .= $sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                        }else{
+                            // Otherwise, write newline with beginning tab
+                            $content .= "\t".$sub_key.": "
+                                .$sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                        }
+                    }
+
+                } // End of graded_breakdown loop
+
+                // Writing Comments
+                $content .= "Comments:\n";
+                // Stripping tags except for paragraph tags
+                $content .= strip_tags($curr_grade['comments'])."\n\n";
 
             }
 
+            // Write Content to file
+            if(write_file($file, $content, "w+")){echo "File Written!";}
 
         } // End of create_textfile
 
