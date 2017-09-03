@@ -204,15 +204,23 @@
             for($i = 0, $length = count($download_queue); $i < $length; $i++){
                 $curr_request = json_decode($download_queue[$i]);
 
+                // Getting assignment record
+                $assignment = $this->Assignments->get_simple_assignment(array("name" => $curr_request->assignment))[0];
+
                 // Getting Grades
                 $grades = $this->Grades->get_grades(array(
                     "section_id"    => $curr_request->section,
-                    'assignment_id' => $curr_request->assignment
+                    'assignment_id' => $assignment['assignment_id']
                 ));
 
-                //die(print_r($grades));
-
-                // TODO: Create Files
+                // TODO: Create Files based on type
+                if(type === "grade"){
+                    // TODO: Create spreadsheet
+                }elseif(type === "comments"){
+                    // TODO: Create Text File
+                }else{
+                    // TODO: Error
+                }
             }
 
 
