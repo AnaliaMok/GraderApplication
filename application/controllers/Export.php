@@ -253,8 +253,13 @@
 
                 // Writing Comments
                 $content .= "\nComments:\n";
-                // Stripping tags except for paragraph tags
-                $content .= strip_tags($curr_grade['comments'])."\n\n";
+                // Stripping tags but replacing ending p tags with a newline char first
+                $comment = strip_tags(str_replace("</p>", "\n", $curr_grade['comments']))."\n\n";
+                // Replacing characters codes inside comment
+                $comment = str_replace("&#39;", "'", $comment);
+                $comment = str_replace("&nbsp;", " ", $comment);
+                $comment = str_replace("&quot;", "\"", $comment);
+                $content .= $comment;
 
             }
 
