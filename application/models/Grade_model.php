@@ -63,8 +63,18 @@
             $this->db->join("students",
                 "grades.student_id = students.student_id", "inner");
 
+            echo "Section ID: ".$criteria['section_id'];
             $this->db->where('students.section_id', $criteria['section_id']);
-            $this->db->where('grades.student_id', $criteria['student_id']);
+
+            if(isset($criteria['student_id'])){
+                $this->db->where('grades.student_id', $criteria['student_id']);
+            }
+
+            echo "ID Set? ".isset($criteria['assignment_id']);
+            if(isset($criteria['assignment_id'])){
+                $this->db->where("assignments.assignment_id", $criteria['assignment_id']);
+            }
+
             $query = $this->db->get();
 
             return $query->result_array();

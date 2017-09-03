@@ -23,7 +23,7 @@
             <h2>Download Queue</h2>
             <!-- Holder for Download Items -->
             <div id="queue"></div>
-            <button type="button" name="download" class="blue-btn">Download</button>
+            <button type="button" name="download" id="download" class="blue-btn">Download</button>
         </div>
     </div><!-- End of content -->
 </main>

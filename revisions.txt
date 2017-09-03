@@ -1,3 +1,93 @@
+commit 3beca4e0a3ca99645c595ec5f199711668a7cb5f
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Sep 2 22:22:03 2017 -0400
+
+    Adding & Removing keys from download queue
+
+commit d93668b31e40b4d592cb2e08cb8a84cff143a52e
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Sep 2 21:57:49 2017 -0400
+
+    Created method to create queue items
+
+commit 5a29372424c6cc384441d36085d0ad5fe95c404e
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Sep 2 20:53:01 2017 -0400
+
+    Added queue item styling
+
+commit 85777b64e201b175ee2e3b3b49a248d1ae2114ea
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Sat Sep 2 10:32:32 2017 -0400
+
+    Can add and remove options to addToQueue buttons
+
+commit e0312ac3b4060cabaca0b63449f9ce8ff71649de
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Sep 1 16:52:45 2017 -0400
+
+    Stubbed out most methods in ExportWidget. Started assignments event methods to checkboxes & buttons
+
+commit b71349dbf445e51e8a3bd76e8b1f750c1b689494
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Sep 1 13:03:11 2017 -0400
+
+    Generated export table + required inputs.
+
+commit 9c396778a3647251921efb476a9906f78007ed96
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Sep 1 12:18:14 2017 -0400
+
+    Created methods to determine if an assignment & section combo has shared records
+
+commit 7863bdd3b3da5950c706e5fcbc7f85059b316482
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Fri Sep 1 09:58:24 2017 -0400
+
+    Created simple get all for assignments. Created dropdowns, search bar and table for export page
+
+commit 412bb942569cd5882a43b586e1b273bcc9b39ff1
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 31 23:59:24 2017 -0400
+
+    Started Export Widget
+
+commit dc792d86aefa031256f2533f9755455f736ecdfb
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 31 23:40:56 2017 -0400
+
+    Now redirect back to gradebook after adding new students. Optimization for modal unsuccessful
+
+commit a89cd3dbbb92dd21c657ac39a53fb8d7b0fa071f
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 31 23:31:06 2017 -0400
+
+    Fixed date bug when creating new assignment
+
+commit 947bdb1d8a79ac321d48dc2ad3cdb886aac09dab
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Thu Aug 31 12:04:34 2017 -0400
+
+    Created a features log to look back at after months on inactivity
+
+commit 0e15a0c1ea48f732a90181f4b6354b404c6e25c3
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Wed Aug 30 12:06:57 2017 -0400
+
+    Fixed graded table bug
+
+commit f9580ad19cb8560d7d73e4a77e674c8cf2f1a02d
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 29 14:36:24 2017 -0400
+
+    Grade modal now erases past entry data before displaying new data
+
+commit 6f6a2db3b4cf22e1a6b0f4cafb7cc50be5fd46f3
+Author: Analia Mok <axm2580@g.rit.edu>
+Date:   Tue Aug 29 13:51:40 2017 -0400
+
+    Now displays past comments more reliably. Still fixing grade breakdown display.
+
 commit c6f7655ef29b2fd0d04ca7f9da12e6e0e762da36
 Author: Analia Mok <axm2580@g.rit.edu>
 Date:   Sun Aug 27 16:02:03 2017 -0400

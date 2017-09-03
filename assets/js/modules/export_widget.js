@@ -51,6 +51,9 @@ var ExportWidget = (function(){
             addToQueueBtns[i].onclick = addToQueue;
         }
 
+        // Assigning Events to download button
+        document.getElementById("download").onclick = download;
+
     }; // End of init
 
 
@@ -154,7 +157,7 @@ var ExportWidget = (function(){
         container.appendChild(iconHolder);
 
         return container;
-    };
+    }; // End of createItem
 
 
     /**
@@ -220,7 +223,23 @@ var ExportWidget = (function(){
      * @return {[type]} [description]
      */
     var download = function(){
-        // TODO: Sends AJAX request to create text files and or spreadsheets
+
+        if(downloadQueue.length > 0){
+            var queue = JSON.stringify(downloadQueue);
+
+            $.ajax({
+                url: "http://localhost/GraderApplication/export/create_files",
+                type: "post",
+                mimetype: "json",
+                data: {'download_queue' : queue},
+                success: function(response){
+                    console.log("SUCCESS: " + response);
+                },
+                error: function(response){
+                    console.log("ERROR: " + response);
+                }
+            });
+        }
     };
 
     // NOTE: Will make hooks/connections to APIs and prepares requests to

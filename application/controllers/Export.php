@@ -131,7 +131,7 @@
                 foreach($sections as $sect){
 
                     if($this->does_grade_exist($curr_id, $sect['section_id'])){
-                        // TODO: If grade exists, create new row
+                        // If grade exists, create new row
                         $table .= self::START_TABS."\t<ul>\n";
 
                         $table .= self::START_TABS."\t\t".'<li data-title="Assignment: ">'.$curr_name."</li>\n";
@@ -199,7 +199,25 @@
          * @return [type] [description]
          */
         public function create_files(){
-            // TODO
+            $download_queue = json_decode($this->input->post("download_queue"));
+
+            for($i = 0, $length = count($download_queue); $i < $length; $i++){
+                $curr_request = json_decode($download_queue[$i]);
+
+                // Getting Grades
+                $grades = $this->Grades->get_grades(array(
+                    "section_id"    => $curr_request->section,
+                    'assignment_id' => $curr_request->assignment
+                ));
+
+                //die(print_r($grades));
+
+                // TODO: Create Files
+            }
+
+
+            // TODO: Set Flashdata
+
         } // End of generate_files
 
     } // End of class
