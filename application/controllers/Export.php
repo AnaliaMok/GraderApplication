@@ -71,6 +71,11 @@
         } // End of view
 
 
+        public function quickstart(){
+            $this->load->view("quickstart");
+        }
+
+
         /**
          * generate_heading - Accepts an array of strings and formats the table-head
          *      header to be used.

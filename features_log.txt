@@ -9,16 +9,13 @@ misaligned.
 - NAV logout button will overlap other icons if height of browser is shrinked.
 
 [Core Features]
-- Linking Dashboard to Specific Gradebook
+- Linking Dashboard to Specific Gradebook Item
 - Exporting function:
-    - Need to be able to create a simple text document for displaying scores,
-    grade breakdowns and comments. Needs to be easy to copy text so that it can
-    be pasted into myCourses' feedback area
     - Need to be able to make an easily readable spreadsheet to possibly send
     to a professor
-    - Will be using Handson table
+    - Will be using Handson table (or GoogleSheets API)
 - Settings page
-    - Might be removed
+    - **Might be removed**
     - Potential Items:
         - Theme changing: Might need to introduce a pre-processor
         - Pinned course sections

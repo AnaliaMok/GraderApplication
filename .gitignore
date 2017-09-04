@@ -31,3 +31,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 # Ignore all files in data folder & output folder
 data/*
 output/*
+application/views/quickstart.php
