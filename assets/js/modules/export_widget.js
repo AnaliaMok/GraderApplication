@@ -70,10 +70,15 @@ var ExportWidget = (function(){
             addBtn = addBtnLi.children[0],
             currValue = JSON.parse(addBtn.value);
 
-        currValue.push(item.id);
-        addBtn.value = JSON.stringify(currValue);
+        if(currValue.indexOf(item.id) === -1){
+            // If item hasn't already been added
+            currValue.push(item.id);
+            addBtn.value = JSON.stringify(currValue);
+        }else{
+            console.log("USAGE: Option already exists");
+        }
 
-    };
+    }; // End of storeOption
 
 
     /**
@@ -89,8 +94,13 @@ var ExportWidget = (function(){
             currValue = JSON.parse(addBtn.value),
             idx = currValue.indexOf(item.id);
 
-        currValue.splice(idx, 1);
-        addBtn.value = JSON.stringify(currValue);
+        if(idx === -1){
+            currValue.splice(idx, 1);
+            addBtn.value = JSON.stringify(currValue);
+        }else{
+            console.error("ERROR: Could not remove option");
+        }
+
     };
 
 
@@ -177,8 +187,6 @@ var ExportWidget = (function(){
             var queue = document.getElementById("queue");
 
             for(var i = 0, length = options.length; i < length; i++){
-                var newItem = createItem(assignment, section, (options[i] === "comments"));
-
                 // Add to downloadQueue
                 var newKey = {
                     "assignment":   assignment,
@@ -187,10 +195,15 @@ var ExportWidget = (function(){
                 };
 
                 newKey = JSON.stringify(newKey);
-                newItem.setAttribute("key", newKey);
 
-                queue.appendChild(newItem);
-                downloadQueue.push(newKey);
+                if(downloadQueue.indexOf(newKey) === -1){
+                    var newItem = createItem(assignment, section, (options[i] === "comments"));
+                    newItem.setAttribute("key", newKey);
+
+                    queue.appendChild(newItem);
+                    downloadQueue.push(newKey);
+                }
+
             }
 
         }else{
