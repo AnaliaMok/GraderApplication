@@ -199,7 +199,7 @@
          * @param String section_id - Section for given grades
          * @param Associative Array assignment - Assignment Record
          * @param Array grades - All grades for the given section & assignment
-         * @return [type] [description]
+         * @return String - Name of newly created file
          */
         private function create_textfile($section_id, $assignment, $grades){
 
@@ -264,7 +264,10 @@
             }
 
             // Write Content to file
-            if(write_file($file, $content, "w+")){echo "File Written!";}
+            write_file($file, $content, "w+");
+
+            // Returning name of newly created file
+            return $file;
 
         } // End of create_textfile
 
@@ -279,6 +282,7 @@
             $this->load->library("zip");
 
             $download_queue = json_decode($this->input->post("download_queue"));
+            $files = array();
 
             for($i = 0, $length = count($download_queue); $i < $length; $i++){
                 $curr_request = json_decode($download_queue[$i]);
@@ -297,12 +301,22 @@
                 if($curr_request->type === "grade"){
                     // TODO: Create spreadsheet
                 }elseif($curr_request->type === "comments"){
-                    $this->create_textfile($section_id, $assignment, $grades);
+                    $new_file = $this->create_textfile($section_id, $assignment, $grades);
+                    array_push($files, $new_file);
                 }else{
                     // TODO: Error
                 }
             }
 
+            // Create zip folder
+            foreach($files as $file){
+                // NOTE: Can't do echos because of call to download
+                $this->zip->read_file($file);
+            }
+
+            $zip_name = "grades_n_comments.zip";
+            $this->zip->archive(FCPATH."/".$zip_name);
+            $this->zip->download("grades_n_comments.zip");
 
             // TODO: Set Flashdata
 

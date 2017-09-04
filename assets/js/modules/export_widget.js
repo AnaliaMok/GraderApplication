@@ -234,6 +234,7 @@ var ExportWidget = (function(){
                 data: {'download_queue' : queue},
                 success: function(response){
                     console.log("SUCCESS: " + response);
+                    // TODO: Refresh page?
                 },
                 error: function(response){
                     console.log("ERROR: " + response);
