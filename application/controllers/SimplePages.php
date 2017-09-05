@@ -53,24 +53,6 @@
 
         } // End of view
 
-
-        /**
-         * export - Generates the file export page
-         * @return NULL
-         */
-        public function export(){
-            // TODO:
-
-            $data['active'] = "export";
-
-            // Loading views
-            $this->load->view("templates/header");
-            $this->load->view("templates/nav", $data);
-            $this->load->view("simplepages/export");
-            $this->load->view("templates/footer");
-        } // End of export
-
-
         /**
          * settings - Generates settings page
          * @return NULL
@@ -110,16 +92,70 @@
          * @return NULL
          */
         public function backup(){
-            // TODO: Might be moved to its own controller
+            // TODO: Create form and when validation runs, execute backup
+
+            // Hidden field giving the ok to create backup
+            $this->form_validation->set_rules("check", "check", "required");
 
             $data['active'] = "backup";
 
-            // Loading views
-            $this->load->view("templates/header");
-            $this->load->view("templates/nav", $data);
-            $this->load->view("simplepages/backup");
-            $this->load->view("templates/footer");
+            if($this->form_validation->run() === FALSE){
+                // Loading views normally
+                $this->load->view("templates/header");
+                $this->load->view("templates/nav", $data);
+                $this->load->view("simplepages/backup");
+                $this->load->view("templates/footer");
+            }else{
+                // Else, execute backup procedure
+                // Using example code in CodeIgniter documentation
+
+                // Loading the DB utility class
+                $this->load->dbutil();
+
+                // Backup your entire database and assign it to a variable
+                $backup = $this->dbutil->backup();
+
+                // Load the file helper and write the file to your server
+                $this->load->helper('file');
+                if(write_file('output/backup.zip', $backup, "w+")){
+                    echo "File Written";
+                }
+
+                // Load the download helper and send the file to your desktop
+                $this->load->helper('download');
+                ob_end_clean();
+                force_download('mybackup.zip', $backup);
+
+                // $this->load->library("zip");
+                // $this->zip->read_file('output/backup.zip');
+                //
+                // $zip_name = "grades_n_comments.zip";
+                // $this->zip->archive(FCPATH."/".$zip_name);
+                // ob_end_clean();
+                // $this->zip->download("backup.zip");
+
+                // TODO: Redirect
+            }
+
+
         } // End of backup
+
+
+        public function execute_backup(){
+            // Loading the DB utility class
+            $this->load->dbutil();
+
+            // Backup your entire database and assign it to a variable
+            $backup = $this->dbutil->backup();
+
+            // Load the file helper and write the file to your server
+            $this->load->helper('file');
+            write_file('/path/to/mybackup.gz', $backup);
+
+            // Load the download helper and send the file to your desktop
+            $this->load->helper('download');
+            force_download('mybackup.gz', $backup);
+        }
 
     } // End of SimplePages class
 ?>

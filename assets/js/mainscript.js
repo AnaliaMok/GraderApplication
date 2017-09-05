@@ -783,3 +783,12 @@ function disappearModal(id){
     // Hide Overflow
     $("body").css("overflow", "auto");
 } // End of disappearModal
+
+
+/**
+ * checkHidden - Used to insert a trivial value into a hidden input
+ */
+function checkHidden(){
+    document.getElementById("check").value = "checked";
+    return true;
+} // End of checkHidden
