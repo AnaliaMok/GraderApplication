@@ -113,28 +113,37 @@
                 $this->load->dbutil();
 
                 // Backup your entire database and assign it to a variable
-                $backup = $this->dbutil->backup();
+                $prefs = array(
+                    'ignore'        => array(),                     // List of tables to omit from the backup
+                    'format'        => 'txt',
+                    'add_drop'      => TRUE,                        // Whether to add DROP TABLE statements to backup file
+                    'add_insert'    => TRUE,                        // Whether to add INSERT data to backup file
+                    'newline'       => "\n"                         // Newline character used in backup file
+                );
+                
+                $backup = $this->dbutil->backup($prefs);
 
                 // Load the file helper and write the file to your server
                 $this->load->helper('file');
-                if(write_file('output/backup.zip', $backup, "w+")){
+                if(write_file('output/backup.sql', $backup, "w+")){
                     echo "File Written";
                 }
+                console.log($backup);
 
                 // Load the download helper and send the file to your desktop
-                $this->load->helper('download');
-                ob_end_clean();
-                force_download('mybackup.zip', $backup);
-
-                // $this->load->library("zip");
-                // $this->zip->read_file('output/backup.zip');
-                //
-                // $zip_name = "grades_n_comments.zip";
-                // $this->zip->archive(FCPATH."/".$zip_name);
+                // $this->load->helper('download');
                 // ob_end_clean();
-                // $this->zip->download("backup.zip");
+                // force_download('mybackup.zip', $backup);
 
-                // TODO: Redirect
+                $this->load->library("zip");
+                $this->zip->read_file('output/backup.sql');
+
+                $zip_name = "backup.zip";
+                $this->zip->archive(FCPATH."/".$zip_name);
+                ob_end_clean();
+                $this->zip->download("backup.zip");
+
+                //redirect('backup');
             }
 
 
