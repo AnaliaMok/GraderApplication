@@ -1,8 +1,12 @@
 <!-- Global Navigation Bar -->
 <nav>
     <div id="inner-container">
-        <!-- TODO: Current User's Initials -->
-        <div id="profile-img"><span><?php echo $this->session->userdata('abbr_username'); ?></span></div>
+        <!-- Current User's Initials -->
+        <div id="profile-img">
+            <a href="<?php echo base_url(); ?>dashboard">
+                <span><?php echo $this->session->userdata('abbr_username'); ?></span>
+            </a>
+        </div>
 
         <ul>
             <!-- TODO: Add Appropriate Icons -->

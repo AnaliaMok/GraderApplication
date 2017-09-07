@@ -120,7 +120,7 @@
                     'add_insert'    => TRUE,                        // Whether to add INSERT data to backup file
                     'newline'       => "\n"                         // Newline character used in backup file
                 );
-                
+
                 $backup = $this->dbutil->backup($prefs);
 
                 // Load the file helper and write the file to your server
@@ -128,13 +128,8 @@
                 if(write_file('output/backup.sql', $backup, "w+")){
                     echo "File Written";
                 }
-                console.log($backup);
 
                 // Load the download helper and send the file to your desktop
-                // $this->load->helper('download');
-                // ob_end_clean();
-                // force_download('mybackup.zip', $backup);
-
                 $this->load->library("zip");
                 $this->zip->read_file('output/backup.sql');
 
@@ -143,7 +138,7 @@
                 ob_end_clean();
                 $this->zip->download("backup.zip");
 
-                //redirect('backup');
+                redirect('backup');
             }
 
 
