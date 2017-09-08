@@ -211,7 +211,7 @@
             $this->load->helper("file");
 
             // Create file
-            $file = "output/assignment-".$section_id.".txt";
+            $file = "output/".$assignment['name']."-".$section_id.".txt";
 
             // Create header for file
             $border = str_repeat("=", 50)."\n";
@@ -234,27 +234,33 @@
                 $name = "\n".$student['last_name'].", ".$student['first_name']."\n";
 
                 $content .= $name;
-                $content .= "Score:\t".$curr_grade['score']."\n";
+                $score = $curr_grade['score'];
+                $content .= "Score:\t".(($score === NULL) ? "-" : $score)."\n";
                 $content .= "Breakdown:\t\n\n";
 
-                // Process Breakdown & Add to Content
-                foreach($graded_breakdown as $key => $value){
+                // Process Breakdown - ONLY IF SCORE IS SET & Add to Content
+                if($score !== NULL){
+                    foreach($graded_breakdown as $key => $value){
 
-                    $content .= $key.": ";
+                        $content .= $key.": ";
 
-                    // Loop through subcategories
-                    foreach($value as $sub_key => $sub_value){
-                        if($sub_key === "Total"){
-                            // Write Total points on current line
-                            $content .= $sub_value."/".($assignment_breakdown->$key->Total)."\n";
-                        }else{
-                            // Otherwise, write newline with beginning tab
-                            $content .= "\t".$sub_key.": "
-                                .$sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                        // Loop through subcategories
+                        foreach($value as $sub_key => $sub_value){
+                            if($sub_key === "Total"){
+                                // Write Total points on current line
+                                $content .= $sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                            }else{
+                                // Otherwise, write newline with beginning tab
+                                $content .= "\t".$sub_key.": "
+                                    .$sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                            }
                         }
-                    }
 
-                } // End of graded_breakdown loop
+                    } // End of graded_breakdown loop
+                }else{
+                    $content .= "Not graded yet\n";
+                }
+
 
                 // Writing Comments
                 $content .= "\nComments:\n";
@@ -309,7 +315,7 @@
                     $new_file = $this->create_textfile($section_id, $assignment, $grades);
                     array_push($files, $new_file);
                 }else{
-                    // TODO: Error
+
                 }
             }
 
@@ -325,6 +331,7 @@
 
             // TODO: Set Flashdata
 
+            redirect('export');
         } // End of generate_files
 
     } // End of class
