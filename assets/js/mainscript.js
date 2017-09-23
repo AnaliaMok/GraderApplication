@@ -792,3 +792,42 @@ function checkHidden(){
     document.getElementById("check").value = "checked";
     return true;
 } // End of checkHidden
+
+
+/**
+ * autoGrade - Automatically puts in values for each text input in gradeModal
+ * @param  {int} grade - 0 or 100
+ */
+function autoGrade(grade){
+
+    // Exit on invalid score
+    if(grade !== 0 && grade !== 100) return;
+
+    var breakdown = document.getElementById("breakdown").children,
+        scoreHolder = document.getElementById("score"),
+        maxScore = parseInt(document.getElementById("total").innerHTML);
+
+    // If grade is 0, set score to 0, otherwise enter max score.
+    scoreHolder.value = (grade === 0) ? 0 : maxScore;
+
+    // Iterating through list item children of breakdown
+    for(var i = 0, length = breakdown.length; i < length; i++){
+        var currItem = breakdown[i],
+            textInput = currItem.children[0],
+            text = currItem.innerHTML,
+            subScore = text.split(" ");
+
+        if(grade === 0){
+            // Enter a zero for subScore value
+            textInput.value = 0;
+        }else{
+            // Otherwise, add max subscore
+            // Last index of subScore array is the subScore value
+            subScore = parseInt(subScore[subScore.length-1]);
+            textInput.value = subScore;
+        }
+
+    }
+
+    return true;
+} // End of autoGrade

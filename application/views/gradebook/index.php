@@ -104,7 +104,11 @@
                                 <input type="text" name="score" id="score">&nbsp;/&nbsp;
                                 <span id="total"></span>
                             </span>
-
+                            <div>
+                                <!-- Holder for Zero and 100 Button -->
+                                <button type="button" name="zero" class="blue-btn" onclick="autoGrade(0);">Zero</button>
+                                <button type="button" name="hundred" class="blue-btn" onclick="autoGrade(100);">100</button>
+                            </div>
                             <!-- Grading Breakdown -->
                             <h3>Breakdown:</h3>
                             <ul id="breakdown"></ul>
@@ -116,7 +120,7 @@
                         <div class="form-column">
                             <!-- TODO -->
                             <h3>Comments</h3>
-                            <textarea name="comments" id="comments" rows="8" cols="80"></textarea>
+                            <textarea name="comments" id="comments" rows="20" cols="80"></textarea>
                             <!-- Where to display errors -->
                             <div id="errors-holder"><ul></ul></div>
                             <!-- TODO: Implement Submit Function -->
