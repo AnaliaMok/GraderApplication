@@ -3,6 +3,9 @@
 /// and bugs that still need to be fixed
 ///
 
+[Current Bugs]
+- 0 and 100 buttons do not apply to sub-categories
+
 [Styling]
 - Login screen inputs need to re-worked so icons and text inputs don't get
 misaligned.
@@ -11,9 +14,7 @@ misaligned.
 [Core Features]
 - Linking Dashboard to Specific Gradebook Item
 - Exporting function:
-    - Need to be able to make an easily readable spreadsheet to possibly send
-    to a professor
-    - Will be using Handson table (or GoogleSheets API)
+    - Exporting spreadsheet: Generate a csv file
 - Settings page
     - **Might be removed**
     - Potential Items:

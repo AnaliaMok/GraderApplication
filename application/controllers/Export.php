@@ -239,6 +239,7 @@
                 $content .= "Breakdown:\t\n\n";
 
                 // Process Breakdown - ONLY IF SCORE IS SET & Add to Content
+
                 if($score !== NULL){
                     foreach($graded_breakdown as $key => $value){
 
@@ -252,7 +253,7 @@
                             }else{
                                 // Otherwise, write newline with beginning tab
                                 $content .= "\t".$sub_key.": "
-                                    .$sub_value."/".($assignment_breakdown->$key->Total)."\n";
+                                    .$sub_value."/".($assignment_breakdown->$key->$sub_key)."\n";
                             }
                         }
 
@@ -270,6 +271,7 @@
                 $comment = str_replace("&#39;", "'", $comment);
                 $comment = str_replace("&nbsp;", " ", $comment);
                 $comment = str_replace("&quot;", "\"", $comment);
+                $comment = str_replace("&amp;", "&", $comment);
                 $content .= $comment;
 
             }
