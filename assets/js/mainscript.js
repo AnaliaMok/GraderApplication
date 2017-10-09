@@ -817,14 +817,37 @@ function autoGrade(grade){
             text = currItem.innerHTML,
             subScore = text.split(" ");
 
-        if(grade === 0){
-            // Enter a zero for subScore value
-            textInput.value = 0;
+        if(textInput.nodeName == "UL"){
+            // If inner child is ul, need too loop on this ul's children
+            var ulChildren = textInput.children;
+            var total = ulChildren.length;
+            for(var j = 0; j < total; j++){
+                var currChild = ulChildren[j];
+                textInput = currChild.children[0];
+
+                if(grade === 0){
+                    // Enter a zero for subScore value
+                    textInput.value = 0;
+                }else{
+                    // Otherwise, add max subscore
+                    // Last index of subScore array is the subScore value
+                    text = currChild.innerHTML;
+                    subScore = text.split(" ");
+                    subScore = parseInt(subScore[subScore.length-1]);
+                    textInput.value = subScore;
+                }
+            }
         }else{
-            // Otherwise, add max subscore
-            // Last index of subScore array is the subScore value
-            subScore = parseInt(subScore[subScore.length-1]);
-            textInput.value = subScore;
+
+            if(grade === 0){
+                // Enter a zero for subScore value
+                textInput.value = 0;
+            }else{
+                // Otherwise, add max subscore
+                // Last index of subScore array is the subScore value
+                subScore = parseInt(subScore[subScore.length-1]);
+                textInput.value = subScore;
+            }
         }
 
     }
